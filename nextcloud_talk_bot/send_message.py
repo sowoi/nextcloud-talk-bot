@@ -6,7 +6,6 @@ data = read_nextcloud_data()
 
 for key, value in data.items():
     locals()[key] = value
-    print(key)
 
 
 HEADERSNC = {
@@ -27,13 +26,14 @@ def send_message_to_nextcloud_talk_group(message):
     :param room_token: The token of the Talk group you want to send a message to
     :param message: The message you want to send
     """
+
     # Authenticate with the Nextcloud instance
     session = requests.Session()
     session.auth = (USERNAME, PASSWORD)
 
     # Send a message to the group
     headers = {'Content-Type': 'application/json'}
-    data = {'actorDisplayName': "OkkoBot", 'message': message}
+    data = {'actorDisplayName': "OkkoBot", DISPLAYNAME: message}
     response = session.post(f"{NEXTCLOUD_URL}/ocs/v2.php/apps/spreed/api/v1/chat/{ROOM}", json=data, headers=HEADERSNC)
 
     if response.status_code == 200 or response.status_code == 201:

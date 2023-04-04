@@ -1,7 +1,9 @@
 import getpass
 import requests
+import json
 from cryptography.fernet import Fernet
-
+from get_user import get_user_data
+from get_conversation_id import extract_talk_conversation_ids
 
 def encrypt_password(password):
     # encrypt the password
@@ -41,28 +43,36 @@ def get_nc_remote_folder():
     return nc_remote_folder
 
 def check_nextcloud_credentials(url, username, password, room):
-    # Authenticate with the Nextcloud instance
-    HEADERSNC = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'OCS-APIRequest': 'true',
-    "Authorization": f"Bearer {password}"
-    }
-    session = requests.Session()
-    session.auth = (username, password)
+    user_data = (get_user_data(url, username, password))
+    user_data = json.loads(json.dumps(user_data))
+    status_code = user_data["ocs"]["meta"]["statuscode"]
+    if(status_code == 200):
+        print("Login data are OK")
+        conversation_ids = extract_talk_conversation_ids(url, username, password)
+        print(conversation_ids)
+        print("Found the following chats about the entered user. Select the chat by entering the number in front of it.")
+        for i, rooms in enumerate(conversation_ids):
+            print(f"{i+1}. {rooms}")
+        roomSelection = select_nextcloud_talk_room(conversation_ids) 
+        for i, rooms in enumerate(conversation_ids):
+            if i == roomSelection - 1:
+                 selectedRoom = rooms
+        room = conversation_ids[selectedRoom]
 
-    # Send a message to the group
-    headers = {'Content-Type': 'application/json'}
-    data = {'actorDisplayName': "OkkoBot", 'message': "test"}
-    response = session.post(f"{url}/ocs/v2.php/apps/spreed/api/v1/chat/{room}", json=data, headers=HEADERSNC)
-
-    if response.status_code == 200 or response.status_code == 201:
-        print(f"Message sent {response.status_code}")
         return True
 
-    else:
-        print(f"Failed to send message. Response status code: {response.status_code}")
-        return False
+
+
+def select_nextcloud_talk_room(conversation_ids):
+    while True:
+        try:
+            roomSelection = int(input("Bitte geben Sie die Nummer des Listenelements ein, das Sie auswählen möchten: "))
+            if roomSelection < 1 or roomSelection > len(conversation_ids):
+                raise ValueError
+            break
+        except ValueError:
+            print("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und", len(conversation_ids), "ein.")
+    return roomSelection
 
 def get_credentials():
     # Query the parameters one by one
@@ -72,9 +82,9 @@ def get_credentials():
     room = get_room()
     nc_remote_folder = get_nc_remote_folder()
 
-    # Prüfung der Anmeldedaten mit Nextcloud API
+    # Verification of credentials with Nextcloud API
     if not check_nextcloud_credentials(nextcloud_url, username, password, room):
-        print("Fehlerhafte Anmeldedaten. Bitte versuchen Sie es erneut.")
+        print("Incorrect login data. Please try again.")
         return
     
     # Encryption of the password and storage of the key
