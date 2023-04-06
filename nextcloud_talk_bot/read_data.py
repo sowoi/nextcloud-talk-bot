@@ -1,9 +1,10 @@
+#/usr/bin/python3
 from cryptography.fernet import Fernet
 import os
 
 def read_nextcloud_data():
     """
-    Helper Script.
+    Helper script.
     Reads Nextcloud configuration data from a file, decrypts the password, and returns the data as a dictionary.
     
     This function reads the Nextcloud configuration data from the '.nextclouddata' file, decrypts the password
@@ -16,7 +17,6 @@ def read_nextcloud_data():
     nextclouddata_file_path = os.path.join(current_directory,".nextclouddata")
     password_file_path = os.path.join(current_directory,".password")
     decode_file_path = os.path.join(current_directory,".decode")
-    
 
     # Check if the .nextclouddata file exists
     if not os.path.exists(nextclouddata_file_path):
@@ -29,15 +29,14 @@ def read_nextcloud_data():
         for line in data_file:
             key, value = line.strip().split("::")
             data[key] = value
-
             
-    with open(password_file_path, "r") as decode_file:
+    with open(decode_file_path, "r") as decode_file:
         decode_password = decode_file.readline()
         f = Fernet(decode_password)
 
 
     # Password decryption
-    with open(decode_file_path, "r") as password_file:
+    with open(password_file_path, "r") as password_file:
         encrypted_password = password_file.readline()
         decrypted_password = f.decrypt(encrypted_password).decode()
         data['PASSWORD'] = decrypted_password

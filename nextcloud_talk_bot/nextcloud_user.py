@@ -1,3 +1,4 @@
+#/usr/bin/python3
 import requests
 from read_data import read_nextcloud_data
 from headers import create_headers

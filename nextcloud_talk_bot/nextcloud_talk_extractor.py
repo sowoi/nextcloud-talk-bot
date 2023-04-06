@@ -1,3 +1,4 @@
+#/usr/bin/python3
 import argparse
 import requests
 from read_data import read_nextcloud_data

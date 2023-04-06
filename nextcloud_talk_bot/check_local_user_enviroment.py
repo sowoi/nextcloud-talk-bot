@@ -1,3 +1,4 @@
+#/usr/bin/python3
 import os
 import grp
 import pwd
@@ -22,8 +23,6 @@ def check_user_and_abort_if_root_or_sudo():
     # Check if the user is a member of the 'www-data' group
     if 'www-data' in user_groups:
         print("The user '{}' is a member of the 'www-data' group.".format(user))
-    else:
-        print("The user '{}' is not a member of the 'www-data' group.".format(user))
 
 if __name__ == "__main__":
     check_user_and_abort_if_root_or_sudo()

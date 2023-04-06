@@ -1,3 +1,4 @@
+#/usr/bin/python3
 import os
 import sys
 import getpass
@@ -28,6 +29,10 @@ class FirstRunSetup:
         Returns:
             bytes: The encryption key.
         """
+        uid = os.getuid()  
+        gid = os.getgid()
+        mode = 0o640
+        
         # encrypt the password
         key = Fernet.generate_key()
         f = Fernet(key)
@@ -39,29 +44,34 @@ class FirstRunSetup:
         # Store the encrypted text and the key in different files
         with open(password_file_path, "wb") as password_file:
             password_file.write(encrypted_password)
-
+            
         decode_file_path = os.path.join(current_directory,".decode")
         with open(decode_file_path, "wb") as decode_file:
             decode_file.write(key)
+            
+        os.chown(password_file_path, uid, gid)
+        os.chmod(password_file_path, mode)
+        os.chown(decode_file_path, uid, gid)
+        os.chmod(decode_file_path, mode) 
             
         return key
 
     @staticmethod
     def get_nextcloud_url():
         """Prompt the user for the Nextcloud URL and return it."""
-        nextcloud_url = input("Nextcloud-URL: ")
+        nextcloud_url = input("Please enter your complete Nextcloud address including https://: ")
         return nextcloud_url
 
     @staticmethod
     def get_username():
         """Prompt the user for the username and return it."""
-        username = input("Username: ")
+        username = input("Please specify the username of the bot user:")
         return username
 
     @staticmethod
     def get_password():
         """Prompt the user for the password and return it."""
-        password = getpass.getpass("Password: ")
+        password = getpass.getpass("Please enter the bot user's app password:")
         return password
 
 
@@ -158,19 +168,23 @@ class FirstRunSetup:
         nextclouddata_file_path = os.path.join(current_directory,".nextclouddata")
         if os.path.exists(nextclouddata_file_path):
             print("The .nextclouddata file already exists. If you continue, this file will be overwritten.")
-        while True:
-            user_input = input("Are you sure you want to continue? (yes/no): ")
-            if user_input.lower() == 'no':
-                print("FirstRunSetup aborted.")
-                sys.exit()
-            elif user_input.lower() == 'yes':
-                print("Continuing with FirstRunSetup...")
-                break
-            else:
-                print("Invalid input. Please enter 'yes' or 'no'.")
+            while True:
+                user_input = input("Are you sure you want to continue? (yes/no): ")
+                if user_input.lower() == 'no':
+                    print("FirstRunSetup aborted.")
+                    sys.exit()
+                elif user_input.lower() == 'yes':
+                    print("Continuing with FirstRunSetup...")
+                    break
+                else:
+                    print("Invalid input. Please enter 'yes' or 'no'.")
         return
 
 if __name__ == "__main__":
     FirstRunSetup.check_if_data_file_already_exists()
     check_user_and_abort_if_root_or_sudo()
+    print("""This wizard guides you through the configuration of the framework.
+Make sure you have created a bot user that has only limited rights.
+Enable 2FA for this bot user and create an app password in Nextcloud. 
+""")
     FirstRunSetup.get_credentials()

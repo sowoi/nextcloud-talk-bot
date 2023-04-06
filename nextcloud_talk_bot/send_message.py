@@ -1,7 +1,7 @@
-# -*- coding:utf-8 -*-
+#/usr/bin/python3
 import requests
 from read_data import read_nextcloud_data
-from constants import HEADERSNC
+from headers import create_headers
 
 
 

@@ -1,3 +1,4 @@
+#/usr/bin/python3
 from read_data import read_nextcloud_data
 
 data = read_nextcloud_data()
