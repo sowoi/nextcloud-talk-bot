@@ -1,3 +1,5 @@
+import os
+import sys
 import getpass
 import json
 import collections
@@ -31,11 +33,15 @@ class FirstRunSetup:
         f = Fernet(key)
         encrypted_password = f.encrypt(password.encode())
         
-        # Store the encrypted text and the key in different files
-        with open(".password", "wb") as password_file:
-            password_file.write(encrypted_password)
+        current_directory = os.path.dirname(os.path.realpath(__file__))
+        password_file_path = os.path.join(current_directory,".password")
         
-        with open(".decode", "wb") as decode_file:
+        # Store the encrypted text and the key in different files
+        with open(password_file_path, "wb") as password_file:
+            password_file.write(encrypted_password)
+
+        decode_file_path = os.path.join(current_directory,".decode")
+        with open(decode_file_path, "wb") as decode_file:
             decode_file.write(key)
             
         return key
@@ -58,20 +64,9 @@ class FirstRunSetup:
         password = getpass.getpass("Password: ")
         return password
 
-    @staticmethod
-    def get_room():
-        """Prompt the user for the room and return it."""
-        room = input("Room: ")
-        return room
 
     @staticmethod
-    def get_nc_remote_folder():
-        """Prompt the user for the Nextcloud remote folder and return it."""
-        nc_remote_folder = input("Nextcloud folder for file uploads: ")
-        return nc_remote_folder
-
-    @staticmethod
-    def check_nextcloud_credentials(url, username, password, room):
+    def check_nextcloud_credentials(url, username, password):
         """
         Check if the provided Nextcloud credentials are valid by calling the Nextcloud API.
         
@@ -79,7 +74,6 @@ class FirstRunSetup:
             url (str): The Nextcloud URL.
             username (str): The username.
             password (str): The password.
-            room (str): The room.
 
         Returns:
            (collections.namedtuple): A named tuple containing a boolean indicating if the credentials are valid and the room name.
@@ -93,7 +87,6 @@ class FirstRunSetup:
             print("Login data are OK")
             extractor = NextcloudTalkExtractor(url, username, password)
             conversation_ids = extractor.get_conversations_ids()
-            print(conversation_ids)
             print("Found the following chats about the entered user. Select the chat by entering the number in front of it.")
             for i, rooms in enumerate(conversation_ids):
                 print(f"{i+1}. {rooms}")
@@ -135,11 +128,9 @@ class FirstRunSetup:
         nextcloud_url = FirstRunSetup.get_nextcloud_url()
         username = FirstRunSetup.get_username()
         password = FirstRunSetup.get_password()
-        room = FirstRunSetup.get_room()
-        nc_remote_folder = FirstRunSetup.get_nc_remote_folder()
 
         # Verification of credentials with Nextcloud API
-        result = FirstRunSetup.check_nextcloud_credentials(nextcloud_url, username, password, room)
+        result = FirstRunSetup.check_nextcloud_credentials(nextcloud_url, username, password)
         if not result.valid:
             print("Incorrect login data. Please try again.")
             return
@@ -149,17 +140,37 @@ class FirstRunSetup:
         FirstRunSetup.encrypt_password(password)
 
         # Writing the data to the .nextclouddata file
-        with open(".nextclouddata", "w") as data_file:
+        current_directory = os.path.dirname(os.path.realpath(__file__))
+        nextclouddata_file_path = os.path.join(current_directory,".nextclouddata") 
+        with open(nextclouddata_file_path, "w") as data_file:
             data_file.write(f"NEXTCLOUD_URL::{nextcloud_url}\n")
             data_file.write(f"USERNAME::{username}\n")
             data_file.write(f"ROOM::{room}\n")
-            data_file.write(f"NC_REMOTE_FOLDER::{nc_remote_folder}\n")
-       
+      
         # Delete the password from the working memory to keep it safe
         del password
         
-        print("Data successfully written to .nextclouddata file")
+        print(f"Data successfully written to {nextclouddata_file_path}")
+        
+    def check_if_data_file_already_exists():
+        # Check if the .nextclouddata file exists
+        current_directory = os.path.dirname(os.path.realpath(__file__))
+        nextclouddata_file_path = os.path.join(current_directory,".nextclouddata")
+        if os.path.exists(nextclouddata_file_path):
+            print("The .nextclouddata file already exists. If you continue, this file will be overwritten.")
+        while True:
+            user_input = input("Are you sure you want to continue? (yes/no): ")
+            if user_input.lower() == 'no':
+                print("FirstRunSetup aborted.")
+                sys.exit()
+            elif user_input.lower() == 'yes':
+                print("Continuing with FirstRunSetup...")
+                break
+            else:
+                print("Invalid input. Please enter 'yes' or 'no'.")
+        return
 
 if __name__ == "__main__":
+    FirstRunSetup.check_if_data_file_already_exists()
     check_user_and_abort_if_root_or_sudo()
     FirstRunSetup.get_credentials()
