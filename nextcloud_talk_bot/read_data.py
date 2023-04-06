@@ -1,6 +1,15 @@
 from cryptography.fernet import Fernet
 
 def read_nextcloud_data():
+    """
+    Reads Nextcloud configuration data from a file, decrypts the password, and returns the data as a dictionary.
+    
+    This function reads the Nextcloud configuration data from the '.nextclouddata' file, decrypts the password
+    stored in the '.password' file using a key from the '.decode' file, and returns the data as a dictionary.
+    
+    Returns:
+        data (dict): A dictionary containing the Nextcloud configuration data, including the decrypted password.
+    """
     # Read the .nextclouddata file and extract the data
     data = {}
     with open(".nextclouddata", "r") as data_file:
@@ -15,7 +24,6 @@ def read_nextcloud_data():
 
 
     # Password decryption
-    
     with open(".password", "r") as password_file:
         encrypted_password = password_file.readline()
         decrypted_password = f.decrypt(encrypted_password).decode()

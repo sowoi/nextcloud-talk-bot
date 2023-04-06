@@ -3,7 +3,7 @@ import json
 import collections
 from cryptography.fernet import Fernet
 from get_user import get_user_data
-from get_conversation_id import extract_talk_conversation_ids
+from nextcloud_talk_extractor import NextcloudTalkExtractor
 
 class FirstRunSetup:
     """
@@ -81,14 +81,16 @@ class FirstRunSetup:
             room (str): The room.
 
         Returns:
-           (collections.namedtuple): A named tuple containing a boolean indicating if the credentials are valid and the room name.        """
+           (collections.namedtuple): A named tuple containing a boolean indicating if the credentials are valid and the room name.
+        """
         Result = collections.namedtuple("Result", ["valid", "room"])
         user_data = (get_user_data(url, username, password))
         user_data = json.loads(json.dumps(user_data))
         status_code = user_data["ocs"]["meta"]["statuscode"]
         if(status_code == 200):
             print("Login data are OK")
-            conversation_ids = extract_talk_conversation_ids(url, username, password)
+            extractor = NextcloudTalkExtractor(url, username, password)
+            conversation_ids = extractor.get_conversations_ids()
             print(conversation_ids)
             print("Found the following chats about the entered user. Select the chat by entering the number in front of it.")
             for i, rooms in enumerate(conversation_ids):

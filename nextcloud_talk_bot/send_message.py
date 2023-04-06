@@ -1,19 +1,14 @@
 # -*- coding:utf-8 -*-
 import requests
 from read_data import read_nextcloud_data
+from constants import HEADERSNC
+
+
 
 data = read_nextcloud_data()
 
 for key, value in data.items():
     locals()[key] = value
-
-
-HEADERSNC = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'OCS-APIRequest': 'true',
-    "Authorization": f"Bearer {PASSWORD}"
-}
 
 
 def send_message_to_nextcloud_talk_group(message):
