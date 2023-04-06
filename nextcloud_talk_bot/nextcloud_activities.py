@@ -53,3 +53,4 @@ if __name__ == "__main__":
     nextcloud = NextcloudActivities(NEXTCLOUD_URL, USERNAME, PASSWORD)
     last_activities = nextcloud.get_last_activities()
     filtered_activities = nextcloud.search_last_activities(last_activities)
+    print(filtered_activities)

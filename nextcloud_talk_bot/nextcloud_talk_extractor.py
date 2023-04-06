@@ -1,10 +1,8 @@
+import argparse
 import requests
 from read_data import read_nextcloud_data
-from constants import HEADERSNC
+from headers import create_headers
 
-data = read_nextcloud_data()
-for key, value in data.items():
-    locals()[key] = value
 
 class NextcloudTalkExtractor:
     """
@@ -26,12 +24,14 @@ class NextcloudTalkExtractor:
         self.room_id = room_id
         self.message_limit = message_limit
 
+
     def get_conversations_ids(self):
         """
         Get the list of conversations for the authenticated user.
 
         :return: A dictionary containing the list of conversation tokens and names.
         """
+        HEADERSNC = create_headers(self.password)
         response = requests.get(f"{self.base_url}/ocs/v2.php/apps/spreed/api/v4/room", headers=HEADERSNC, auth=(self.username, self.password))
         response.raise_for_status()
         conversation_list = response.json()
@@ -79,9 +79,15 @@ class NextcloudTalkExtractor:
         return messages_list
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    args = parser.parse_args()
+    data = read_nextcloud_data()
+    for key, value in data.items():
+        locals()[key] = value
     extractor = NextcloudTalkExtractor(NEXTCLOUD_URL, USERNAME, PASSWORD)
     participants = extractor.get_participants(room_id=ROOM)
     print(participants)
     messages = extractor.get_messages(room_id=ROOM, message_limit=5)
     print(messages)
+
  

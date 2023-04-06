@@ -1,4 +1,5 @@
 from cryptography.fernet import Fernet
+import os
 
 def read_nextcloud_data():
     """
@@ -11,6 +12,11 @@ def read_nextcloud_data():
     Returns:
         data (dict): A dictionary containing the Nextcloud configuration data, including the decrypted password.
     """
+    # Check if the .nextclouddata file exists
+    if not os.path.exists(".nextclouddata"):
+        print("The .nextclouddata file does not exist. Please run the first_run_setup script first.")
+        return
+
     # Read the .nextclouddata file and extract the data
     data = {}
     with open(".nextclouddata", "r") as data_file:

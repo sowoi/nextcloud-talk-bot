@@ -1,11 +1,6 @@
 import requests
 from read_data import read_nextcloud_data
-from constants import HEADERSNC
-
-data = read_nextcloud_data()
-
-for key, value in data.items():
-    locals()[key] = value
+from headers import create_headers
 
 class NextcloudUser:
     """
@@ -35,6 +30,7 @@ class NextcloudUser:
             dict: A dictionary containing the user's data if the login is successful,
             an error message otherwise.
         """
+        HEADERSNC = create_headers(self.password)
         auth_url = self.base_url + "/ocs/v2.php/cloud/user"
         response = requests.get(auth_url, headers=HEADERSNC, auth=(self.user, self.password))
         return response.json()
