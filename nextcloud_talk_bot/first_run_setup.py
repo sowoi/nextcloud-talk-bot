@@ -2,6 +2,7 @@ import getpass
 import json
 import collections
 from cryptography.fernet import Fernet
+from check_local_user_enviroment import check_user_and_abort_if_root_or_sudo
 from nextcloud_user import NextcloudUser
 from nextcloud_talk_extractor import NextcloudTalkExtractor
 
@@ -160,4 +161,5 @@ class FirstRunSetup:
         print("Data successfully written to .nextclouddata file")
 
 if __name__ == "__main__":
+    check_user_and_abort_if_root_or_sudo()
     FirstRunSetup.get_credentials()
