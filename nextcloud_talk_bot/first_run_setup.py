@@ -2,7 +2,7 @@ import getpass
 import json
 import collections
 from cryptography.fernet import Fernet
-from get_user import get_user_data
+from nextcloud_user import NextcloudUser
 from nextcloud_talk_extractor import NextcloudTalkExtractor
 
 class FirstRunSetup:
@@ -84,7 +84,8 @@ class FirstRunSetup:
            (collections.namedtuple): A named tuple containing a boolean indicating if the credentials are valid and the room name.
         """
         Result = collections.namedtuple("Result", ["valid", "room"])
-        user_data = (get_user_data(url, username, password))
+        user = NextcloudUser(url, username, password)
+        user_data = user.test_user_login()
         user_data = json.loads(json.dumps(user_data))
         status_code = user_data["ocs"]["meta"]["statuscode"]
         if(status_code == 200):
