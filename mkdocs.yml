@@ -5,4 +5,5 @@ nav:
     - First Run Setup : FirstRunSetup.md
     - NextcloudFileOperations: NextcloudFileOperations.md
     - NextcloudTalkExtractor: NextcloudTalkExtractor.md
+    - NextcloudUser: NextcloudUser.md
 theme: readthedocs
