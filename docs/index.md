@@ -1,5 +1,7 @@
-The Nextcloud Talk Bot is a powerful tool that enhances the functionality of Nextcloud Talk by allowing users to interact with the bot to perform various tasks. This documentation will guide you through the process of setting up the bot, configuring it, and using its features.
-Table of Contents
+
+
+
+## Table of Contents
 
     Requirements
     Installation
