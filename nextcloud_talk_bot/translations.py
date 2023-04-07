@@ -1,10 +1,12 @@
 TRANSLATIONS = {
     "en": {
-        "CAL.EVENT": "event",
-        "CAL.TODO": "to-do",
+        "ACT.EVENT": "event",
+        "ACT.TODO": "to-do",
+        "ACT.SHARED": "Shared",
+        "ACT.FILES": {"deleted","created","changed"},
     },
     "de": {
-        "CAL.EVENT": "Termin",
-        "CAL:TODO": "Aufgabe",
+        "ACT.EVENT": "Termin",
+        "ACT:TODO": "Aufgabe",
     },
 }

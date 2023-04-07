@@ -1,4 +1,5 @@
 #/usr/bin/python3
+
 import requests
 from read_data import read_nextcloud_data
 from translations import TRANSLATIONS
@@ -9,10 +10,11 @@ class NextcloudActivities:
     A class to handle Nextcloud activities.
     """
 
-    def __init__(self, NEXTCLOUD_URL, USERNAME, PASSWORD):
-        self.NEXTCLOUD_URL = NEXTCLOUD_URL
-        self.USERNAME = USERNAME
-        self.PASSWORD = PASSWORD
+    def __init__(self, nextcloud_url, username, password, activity=None):
+        self.nextcloud_url = nextcloud_url
+        self.username = username
+        self.password = password
+        self.activity = activity
 
     def get_last_activities(self):
         """
@@ -20,8 +22,8 @@ class NextcloudActivities:
 
         :return: A list of activities.
         """
-        api_url = f"{self.NEXTCLOUD_URL}/ocs/v2.php/cloud/activity"
-        auth = (self.USERNAME, self.PASSWORD)
+        api_url = f"{self.nextcloud_url}/ocs/v2.php/cloud/activity"
+        auth = (self.username, self.password)
         response = requests.get(api_url, headers=HEADERSNC, auth=auth)
 
         if response.status_code == 200:
@@ -40,8 +42,9 @@ class NextcloudActivities:
         for item in activities:
             subject = item['subject']
             date = item['date']
-            if 'event' in subject or 'to-do' in subject:
-                filtered_data.append({'subject': subject, 'date': date})
+            #if 'event' in subject or 'to-do' in subject:
+            print(subject)
+            filtered_data.append({'subject': subject, 'date': date})
 
         return filtered_data
 
@@ -51,7 +54,8 @@ if __name__ == "__main__":
     for key, value in data.items():
         locals()[key] = value
 
+
     nextcloud = NextcloudActivities(NEXTCLOUD_URL, USERNAME, PASSWORD)
     last_activities = nextcloud.get_last_activities()
     filtered_activities = nextcloud.search_last_activities(last_activities)
-    print(filtered_activities)
+    #print(filtered_activities)
