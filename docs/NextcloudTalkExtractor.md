@@ -1,7 +1,7 @@
 The NextcloudTalkExtractor class is a utility for interacting with the Nextcloud Talk API and extracting data. 
 It provides methods for fetching conversations, participants, and messages for an authenticated user.
 
-Initialization:
+## Initialization:
     To create an instance of the NextcloudTalkExtractor class, you will need the following information:
         - base_url: The base URL for the Nextcloud server.
         - username: The username for the Nextcloud user account.
@@ -9,7 +9,7 @@ Initialization:
         - room_id (optional): The room token for the Nextcloud chat group.
         - message_limit (optional): The default maximum number of messages to retrieve.
 
-Methods:
+## Methods:
 
 1. get_conversations_ids()
     Purpose: Fetch the list of conversations for the authenticated user.
@@ -28,7 +28,7 @@ Methods:
         - message_limit: The maximum number of messages to retrieve (default: 100).
     Returns: A list containing the messages as strings.
 
-Example Usage:
+## Example Usage:
 
     from nextcloud_talk_extractor import NextcloudTalkExtractor
 

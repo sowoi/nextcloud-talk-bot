@@ -5,9 +5,9 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nextcloudtalkbot"
-version = "0.0.1"
+version = "0.0.3"
 authors = [
-  { name="Massoud Ahmed", email="okko@okxo.de" },
+  { name="Massoud Ahmed", email="okko@okxo.de", homepage="https://okxo.de"},
 ]
 description = "Python3 library for creating a Nextcloud Talk bot."
 readme = "README.md"
@@ -18,7 +18,6 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
-homepage = "https://okxo.de"
 keywords = ["nextcloud", "nextcloud talk", "bot"]
 
 [project.urls]
