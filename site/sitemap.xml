@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://example.com/</loc>
+         <loc>https://nextcloud-talk-bot.readthedocs.io/</loc>
          <lastmod>2023-04-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/NextcloudFileOperations/</loc>
+         <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudFileOperations/</loc>
          <lastmod>2023-04-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://example.com/NextcloudTalkExtractor/</loc>
+         <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudTalkExtractor/</loc>
          <lastmod>2023-04-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
