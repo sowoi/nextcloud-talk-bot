@@ -1,0 +1,7 @@
+site_name: Nextcloud Talk Bot
+site_url: https://nextcloud-talk-bot.readthedocs.io
+nav:
+    - Home: index.md
+    - NextcloudFileOperations: NextcloudFileOperations.md
+    - NextcloudTalkExtractor: NextcloudTalkExtractor.md
+theme: readthedocs
