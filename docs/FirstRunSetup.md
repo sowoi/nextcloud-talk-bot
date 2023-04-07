@@ -14,6 +14,13 @@ To run the FirstRunSetup, simply execute the script first_run_setup.py. The user
 get_credentials()
 
 Executes the full setup process, verifies the credentials, and writes the data to the .nextclouddata file.
+
+
 check_if_data_file_already_exists()
 
 Checks if the .nextclouddata file exists. If it does, the user is prompted to confirm whether they want to continue and overwrite the file or abort the setup process.
+
+
+encrypt_password()
+
+This method encrypts the given password using Fernet symmetric encryption. It stores the encrypted password in a file named .password and the encryption key in a file named .decode.
