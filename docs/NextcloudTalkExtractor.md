@@ -1,3 +1,5 @@
+# Nextcloud Talk Bot: Extractor
+
 The NextcloudTalkExtractor class is a utility for interacting with the Nextcloud Talk API and extracting data. 
 It provides methods for fetching conversations, participants, and messages for an authenticated user.
 

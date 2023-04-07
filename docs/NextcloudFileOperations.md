@@ -1,3 +1,5 @@
+# Nextcloud Talk Bot: File Operations
+
 NextcloudFileOperations is designed to interact with a Nextcloud server, providing functionality to list, upload, and delete files in a user's Nextcloud folder.
 
 ## Initialization:
