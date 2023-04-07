@@ -2,12 +2,13 @@ The NextcloudTalkExtractor class is a utility for interacting with the Nextcloud
 It provides methods for fetching conversations, participants, and messages for an authenticated user.
 
 ## Initialization:
-    To create an instance of the NextcloudTalkExtractor class, you will need the following information:
-        - base_url: The base URL for the Nextcloud server.
-        - username: The username for the Nextcloud user account.
-        - password: The password for the Nextcloud user account.
-        - room_id (optional): The room token for the Nextcloud chat group.
-        - message_limit (optional): The default maximum number of messages to retrieve.
+To create an instance of the NextcloudTalkExtractor class, you will need the following information:
+
+- base_url: The base URL for the Nextcloud server.
+- username: The username for the Nextcloud user account.
+- password: The password for the Nextcloud user account.
+- room_id (optional): The room token for the Nextcloud chat group.
+- message_limit (optional): The default maximum number of messages to retrieve.
 
 ## Methods:
 

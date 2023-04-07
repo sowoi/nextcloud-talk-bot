@@ -3,12 +3,13 @@ NextcloudFileOperations is designed to interact with a Nextcloud server, providi
 ## Initialization:
 
 To create an instance of the NextcloudTalkExtractor class, you will need the following information:
-   - base_url: The base URL for the Nextcloud server.
-   - username: The username for the Nextcloud user account.
-   - password: The password for the Nextcloud user account.
-   - nc_remote_folder: (Optional) The path of the remote folder on the Nextcloud server.
-   - local_folder: (Optional) The path of the local folder on the user's machine.
-   - remote_file: (Optional) The name of the remote file in the Nextcloud folder.
+
+- base_url: The base URL for the Nextcloud server.
+- username: The username for the Nextcloud user account.
+- password: The password for the Nextcloud user account.
+- nc_remote_folder: (Optional) The path of the remote folder on the Nextcloud server.
+- local_folder: (Optional) The path of the local folder on the user's machine.
+- remote_file: (Optional) The name of the remote file in the Nextcloud folder.
 
     
 ## Methods:
