@@ -46,6 +46,8 @@
               </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">NextcloudFileOperations</a>
+    <ul class="current">
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -75,7 +77,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p>NextcloudFileOperations is designed to interact with a Nextcloud server, providing functionality to list, upload, and delete files in a user's Nextcloud folder.</p>
+<h2 id="initialization">Initialization:</h2>
+<pre><code>To create an instance of the NextcloudTalkExtractor class, you will need the following information:
+    - base_url: The base URL for the Nextcloud server.
+    - username: The username for the Nextcloud user account.
+    - password: The password for the Nextcloud user account.
+    - nc_remote_folder: (Optional) The path of the remote folder on the Nextcloud server.
+    - local_folder: (Optional) The path of the local folder on the user's machine.
+    - remote_file: (Optional) The name of the remote file in the Nextcloud folder.
+</code></pre>
+<h2 id="methods">Methods:</h2>
+<ol>
+<li>
+<p>list_files_in_nextcloud_folder()
+    Purpose: Lists all files in a Nextcloud folder
+    Returns: A list containing names of the files in the folder.</p>
+</li>
+<li>
+<p>send_local_file_to_nextcloud_folder()
+    Purpose: Uploads local files to a specified Nextcloud folder. 
+    This method iterates through all the files in the local folder, uploads each file to the specified Nextcloud folder, 
+    and deletes the local file upon successful upload.</p>
+</li>
+<li>
+<p>delete_remote_file_in_nextcloud()
+    Purpose: Deletes a remote file in the specified Nextcloud folder. 
+    This method sends a DELETE request to the Nextcloud server to remove the remote file located in the user's specified folder.</p>
+</li>
+</ol>
               
             </div>
           </div><footer>
