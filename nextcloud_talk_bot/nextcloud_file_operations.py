@@ -1,5 +1,4 @@
 #/usr/bin/python3
-
 import requests
 import os
 import xml.etree.ElementTree as ET
@@ -20,12 +19,20 @@ class NextcloudFileOperations:
 
     def __init__(self, base_url, username, password, nc_remote_folder=None, local_folder=None, remote_file=None):
         """
-        Initialize the NextcloudTalkExtractor class with the required credentials.
+        Initialize the NextcloudFileOperations class with the required credentials.
 
         :param base_url: The base URL for the Nextcloud server.
+        :type base_url: str
         :param username: The username for the Nextcloud user account.
+        :type username: str
         :param password: The password for the Nextcloud user account.
-        :param nc_remote_folder: The path of the folder of the use.
+        :type password: str
+        :param nc_remote_folder: The path of the folder in the user's Nextcloud storage.
+        :type nc_remote_folder: str, optional
+        :param local_folder: The path of the local folder for uploading files.
+        :type local_folder: str, optional
+        :param remote_file: The remote file in the Nextcloud folder to delete.
+        :type remote_file: str, optional
         """
         self.base_url = base_url
         self.username = username
@@ -39,14 +46,8 @@ class NextcloudFileOperations:
         """
         List all files in a Nextcloud folder.
 
-        Args:
-            base_url (str): The base URL of your Nextcloud instance.
-            username (str): Your Nextcloud username.
-            password (str): Your Nextcloud password.
-            folder_path (str): The path of the folder to list files in.
-
-        Returns:
-            list: A list of file names in the specified folder.
+        :return: A list of file names in the specified folder.
+        :rtype: list
         """
    
         # Define the WebDAV URL for the folder
@@ -116,7 +117,7 @@ class NextcloudFileOperations:
 
         This method sends a DELETE request to the Nextcloud server to remove the remote file
         located in the user's specified folder.
-        """        
+        """   
         delete_url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{self.remote_file}"
         requests.delete(delete_url, auth=(self.username, self.password))
         print(f"deleted: {self.remote_file} in {self.nc_remote_folder}")

@@ -1,20 +1,20 @@
 #/usr/bin/python3
 
-import requests
 from read_data import read_nextcloud_data
 from translations import TRANSLATIONS
-from constants import HEADERSNC
+from nextcloud_requests import NextcloudRequests
 
 class NextcloudActivities:
     """
     A class to handle Nextcloud activities.
     """
 
-    def __init__(self, nextcloud_url, username, password, activity=None):
-        self.nextcloud_url = nextcloud_url
+    def __init__(self, base_url, username, password, activity=None):
+        self.base_url = base_url
         self.username = username
         self.password = password
         self.activity = activity
+        self.nextcloud_requests = NextcloudRequests(base_url, password)
 
     def get_last_activities(self):
         """
@@ -22,29 +22,26 @@ class NextcloudActivities:
 
         :return: A list of activities.
         """
-        api_url = f"{self.nextcloud_url}/ocs/v2.php/cloud/activity"
-        auth = (self.username, self.password)
-        response = requests.get(api_url, headers=HEADERSNC, auth=auth)
+        endpoint = "/ocs/v2.php/cloud/activity"
+        response = self.nextcloud_requests.send_request(endpoint)
+        
+        return response['ocs']['data']
 
-        if response.status_code == 200:
-            data = response.json()
-            activities = data['ocs']['data']
-            return activities
-
-    def search_last_activities(self, activities):
+    def search_last_activities(self, activity):
         """
-        Search for events and to-dos in the given activities.
+        Search for events, to-dos or file-operatiosn in the given activities.
 
-        :param activities: A list of activities.
-        :return: A list of filtered activities containing events and to-dos.
+        :param activities: he activity to search for, i.e. to-do, event, shared, deleted, created, changed
+        :return: A list of filtered activities.
         """
+        nextcloud = NextcloudActivities(self.base_url, self.username, self.password)
+        response = nextcloud.get_last_activities()
         filtered_data = []
-        for item in activities:
+        for item in response:
             subject = item['subject']
             date = item['date']
-            #if 'event' in subject or 'to-do' in subject:
-            print(subject)
-            filtered_data.append({'subject': subject, 'date': date})
+            if activity in subject:
+                filtered_data.append({'subject': subject, 'date': date})
 
         return filtered_data
 
@@ -56,6 +53,5 @@ if __name__ == "__main__":
 
 
     nextcloud = NextcloudActivities(NEXTCLOUD_URL, USERNAME, PASSWORD)
-    last_activities = nextcloud.get_last_activities()
-    filtered_activities = nextcloud.search_last_activities(last_activities)
-    #print(filtered_activities)
+    last_activities = nextcloud.search_last_activities(activity="event")
+    print(last_activities)

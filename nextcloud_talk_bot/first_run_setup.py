@@ -8,6 +8,8 @@ from cryptography.fernet import Fernet
 from check_local_user_enviroment import check_user_and_abort_if_root_or_sudo
 from nextcloud_user import NextcloudUser
 from nextcloud_talk_extractor import NextcloudTalkExtractor
+from nextcloud_requests import NextcloudRequests
+
 
 class FirstRunSetup:
     """

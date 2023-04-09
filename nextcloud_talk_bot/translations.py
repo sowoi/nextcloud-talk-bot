@@ -1,4 +1,5 @@
 TRANSLATIONS = {
+    "activities": {
     "en": {
         "ACT.EVENT": "event",
         "ACT.TODO": "to-do",
@@ -9,4 +10,5 @@ TRANSLATIONS = {
         "ACT.EVENT": "Termin",
         "ACT:TODO": "Aufgabe",
     },
+    }
 }
