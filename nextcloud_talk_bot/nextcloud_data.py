@@ -30,17 +30,26 @@ class NextcloudData:
             for line in data_file:
                 key, value = line.strip().split("::")
                 data[key] = value
-                
-        with open(decode_file_path, "r") as decode_file:
-            decode_password = decode_file.readline()
-            f = Fernet(decode_password)
+        
+        
+        ncdecode_env = os.environ.get('NCDECODE')
+        if ncdecode_env is not None:
+            f = Fernet(ncdecode_env) 
+        else:      
+            with open(decode_file_path, "r") as decode_file:
+                decode_password = decode_file.readline()
+                f = Fernet(decode_password)
 
 
         # Password decryption
-        with open(password_file_path, "r") as password_file:
-            encrypted_password = password_file.readline()
-            decrypted_password = f.decrypt(encrypted_password).decode()
-            data['PASSWORD'] = decrypted_password
+        ncpassword_env = os.environ.get('NCPASSWORD')
+        if ncpassword_env is not None:
+            data['PASSWORD'] = ncpassword_env
+        else:
+            with open(password_file_path, "r") as password_file:
+                encrypted_password = password_file.readline()
+                decrypted_password = f.decrypt(encrypted_password).decode()
+                data['PASSWORD'] = decrypted_password
             
         return data
 

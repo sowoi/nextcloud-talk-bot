@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudUser/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudActivities/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>NextcloudUser - Nextcloud Talk Bot</title>
+    <title>NextcloudActivities - Nextcloud Talk Bot</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "NextcloudUser";
-        var mkdocs_page_input_path = "NextcloudUser.md";
-        var mkdocs_page_url = "/NextcloudUser/";
+        var mkdocs_page_name = "NextcloudActivities";
+        var mkdocs_page_input_path = "NextcloudActivities.md";
+        var mkdocs_page_url = "/NextcloudActivities/";
       </script>
     
     <script src="../js/jquery-3.6.0.min.js" defer></script>
@@ -56,20 +56,22 @@
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudTalkExtractor/">NextcloudTalkExtractor</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudUser/">NextcloudUser</a>
+                </li>
+              </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">NextcloudUser</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">NextcloudActivities</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage:</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#methods">Methods:</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
+    <li class="toctree-l2"><a class="reference internal" href="#attributes">Attributes:</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples:</a>
     </li>
     </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">NextcloudActivities</a>
                 </li>
               </ul>
       </div>
@@ -86,7 +88,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>NextcloudUser</li>
+      <li>NextcloudActivities</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -95,63 +97,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="nextcloud-talk-bot-extractor">Nextcloud Talk Bot: Extractor</h1>
-<p>The NextcloudUser class represents a Nextcloud user and provides functionality to fetch user data and test user login by interacting with the Nextcloud API.</p>
-<h2 id="initialization">Initialization:</h2>
-<p>To create an instance of the NextcloudTalkExtractor class, you will need the following information:</p>
-<ul>
-<li>base_url: The base URL for the Nextcloud server.</li>
-<li>username: The username for the Nextcloud user account.</li>
-<li>password: The password for the Nextcloud user account.</li>
-</ul>
+                <h1 id="nextcloud-talk-bot-activities">Nextcloud Talk Bot: Activities</h1>
+<p>This module provides the NextcloudActivities class for handling Nextcloud activities.</p>
+<h2 id="usage">Usage:</h2>
+<pre><code>    from nextcloud_talk_bot.nextcloud_activities import NextcloudActivities
+
+    Initialize the NextcloudActivities class:
+    nextcloud = NextcloudActivities(base_url, username, password)
+
+    Get the last activities from Nextcloud:
+    last_activities = nextcloud.get_last_activities()
+
+    Search for specific activities in the last activities:
+    filtered_activities = nextcloud.search_last_activities(activity)
+
+</code></pre>
 <h2 id="methods">Methods:</h2>
-<p>_send_request(self, endpoint)</p>
-<p>This method sends a request to the Nextcloud API and returns the response.</p>
-<p>Arguments:</p>
-<pre><code>endpoint (str): The API endpoint to send the request to.
+<pre><code>    __init__(self, base_url, username, password, activity=None): Initializes the NextcloudActivities class.
+    get_last_activities(self): Gets the last activities from Nextcloud.
+    search_last_activities(self, activity): Searches for events, to-dos or file-operations in the given activities.
 </code></pre>
-<p>Returns:</p>
-<pre><code>dict: A dictionary containing the response data if the request is successful, raises an exception otherwise.
+<h2 id="attributes">Attributes:</h2>
+<pre><code>    base_url (str): The base URL of the Nextcloud instance.
+    username (str): The username of the Nextcloud user.
+    password (str): The password of the Nextcloud user.
+    activity (str, optional): The activity to search for (e.g. to-do, event, shared, deleted, created, changed).
+    nextcloud_requests (NextcloudRequests): An instance of the NextcloudRequests class.
 </code></pre>
-<p>test_user_login(self)</p>
-<p>This method tests user login by attempting to retrieve user data from Nextcloud using the provided credentials.</p>
-<p>Returns:</p>
-<pre><code>dict: A dictionary containing the user's data if the login is successful, an error message otherwise.
+<h2 id="examples">Examples:</h2>
+<pre><code>    # Initialize the NextcloudActivities class
+    nextcloud = NextcloudActivities('https://example.com/nextcloud', 'username', 'password')
+
+    # Get the last activities from Nextcloud
+    last_activities = nextcloud.get_last_activities()
+    print(last_activities)
+
+    # Search for to-do in latest activities
+    activity = 'to-do'
+    filtered_activities = nextcloud.search_last_activities(activity)
+    print(filtered_activities)
 </code></pre>
-<p>get_preferred_language(self)</p>
-<p>This method gets the user's preferred language from the Nextcloud server.</p>
-<p>Returns:</p>
-<pre><code>str: The preferred language if the request is successful, raises an exception otherwise.
-</code></pre>
-<p>get_quota(self)</p>
-<p>This method gets the user's quota information from the Nextcloud server.</p>
-<p>Returns:</p>
-<pre><code>dict: A dictionary containing the user's quota information if the request is successful, raises an exception otherwise.
-</code></pre>
-<h2 id="example">Example</h2>
-<p>Here's an example of how to use the NextcloudUser class:</p>
-<p>python</p>
-<p>from nextcloud_user import NextcloudUser</p>
-<p>base_url = "https://your-nextcloud-instance.com"
-user = "your-username"
-password = "your-password"</p>
-<p>nc_user = NextcloudUser(base_url, user, password)
-login_response = nc_user.test_user_login()</p>
-<p>if "ocs" in login_response and "data" in login_response["ocs"]:
-    print("Login successful!")
-    preferred_language = nc_user.get_preferred_language()
-    print(f"Preferred language: {preferred_language}")
-    quota = nc_user.get_quota()
-    print(f"Quota: {quota}")
-else:
-    print("Login failed!")</p>
-<p>This code snippet demonstrates how to create an instance of the NextcloudUser class, test user login, get the user's preferred language, and fetch their quota information.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../NextcloudTalkExtractor/" class="btn btn-neutral float-left" title="NextcloudTalkExtractor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../NextcloudActivities/" class="btn btn-neutral float-right" title="NextcloudActivities">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../NextcloudUser/" class="btn btn-neutral float-left" title="NextcloudUser"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -174,10 +164,8 @@ else:
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../NextcloudTalkExtractor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../NextcloudUser/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../NextcloudActivities/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -6,8 +6,23 @@ The FirstRunSetup class is designed to handle the first run setup process for a 
 
 ## Usage
 
-To run the FirstRunSetup, simply execute the script first_run_setup.py. The user will be guided through the setup process, and the necessary data will be stored in a file called .nextclouddata.
+To run the FirstRunSetup, import the wizard by 
+```
+from nextcloud_talk_bot.first_run_setup import FirstRunSetup
+FirstRunSetup.first_run()                                                                                                   
+```
+The user will be guided through the setup process, and the necessary data will be stored in a file called .nextclouddata in your home directory.
+The login data for the server is stored in user directory $HOME/.nextclouddata.
 
+
+## Security
+
+The password is stored encrypted in the usepath in the .password file.
+The corresponding decryption password is stored in .decode. 
+Alternatively, the decryption password can be stored in the NCDECODE environment variable and the user password in the NCPASSWORD environment variable.
+A mix of storing decryption password in environment variable and password in .password file or vice versa is also possible and recommended.
+
+However, since third parties can read the password with little effort as soon as they have access to your system, it is advisable not to use admin users for this package.
 
 ## Methods
 
@@ -24,3 +39,27 @@ Checks if the .nextclouddata file exists. If it does, the user is prompted to co
 encrypt_password()
 
 This method encrypts the given password using Fernet symmetric encryption. It stores the encrypted password in a file named .password and the encryption key in a file named .decode.
+
+
+## Exmples
+
+```
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+bot = NextcloudTalkBot()
+url = bot.NEXTCLOUD_URL
+username = bot.USERNAME
+password = bot.PASSWORD
+
+# get preferred language of user
+user = NextcloudUser(url, username, password)
+preferred_language = user.get_preferred_language()
+print(preferred_language)
+
+# search for activity "event"
+event = NextcloudActivities(url, username, password)
+search_event = event.search_last_activities("event")
+print(search_event)
+
+
+```

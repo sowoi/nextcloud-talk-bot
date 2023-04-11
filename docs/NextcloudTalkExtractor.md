@@ -12,6 +12,13 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 - room_id (optional): The room token for the Nextcloud chat group.
 - message_limit (optional): The default maximum number of messages to retrieve.
 
+
+## Usage
+
+```
+from nextcloud_talk_bot.nextcloud_talk_extractor import NextcloudTalkExtractor
+```
+
 ## Methods:
 
 1. get_conversations_ids()

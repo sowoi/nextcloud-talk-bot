@@ -13,6 +13,12 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 - local_folder: (Optional) The path of the local folder on the user's machine.
 - remote_file: (Optional) The name of the remote file in the Nextcloud folder.
 
+
+## Usage:
+
+```
+from nextcloud_talk_bot.nextcloud_file_operations import NextcloudFileOperations
+```
     
 ## Methods:
 

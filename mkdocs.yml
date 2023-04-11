@@ -6,4 +6,6 @@ nav:
     - NextcloudFileOperations: NextcloudFileOperations.md
     - NextcloudTalkExtractor: NextcloudTalkExtractor.md
     - NextcloudUser: NextcloudUser.md
+    - NextcloudActivities: NextcloudActivities.md
+
 theme: readthedocs
