@@ -193,7 +193,7 @@ class FirstRunSetup:
     
     @staticmethod
     def first_run():
-            """
+        """
         Execute the first run setup process for a Nextcloud application.
         """
         FirstRunSetup.check_if_data_file_already_exists()
