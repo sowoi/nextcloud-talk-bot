@@ -7,7 +7,7 @@
 - [Configuration](#configuration)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License] (#license)
+- [License](#license)
 
 ## Requirements
 <a id='requirements'></a>
