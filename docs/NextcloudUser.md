@@ -1,9 +1,9 @@
-# Nextcloud Talk Bot: Extractor
+# Nextcloud Talk Bot: User
 
 The NextcloudUser class represents a Nextcloud user and provides functionality to fetch user data and test user login by interacting with the Nextcloud API.
 
 ## Initialization:
-To create an instance of the NextcloudTalkExtractor class, you will need the following information:
+To create an instance of the NextcloudUser class, you will need the following information:
 
 - base_url: The base URL for the Nextcloud server.
 - username: The username for the Nextcloud user account.
