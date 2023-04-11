@@ -79,3 +79,21 @@ class NextcloudPoll:
         
         response = self.nextcloud_requests.send_request(endpoint)
         return
+
+def close_poll(self, poll_id=0):
+    conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
+    if room_name not in conversation_list:
+        return f"{room_name} does not exist"
+    else:
+        if not NextcloudPoll.get_poll_result(self, poll_id)["ocs"]["meta"]["statuscode"] == 200:
+            return "PollId not found"
+        else:
+            poll_question = NextcloudPoll.get_poll_result(self, poll_id)["ocs"]["data"]["question"]
+            if are_you_sure("close", poll_question):
+                room_token = conversation_list[room_name]
+                endpoint = f"/ocs/v2.php/apps/spreed/api/v1/poll/{room_token}/{poll_id}"
+                self.nextcloud_requests.delete_request(endpoint)
+                print(f"Closed poll '{room_name}'")
+            else:
+                print("Poll closing aborted.")
+    
