@@ -24,10 +24,6 @@ git clone https://github.com/sowoi/nextcloud-talk-bot.git
 
 Documentation can be found at [readthedocs.org](https://nextcloud-talk-bot.readthedocs.io).
 
-
-## Why is it called bot and not API?
-Although this library does a lot of API wrapper work for Nextcloud Talk, the real goal is to create a Nextcloud Talk bot for Smarthome and other applications to be an alternative for the messenger Telegram.
-
 ## License
 
 Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
