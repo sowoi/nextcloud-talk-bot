@@ -17,18 +17,20 @@ exclude = [
 
 [project]
 name = "nextcloudtalkbot"
-version = "0.0.21"
-homepage = "https://okxo.de"
+version = "0.0.23"
+home-page = "https://okxo.de"
 authors = [
-  { name="Massoud Ahmed", email="okko@okxo.de", homepage="https://okxo.de"},
+  { name="Massoud Ahmed", email="okko@okxo.de", home-page="https://okxo.de"},
 ]
 description = "Python3 library for creating a Nextcloud Talk bot."
 readme = "README.md"
 requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
+    'Development Status :: 3 - Alpha',
+    'Intended Audience :: Developers',
 ]
 
 dependencies = [

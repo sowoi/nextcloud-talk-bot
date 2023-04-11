@@ -28,4 +28,9 @@ git clone https://github.com/sowoi/nextcloud-talk-bot.git
 Documentation can be found at [readthedocs.org](https://nextcloud-talk-bot.readthedocs.io).
 
 ## License
+
 Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
+
+## Developer-Website
+
+[https://okxo.de](https://okxo.de)
