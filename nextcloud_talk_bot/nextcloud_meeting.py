@@ -69,13 +69,3 @@ class NextcloudMeeting:
                 print("Aborted.")
                 sys.exit()
 
-
-        
-if __name__ == "__main__":
-    nextcloud_url = "https://ok.fahmed.de"
-    username = "schlaueshauesle"
-    password = "KyxHS-RokPk-LzoW5-ftPT6-e4swz"
-    room_name = "TEST"
-
-    meeting = NextcloudMeeting(nextcloud_url, username, password)
-    room_id = meeting.delete_room(room_name)

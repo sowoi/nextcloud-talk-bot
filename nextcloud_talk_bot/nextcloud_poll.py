@@ -76,15 +76,3 @@ class NextcloudPoll:
                 else:
                     print("Poll closing aborted.")
                     sys.exit()
-                           
-
-if __name__ == "__main__":
-    nextcloud_url = "https://ok.fahmed.de"
-    username = "schlaueshauesle"
-    password = "KyxHS-RokPk-LzoW5-ftPT6-e4swz"
-    room_name = "TEST"
-
-    meeting = NextcloudPoll(nextcloud_url, username, password, room_name)
-
-
-    room_id = meeting.close_poll(poll_id=6)
