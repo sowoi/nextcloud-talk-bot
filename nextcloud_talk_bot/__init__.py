@@ -1,4 +1,4 @@
 # __init__.py
-from .nextcloudtalkbot import NextcloudTalkBot
+from .Nextcloudtalkbot import NextcloudTalkBot
 
 __all__ = ['NextcloudTalkBot']
