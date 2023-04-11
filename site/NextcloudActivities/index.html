@@ -113,17 +113,16 @@
 
 </code></pre>
 <h2 id="methods">Methods:</h2>
-<pre><code>    __init__(self, base_url, username, password, activity=None): Initializes the NextcloudActivities class.
-    get_last_activities(self): Gets the last activities from Nextcloud.
-    search_last_activities(self, activity): Searches for events, to-dos or file-operations in the given activities.
-</code></pre>
+<p><strong>init</strong>(self, base_url, username, password, activity=None): Initializes the NextcloudActivities class.
+get_last_activities(self): Gets the last activities from Nextcloud.
+search_last_activities(self, activity): Searches for events, to-dos or file-operations in the given activities.</p>
 <h2 id="attributes">Attributes:</h2>
-<pre><code>    base_url (str): The base URL of the Nextcloud instance.
-    username (str): The username of the Nextcloud user.
-    password (str): The password of the Nextcloud user.
-    activity (str, optional): The activity to search for (e.g. to-do, event, shared, deleted, created, changed).
-    nextcloud_requests (NextcloudRequests): An instance of the NextcloudRequests class.
-</code></pre>
+<ul>
+<li>base_url (str): The base URL of the Nextcloud instance.</li>
+<li>username (str): The username of the Nextcloud user.</li>
+<li>password (str): The password of the Nextcloud user.</li>
+<li>activity (str, optional): The activity to search for (e.g. to-do, event, shared, deleted, created, changed).</li>
+</ul>
 <h2 id="examples">Examples:</h2>
 <pre><code>    # Initialize the NextcloudActivities class
     nextcloud = NextcloudActivities('https://example.com/nextcloud', 'username', 'password')

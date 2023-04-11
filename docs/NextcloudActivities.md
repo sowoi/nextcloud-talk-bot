@@ -19,17 +19,18 @@ This module provides the NextcloudActivities class for handling Nextcloud activi
 ```
 
 ## Methods:
-        __init__(self, base_url, username, password, activity=None): Initializes the NextcloudActivities class.
-        get_last_activities(self): Gets the last activities from Nextcloud.
-        search_last_activities(self, activity): Searches for events, to-dos or file-operations in the given activities.
+
+__init__(self, base_url, username, password, activity=None): Initializes the NextcloudActivities class.
+get_last_activities(self): Gets the last activities from Nextcloud.
+search_last_activities(self, activity): Searches for events, to-dos or file-operations in the given activities.
 
 
 ## Attributes:
-        base_url (str): The base URL of the Nextcloud instance.
-        username (str): The username of the Nextcloud user.
-        password (str): The password of the Nextcloud user.
-        activity (str, optional): The activity to search for (e.g. to-do, event, shared, deleted, created, changed).
-        nextcloud_requests (NextcloudRequests): An instance of the NextcloudRequests class.
+
+- base_url (str): The base URL of the Nextcloud instance.
+- username (str): The username of the Nextcloud user.
+- password (str): The password of the Nextcloud user.
+- activity (str, optional): The activity to search for (e.g. to-do, event, shared, deleted, created, changed).
 
 
 ## Examples:
