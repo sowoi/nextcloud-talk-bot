@@ -2,13 +2,13 @@
 
 
 ## Table of Contents
-[Requirements](#requirements)
-[Installation] (#installation)
-Configuration
-Usage
-Commands
-Contributing
-License
+- [Requirements](#requirements)
+- [Installation](#installation)
+- Configuration
+- Usage
+- Commands
+- Contributing
+- License
 
 ## Requirements
 <a id='requirements'></a>
