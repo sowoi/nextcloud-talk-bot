@@ -1,4 +1,4 @@
-## Nextcloud Talk Bot
+# Nextcloud Talk Bot
 
 *Not ready for production, yet.*
 
@@ -6,7 +6,7 @@ Python3 library for creating a Nextcloud Talk bot.
 
 This repository contains the code for a Nextcloud Talk bot that can perform various actions in a Nextcloud Talk room, such as sending files and listing activities.
 
-### Installation
+## Installation
 
 Via PIP:
 
@@ -23,20 +23,9 @@ git clone https://github.com/sowoi/nextcloud-talk-bot.git
 ```
 
 
-### Usage
+## Documentation
 
-Run Setup Wizard:
-```
-python3 first_run_setup.py
-```
+Documentation can be found at [readthedocs.org](https://nextcloud-talk-bot.readthedocs.io).
 
-which will crate a `.nextclouddata` file with:
-
-```
-NEXTCLOUD_URL::https://your.nextcloud.instance
-USERNAME::your_username
-PASSWORD::your_password
-```
-Your password is stored encrypted.
-
-
+## License
+Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
