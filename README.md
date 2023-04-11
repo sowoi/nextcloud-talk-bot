@@ -1,7 +1,5 @@
 # Nextcloud Talk Bot
 
-*Not ready for production, yet.*
-
 Python3 library for creating a Nextcloud Talk bot. 
 
 This repository contains the code for a Nextcloud Talk bot that can perform various actions in a Nextcloud Talk room, such as sending files and listing activities.
