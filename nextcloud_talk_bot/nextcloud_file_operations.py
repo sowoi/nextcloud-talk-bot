@@ -1,15 +1,9 @@
-#/usr/bin/python3
+# nextcloud_file_operations.py
 import requests
 import os
 import xml.etree.ElementTree as ET
 from requests.auth import HTTPBasicAuth
-from read_data import read_nextcloud_data
-from constants import HEADERSNC
-
-data = read_nextcloud_data()
-
-for key, value in data.items():
-    locals()[key] = value
+from .nextcloud_data import NextcloudData
 
 
 class NextcloudFileOperations:
@@ -94,14 +88,14 @@ class NextcloudFileOperations:
                     # Send file to Nextcloud Talk Room
                     with open(file_path, "rb") as file:
                         content_type = mimetypes.guess_type(file_path)[0]
-                        headers = HEADERSNC.copy()
+                        headers = headers.copy()
                         headers["Content-Type"] = content_type
                     
                         url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{filename}"
 
                         try:
                             print("Sending ", filename)
-                            response = requests.put(url, headers=HEADERSNC, data=file)
+                            response = requests.put(url, headers=headers, data=file)
                             response.raise_for_status()
                             # If success delete the local file
                             if response.status_code == 201:

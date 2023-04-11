@@ -1,14 +1,14 @@
-#/usr/bin/python3
 import os
 import sys
 import getpass
 import json
 import collections
 from cryptography.fernet import Fernet
-from check_local_user_enviroment import check_user_and_abort_if_root_or_sudo
-from nextcloud_user import NextcloudUser
-from nextcloud_talk_extractor import NextcloudTalkExtractor
-from nextcloud_requests import NextcloudRequests
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from .nextcloud_user import NextcloudUser
+from .nextcloud_talk_extractor import NextcloudTalkExtractor
+from .check_local_user_enviroment import SudoPrivileges
 
 
 class FirstRunSetup:
@@ -25,12 +25,10 @@ class FirstRunSetup:
         Stores the encrypted password in a file named '.password' and
         the encryption key in a file named '.decode'.
         
-        Args:
-            password (str): The plaintext password to encrypt.
-
-        Returns:
-            bytes: The encryption key.
+        :param password (str): The plaintext password to encrypt.
+        :return: bytes - The encryption key.
         """
+        
         uid = os.getuid()  
         gid = os.getgid()
         mode = 0o640
@@ -39,15 +37,14 @@ class FirstRunSetup:
         key = Fernet.generate_key()
         f = Fernet(key)
         encrypted_password = f.encrypt(password.encode())
-        
-        current_directory = os.path.dirname(os.path.realpath(__file__))
-        password_file_path = os.path.join(current_directory,".password")
+        home_dir = os.path.expanduser("~") 
+        password_file_path = os.path.join(home_dir,".password")
         
         # Store the encrypted text and the key in different files
         with open(password_file_path, "wb") as password_file:
             password_file.write(encrypted_password)
             
-        decode_file_path = os.path.join(current_directory,".decode")
+        decode_file_path = os.path.join(home_dir,".decode")
         with open(decode_file_path, "wb") as decode_file:
             decode_file.write(key)
             
@@ -60,19 +57,31 @@ class FirstRunSetup:
 
     @staticmethod
     def get_nextcloud_url():
-        """Prompt the user for the Nextcloud URL and return it."""
+        """
+        Prompt the user for the Nextcloud URL and return it.
+        :return: str - The Nextcloud URL.
+        """
+        
         nextcloud_url = input("Please enter your complete Nextcloud address including https://: ")
         return nextcloud_url
 
     @staticmethod
     def get_username():
-        """Prompt the user for the username and return it."""
+        """
+        Prompt the user for the username and return it.
+        :return: str - The username.
+        """
+        
         username = input("Please specify the username of the bot user:")
         return username
 
     @staticmethod
     def get_password():
-        """Prompt the user for the password and return it."""
+        """
+        Prompt the user for the password and return it.
+        :return: str - The password.
+        """
+        
         password = getpass.getpass("Please enter the bot user's app password:")
         return password
 
@@ -82,14 +91,12 @@ class FirstRunSetup:
         """
         Check if the provided Nextcloud credentials are valid by calling the Nextcloud API.
         
-        Args:
-            url (str): The Nextcloud URL.
-            username (str): The username.
-            password (str): The password.
-
-        Returns:
-           (collections.namedtuple): A named tuple containing a boolean indicating if the credentials are valid and the room name.
+        :param url (str): The Nextcloud URL.
+        :param username (str): The username.
+        :param password (str): The password.
+        :return: collections.namedtuple - A named tuple containing a boolean indicating if the credentials are valid and the room name.
         """
+        
         Result = collections.namedtuple("Result", ["valid", "room"])
         user = NextcloudUser(url, username, password)
         user_data = user.test_user_login()
@@ -115,12 +122,10 @@ class FirstRunSetup:
         """
         Prompts the user to select the Nextcloud Talk chat room and returns its index in the list.
 
-        Parameters:
-        conversation_ids (list): The list of available Nextcloud Talk chat rooms.
-
-        Returns:
-        (int): The index of the selected chat room in the list.
+        :param conversation_ids (list): The list of available Nextcloud Talk chat rooms.
+        :return: int - The index of the selected chat room in the list.
         """
+        
         while True:
             try:
                 roomSelection = int(input("Please enter the number of the list item you want to select: "))
@@ -152,8 +157,8 @@ class FirstRunSetup:
         FirstRunSetup.encrypt_password(password)
 
         # Writing the data to the .nextclouddata file
-        current_directory = os.path.dirname(os.path.realpath(__file__))
-        nextclouddata_file_path = os.path.join(current_directory,".nextclouddata") 
+        home_dir = os.path.expanduser("~") 
+        nextclouddata_file_path = os.path.join(home_dir,".nextclouddata") 
         with open(nextclouddata_file_path, "w") as data_file:
             data_file.write(f"NEXTCLOUD_URL::{nextcloud_url}\n")
             data_file.write(f"USERNAME::{username}\n")
@@ -165,9 +170,13 @@ class FirstRunSetup:
         print(f"Data successfully written to {nextclouddata_file_path}")
         
     def check_if_data_file_already_exists():
-        # Check if the .nextclouddata file exists
-        current_directory = os.path.dirname(os.path.realpath(__file__))
-        nextclouddata_file_path = os.path.join(current_directory,".nextclouddata")
+        """
+        Check if the .nextclouddata file exists.
+
+        :return: None
+        """
+        home_dir = os.path.expanduser("~") 
+        nextclouddata_file_path = os.path.join(home_dir,".nextclouddata")
         if os.path.exists(nextclouddata_file_path):
             print("The .nextclouddata file already exists. If you continue, this file will be overwritten.")
             while True:
@@ -181,12 +190,17 @@ class FirstRunSetup:
                 else:
                     print("Invalid input. Please enter 'yes' or 'no'.")
         return
-
-if __name__ == "__main__":
-    FirstRunSetup.check_if_data_file_already_exists()
-    check_user_and_abort_if_root_or_sudo()
-    print("""This wizard guides you through the configuration of the framework.
+    
+    @staticmethod
+    def first_run():
+            """
+        Execute the first run setup process for a Nextcloud application.
+        """
+        FirstRunSetup.check_if_data_file_already_exists()
+        SudoPrivileges.check_user_and_abort_if_root_or_sudo()
+        print("""This wizard guides you through the configuration of the framework.
 Make sure you have created a bot user that has only limited rights.
 Enable 2FA for this bot user and create an app password in Nextcloud. 
-""")
-    FirstRunSetup.get_credentials()
+        """)
+        FirstRunSetup.get_credentials()
+    

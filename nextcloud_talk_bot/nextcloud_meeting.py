@@ -1,7 +1,7 @@
 import sys
-from nextcloud_requests import NextcloudRequests
-from nextcloud_talk_extractor import NextcloudTalkExtractor
-from confirmation import are_you_sure
+from .nextcloud_requests import NextcloudRequests
+from .nextcloud_talk_extractor import NextcloudTalkExtractor
+from .confirmation import are_you_sure
 
 
 class NextcloudMeeting:

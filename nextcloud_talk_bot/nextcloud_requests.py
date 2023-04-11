@@ -1,5 +1,6 @@
+# nextcloud_requests.py
 import requests
-from headers import create_headers
+from .headers import NextcloudHeaders
 
 class NextcloudRequests:
     """
@@ -11,6 +12,7 @@ class NextcloudRequests:
     def __init__(self, base_url, password):
         self.base_url = base_url
         self.password = password
+        self.headers = NextcloudHeaders.create_headers(password)
 
     def send_request(self, endpoint, params=None):
         
@@ -22,7 +24,7 @@ class NextcloudRequests:
         :return: The JSON response from the server.
         :raises Exception: If the response status code is not 200.
         """
-        headers = create_headers(self.password)
+        headers = self.headers
         url = f"{self.base_url}{endpoint}"
         response = requests.get(url, headers=headers, params=params)
 
@@ -41,7 +43,7 @@ class NextcloudRequests:
         :raises Exception: If the response status code is not 200 or 201.
         """
        
-        headers = create_headers(self.password)
+        headers = self.headers
 
         url = f"{self.base_url}{endpoint}"
         response = requests.post(url, headers=headers, json=json)
@@ -52,7 +54,7 @@ class NextcloudRequests:
             raise Exception(f"Error: {response.status_code}, {url} {headers}, {json}")
         
     def delete_request(self, endpoint):
-        headers = create_headers(self.password)
+        headers = self.headers
         url = f"{self.base_url}{endpoint}"
         
         response = requests.delete(url, headers=headers)

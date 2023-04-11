@@ -1,8 +1,8 @@
-#/usr/bin/python3
+# nextcloud_activites.py
 
-from read_data import read_nextcloud_data
-from translations import TRANSLATIONS
-from nextcloud_requests import NextcloudRequests
+from .nextcloud_data import NextcloudData
+from .translations import TRANSLATIONS
+from .nextcloud_requests import NextcloudRequests
 
 class NextcloudActivities:
     """

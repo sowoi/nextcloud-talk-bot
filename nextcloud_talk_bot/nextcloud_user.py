@@ -1,4 +1,5 @@
-from nextcloud_requests import NextcloudRequests
+# nextcloud_user.py
+from .nextcloud_requests import NextcloudRequests
 
 class NextcloudUser:
     """

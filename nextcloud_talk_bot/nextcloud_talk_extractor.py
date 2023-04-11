@@ -1,8 +1,8 @@
-#/usr/bin/python3
+# nextcloud_talk_extractor.py
 import argparse
-from read_data import read_nextcloud_data
-from nextcloud_requests import NextcloudRequests
-from permissions_map import permissions_map
+from .nextcloud_data import NextcloudData
+from .nextcloud_requests import NextcloudRequests
+from .permissions_map import permissions_map
 
 
 class NextcloudTalkExtractor:
@@ -117,7 +117,7 @@ class NextcloudTalkExtractor:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     args = parser.parse_args()
-    data = read_nextcloud_data()
+    data = NextcloudData.read_nextcloud_data()
     for key, value in data.items():
         locals()[key] = value
     extractor = NextcloudTalkExtractor(NEXTCLOUD_URL, USERNAME, PASSWORD)
