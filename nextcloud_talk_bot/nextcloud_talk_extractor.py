@@ -106,7 +106,7 @@ class NextcloudTalkExtractor:
         }
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/chat/{room_id}"
         response = self.nextcloud_requests.send_request(endpoint, params=paramsMessages)
-        print(response)
+
         # Extract the participants IDs
         messages_list = []
         for message in response["ocs"]["data"]:

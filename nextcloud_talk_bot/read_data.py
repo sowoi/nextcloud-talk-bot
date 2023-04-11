@@ -40,5 +40,8 @@ def read_nextcloud_data():
         encrypted_password = password_file.readline()
         decrypted_password = f.decrypt(encrypted_password).decode()
         data['PASSWORD'] = decrypted_password
-
+        
     return data
+
+if __name__ == "__main__":
+    read_nextcloud_data()
