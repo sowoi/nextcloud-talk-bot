@@ -12,7 +12,7 @@ from .nextcloud_data import NextcloudData
 from .nextcloud_messages import NextcloudMessages
 from .headers import NextcloudHeaders
 from .translations import TRANSLATIONS
-from .confirmation import are_you_sure
+from .confirmation import Confirmation
 from .permissions_map import permissions_map
 from .conversations_map import conversations_map
 

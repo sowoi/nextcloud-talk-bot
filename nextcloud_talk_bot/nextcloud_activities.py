@@ -34,8 +34,7 @@ class NextcloudActivities:
         :param activities: he activity to search for, i.e. to-do, event, shared, deleted, created, changed
         :return: A list of filtered activities.
         """
-        nextcloud = NextcloudActivities(self.base_url, self.username, self.password)
-        response = nextcloud.get_last_activities()
+        response = self.get_last_activities()
         filtered_data = []
         for item in response:
             subject = item['subject']

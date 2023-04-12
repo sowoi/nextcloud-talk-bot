@@ -19,17 +19,17 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 from nextcloud_talk_bot.nextcloud_talk_extractor import NextcloudTalkExtractor
 ```
 
-## Methods:
+## Methods
 
-1. get_conversations_ids()
-    Purpose: Fetch the list of conversations for the authenticated user.
-    Returns: A dictionary containing the list of conversation tokens and names.
+1. get_conversations_ids()  
+Fetch the list of conversations for the authenticated user.  
+Returns: A dictionary containing the list of conversation tokens and names.  
 
-2. get_participants(room_id, message_limit=None)
-    Purpose: Fetch the list of participants in a specific conversation.
-    Parameters:
-        - room_id: The token of the conversation for which to retrieve participants.
-    Returns: A list containing the participant display names.
+2. get_participants(room_id, message_limit=None)  
+    Fetch the list of participants in a specific conversation.  
+    Parameters:  
+        - room_id: The token of the conversation for which to retrieve participants.  
+    Returns: A list containing the participant display names.  
 
 3. get_messages(room_id, message_limit=1)
     Purpose: Fetch the messages in a specific conversation, with an optional limit.
@@ -38,8 +38,9 @@ from nextcloud_talk_bot.nextcloud_talk_extractor import NextcloudTalkExtractor
         - message_limit: The maximum number of messages to retrieve (default: 100).
     Returns: A list containing the messages as strings.
 
-## Example Usage:
+## Examples
 
+```python
     from nextcloud_talk_extractor import NextcloudTalkExtractor
 
     base_url = "https://my.nextcloud.com"
@@ -60,3 +61,5 @@ from nextcloud_talk_bot.nextcloud_talk_extractor import NextcloudTalkExtractor
     # Get the messages of a specific conversation
     messages = extractor.get_messages(room_id, message_limit=100)
     print(messages)
+
+```

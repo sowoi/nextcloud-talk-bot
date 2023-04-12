@@ -2,7 +2,7 @@
 
 NextcloudFileOperations is designed to interact with a Nextcloud server, providing functionality to list, upload, and delete files in a user's Nextcloud folder.
 
-## Initialization:
+## Initialization
 
 To create an instance of the NextcloudTalkExtractor class, you will need the following information:
 
@@ -14,13 +14,13 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 - remote_file: (Optional) The name of the remote file in the Nextcloud folder.
 
 
-## Usage:
+## Usage
 
 ```
 from nextcloud_talk_bot.nextcloud_file_operations import NextcloudFileOperations
 ```
     
-## Methods:
+## Methods
 
 1. list_files_in_nextcloud_folder()
     Purpose: Lists all files in a Nextcloud folder

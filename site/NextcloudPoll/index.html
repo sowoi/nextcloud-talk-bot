@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudFileOperations/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudPoll/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>NextcloudFileOperations - Nextcloud Talk Bot</title>
+    <title>NextcloudPoll - Nextcloud Talk Bot</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "NextcloudFileOperations";
-        var mkdocs_page_input_path = "NextcloudFileOperations.md";
-        var mkdocs_page_url = "/NextcloudFileOperations/";
+        var mkdocs_page_name = "NextcloudPoll";
+        var mkdocs_page_input_path = "NextcloudPoll.md";
+        var mkdocs_page_url = "/NextcloudPoll/";
       </script>
     
     <script src="../js/jquery-3.6.0.min.js" defer></script>
@@ -55,8 +55,16 @@
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">NextcloudActivities</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudFileOperations/">NextcloudFileOperations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMeeting/">NextcloudMeeting</a>
+                </li>
+              </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">NextcloudFileOperations</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">NextcloudPoll</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a>
     </li>
@@ -64,15 +72,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
+    </li>
     </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMeeting/">NextcloudMeeting</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../NextcloudPoll/">NextcloudPoll</a>
                 </li>
               </ul>
               <ul>
@@ -97,7 +99,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>NextcloudFileOperations</li>
+      <li>NextcloudPoll</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -106,46 +108,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="nextcloud-talk-bot-file-operations">Nextcloud Talk Bot: File Operations</h1>
-<p>NextcloudFileOperations is designed to interact with a Nextcloud server, providing functionality to list, upload, and delete files in a user's Nextcloud folder.</p>
+                <h1 id="nextcloud-talk-bot-meeting">Nextcloud Talk Bot: Meeting</h1>
+<p>NextcloudPoll  can be used to create, get, and close polls in a Nextcloud Talk room. </p>
 <h2 id="initialization">Initialization</h2>
 <p>To create an instance of the NextcloudTalkExtractor class, you will need the following information:</p>
 <ul>
 <li>base_url: The base URL for the Nextcloud server.</li>
 <li>username: The username for the Nextcloud user account.</li>
 <li>password: The password for the Nextcloud user account.</li>
-<li>nc_remote_folder: (Optional) The path of the remote folder on the Nextcloud server.</li>
-<li>local_folder: (Optional) The path of the local folder on the user's machine.</li>
-<li>remote_file: (Optional) The name of the remote file in the Nextcloud folder.</li>
+<li>room_name: The name of the room where the poll will be created.</li>
+<li>question: The question for the poll.</li>
+<li>voting_options: A list of strings representing the options for the poll.</li>
+<li>max_votes: The maximum number of votes per user (default is 1).</li>
+<li>result_mode: The result mode of the poll (0 = show after vote, 1 = show always).</li>
+<li>poll_id: The ID of an existing poll to get or close.</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<pre><code>from nextcloud_talk_bot.nextcloud_file_operations import NextcloudFileOperations
+<pre><code>from nextcloud_talk_bot.nextcloud_poll import NextcloudPoll
+# create instance
+poll = NextcloudPoll(base_url=&quot;https://example.com&quot;, username=&quot;user&quot;, password=&quot;password&quot;, room_name=&quot;My Room&quot;, question=&quot;Do you like pizza?&quot;, voting_options=[&quot;Yes&quot;, &quot;No&quot;])
 </code></pre>
 <h2 id="methods">Methods</h2>
 <ol>
-<li>
-<p>list_files_in_nextcloud_folder()
-    Purpose: Lists all files in a Nextcloud folder
-    Returns: A list containing names of the files in the folder.</p>
-</li>
-<li>
-<p>send_local_file_to_nextcloud_folder()
-    Purpose: Uploads local files to a specified Nextcloud folder. 
-    This method iterates through all the files in the local folder, uploads each file to the specified Nextcloud folder, 
-    and deletes the local file upon successful upload.</p>
-</li>
-<li>
-<p>delete_remote_file_in_nextcloud()
-    Purpose: Deletes a remote file in the specified Nextcloud folder. 
-    This method sends a DELETE request to the Nextcloud server to remove the remote file located in the user's specified folder.</p>
-</li>
+<li>create_poll(question, voting_options, max_votes, result_mode)<br />
+This method creates a new poll with the specified question and options in the specified Nextcloud Talk room.  </li>
+<li>get_poll_result(poll_id)
+This method gets the result of a specific poll in the specified Nextcloud Talk room.</li>
+<li>close_poll(poll_id)
+This method closes a specific poll in the specified Nextcloud Talk room after asking for confirmation.</li>
 </ol>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python"># create poll
+poll.create_poll(question=&quot;Do you like pizza?&quot;, voting_options=[&quot;Yes&quot;, &quot;No&quot;])
+
+# get poll result
+poll.get_poll_result(poll_id=0)
+
+# close poll
+poll.close_poll(poll_id=0)
+</code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../NextcloudActivities/" class="btn btn-neutral float-left" title="NextcloudActivities"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../NextcloudMeeting/" class="btn btn-neutral float-right" title="NextcloudMeeting">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../NextcloudMeeting/" class="btn btn-neutral float-left" title="NextcloudMeeting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NextcloudTalkExtractor/" class="btn btn-neutral float-right" title="NextcloudTalkExtractor">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -168,10 +175,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../NextcloudActivities/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../NextcloudMeeting/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../NextcloudMeeting/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../NextcloudTalkExtractor/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -1,11 +1,17 @@
 site_name: Nextcloud Talk Bot
 site_url: https://nextcloud-talk-bot.readthedocs.io
 nav:
-    - Home: index.md
+    - Index: index.md
     - First Run Setup : FirstRunSetup.md
+    - NextcloudActivities: NextcloudActivities.md
     - NextcloudFileOperations: NextcloudFileOperations.md
+    - NextcloudMeeting: NextcloudMeeting.md
+    - NextcloudPoll: NextcloudPoll.md
     - NextcloudTalkExtractor: NextcloudTalkExtractor.md
     - NextcloudUser: NextcloudUser.md
-    - NextcloudActivities: NextcloudActivities.md
+
+plugins:
+  - search
+
 
 theme: readthedocs

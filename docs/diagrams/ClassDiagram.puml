@@ -1,0 +1,44 @@
+@startuml
+class NextcloudRequests {
++init(base_url, password)
++send_request(endpoint, method="GET", headers=None, data=None, json=None, params=None)
++post_request(endpoint, headers=None, data=None, json=None)
++put_request(endpoint, headers=None, data=None, json=None)
++delete_request(endpoint, headers=None)
+}
+class NextcloudTalkExtractor {
++init(base_url, username, password)
++get_conversations_ids()
+}
+class Confirmation {
++are_you_sure(action, target_name)
+}
+class NextcloudMeeting {
++init(base_url, username, password)
++create_room(room_name)
++delete_room(room_name)
+}
+class NextcloudMessages {
++init(base_url, password)
++set_room(room)
++send_message_to_nextcloud_talk_group(message)
+}
+class NextcloudPoll {
++init(base_url, username, password, room_name, question=None, voting_options=None, max_votes=1, result_mode=0, poll_id=None)
++create_poll(question=None, voting_options=None, max_votes=1, result_mode=0)
++get_poll_result(poll_id=0)
++close_poll(poll_id=0)
+}
+class NextcloudUser {
++init(base_url, user, password)
++test_user_login()
++get_preferred_language()
++get_quota()
+}
+
+NextcloudRequests --> NextcloudTalkExtractor
+NextcloudRequests --> NextcloudMeeting
+NextcloudRequests --> NextcloudMessages
+NextcloudRequests --> NextcloudPoll
+NextcloudRequests --> NextcloudUser
+@enduml

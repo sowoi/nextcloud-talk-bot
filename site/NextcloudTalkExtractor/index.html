@@ -22,7 +22,10 @@
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.12.2/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +44,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Index</a>
                 </li>
               </ul>
               <ul>
@@ -49,7 +52,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">NextcloudActivities</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudFileOperations/">NextcloudFileOperations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMeeting/">NextcloudMeeting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudPoll/">NextcloudPoll</a>
                 </li>
               </ul>
               <ul class="current">
@@ -59,19 +74,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#example-usage">Example Usage:</a>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudUser/">NextcloudUser</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">NextcloudActivities</a>
                 </li>
               </ul>
       </div>
@@ -112,19 +123,19 @@ It provides methods for fetching conversations, participants, and messages for a
 <h2 id="usage">Usage</h2>
 <pre><code>from nextcloud_talk_bot.nextcloud_talk_extractor import NextcloudTalkExtractor
 </code></pre>
-<h2 id="methods">Methods:</h2>
+<h2 id="methods">Methods</h2>
 <ol>
 <li>
-<p>get_conversations_ids()
-    Purpose: Fetch the list of conversations for the authenticated user.
-    Returns: A dictionary containing the list of conversation tokens and names.</p>
+<p>get_conversations_ids()<br />
+Fetch the list of conversations for the authenticated user.<br />
+Returns: A dictionary containing the list of conversation tokens and names.  </p>
 </li>
 <li>
-<p>get_participants(room_id, message_limit=None)
-    Purpose: Fetch the list of participants in a specific conversation.
-    Parameters:
-        - room_id: The token of the conversation for which to retrieve participants.
-    Returns: A list containing the participant display names.</p>
+<p>get_participants(room_id, message_limit=None)<br />
+    Fetch the list of participants in a specific conversation.<br />
+    Parameters:<br />
+        - room_id: The token of the conversation for which to retrieve participants.<br />
+    Returns: A list containing the participant display names.  </p>
 </li>
 <li>
 <p>get_messages(room_id, message_limit=1)
@@ -135,33 +146,34 @@ It provides methods for fetching conversations, participants, and messages for a
     Returns: A list containing the messages as strings.</p>
 </li>
 </ol>
-<h2 id="example-usage">Example Usage:</h2>
-<pre><code>from nextcloud_talk_extractor import NextcloudTalkExtractor
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python">    from nextcloud_talk_extractor import NextcloudTalkExtractor
 
-base_url = "https://my.nextcloud.com"
-username = "my_username"
-password = "my_password"
+    base_url = &quot;https://my.nextcloud.com&quot;
+    username = &quot;my_username&quot;
+    password = &quot;my_password&quot;
 
-extractor = NextcloudTalkExtractor(base_url, username, password)
+    extractor = NextcloudTalkExtractor(base_url, username, password)
 
-# Get the list of conversations
-conversations = extractor.get_conversations_ids()
-print(conversations)
+    # Get the list of conversations
+    conversations = extractor.get_conversations_ids()
+    print(conversations)
 
-# Get the participants of a specific conversation
-room_id = "conversation_token"
-participants = extractor.get_participants(room_id)
-print(participants)
+    # Get the participants of a specific conversation
+    room_id = &quot;conversation_token&quot;
+    participants = extractor.get_participants(room_id)
+    print(participants)
 
-# Get the messages of a specific conversation
-messages = extractor.get_messages(room_id, message_limit=100)
-print(messages)
+    # Get the messages of a specific conversation
+    messages = extractor.get_messages(room_id, message_limit=100)
+    print(messages)
+
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../NextcloudFileOperations/" class="btn btn-neutral float-left" title="NextcloudFileOperations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NextcloudPoll/" class="btn btn-neutral float-left" title="NextcloudPoll"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../NextcloudUser/" class="btn btn-neutral float-right" title="NextcloudUser">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -185,7 +197,7 @@ print(messages)
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../NextcloudFileOperations/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../NextcloudPoll/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../NextcloudUser/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -22,7 +22,10 @@
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.12.2/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +44,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                <li class="toctree-l1"><a class="reference internal" href="..">Index</a>
                 </li>
               </ul>
               <ul class="current">
@@ -55,13 +58,25 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exmples">Exmples</a>
+    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">NextcloudActivities</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudFileOperations/">NextcloudFileOperations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMeeting/">NextcloudMeeting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudPoll/">NextcloudPoll</a>
                 </li>
               </ul>
               <ul>
@@ -70,10 +85,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudUser/">NextcloudUser</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">NextcloudActivities</a>
                 </li>
               </ul>
       </div>
@@ -129,7 +140,7 @@ A mix of storing decryption password in environment variable and password in .pa
 <li>encrypt_password()</li>
 </ol>
 <p>This method encrypts the given password using Fernet symmetric encryption. It stores the encrypted password in a file named .password and the encryption key in a file named .decode.</p>
-<h2 id="exmples">Exmples</h2>
+<h2 id="examples">Examples</h2>
 <pre><code>from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
 
 bot = NextcloudTalkBot()
@@ -153,8 +164,8 @@ print(search_event)
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../NextcloudFileOperations/" class="btn btn-neutral float-right" title="NextcloudFileOperations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href=".." class="btn btn-neutral float-left" title="Index"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NextcloudActivities/" class="btn btn-neutral float-right" title="NextcloudActivities">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -180,7 +191,7 @@ print(search_event)
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../NextcloudFileOperations/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../NextcloudActivities/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

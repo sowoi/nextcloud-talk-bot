@@ -3,29 +3,29 @@
 This module provides the NextcloudActivities class for handling Nextcloud activities.
 
 
-## Usage:
-```
+## Usage
+```python
     from nextcloud_talk_bot.nextcloud_activities import NextcloudActivities
     
-    Initialize the NextcloudActivities class:
+    #Initialize the NextcloudActivities class:
     nextcloud = NextcloudActivities(base_url, username, password)
 
-    Get the last activities from Nextcloud:
+    #Get the last activities from Nextcloud:
     last_activities = nextcloud.get_last_activities()
 
-    Search for specific activities in the last activities:
+    #Search for specific activities in the last activities:
     filtered_activities = nextcloud.search_last_activities(activity)
 
 ```
 
-## Methods:
+## Methods
 
 __init__(self, base_url, username, password, activity=None): Initializes the NextcloudActivities class.
 get_last_activities(self): Gets the last activities from Nextcloud.
 search_last_activities(self, activity): Searches for events, to-dos or file-operations in the given activities.
 
 
-## Attributes:
+## Attributes
 
 - base_url (str): The base URL of the Nextcloud instance.
 - username (str): The username of the Nextcloud user.
@@ -33,7 +33,7 @@ search_last_activities(self, activity): Searches for events, to-dos or file-oper
 - activity (str, optional): The activity to search for (e.g. to-do, event, shared, deleted, created, changed).
 
 
-## Examples:
+## Examples
 
 ```
     # Initialize the NextcloudActivities class

@@ -96,4 +96,5 @@ def close_poll(self, poll_id=0):
                 print(f"Closed poll '{room_name}'")
             else:
                 print("Poll closing aborted.")
+                sys.exit()
     

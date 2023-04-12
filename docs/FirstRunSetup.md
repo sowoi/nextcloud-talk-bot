@@ -42,7 +42,7 @@ Checks if the .nextclouddata file exists. If it does, the user is prompted to co
 This method encrypts the given password using Fernet symmetric encryption. It stores the encrypted password in a file named .password and the encryption key in a file named .decode.
 
 
-## Exmples
+## Examples
 
 ```
 from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
@@ -64,3 +64,4 @@ print(search_event)
 
 
 ```
+

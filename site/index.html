@@ -12,7 +12,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Home";
+        var mkdocs_page_name = "Index";
         var mkdocs_page_input_path = "index.md";
         var mkdocs_page_url = "/";
       </script>
@@ -22,7 +22,10 @@
       <script src="js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.12.2/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +44,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Index</a>
     <ul class="current">
     </ul>
                 </li>
@@ -51,7 +54,19 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="NextcloudActivities/">NextcloudActivities</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="NextcloudFileOperations/">NextcloudFileOperations</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="NextcloudMeeting/">NextcloudMeeting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="NextcloudPoll/">NextcloudPoll</a>
                 </li>
               </ul>
               <ul>
@@ -60,10 +75,6 @@
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="NextcloudUser/">NextcloudUser</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="NextcloudActivities/">NextcloudActivities</a>
                 </li>
               </ul>
       </div>
@@ -80,7 +91,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Home</li>
+      <li>Index</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -95,6 +106,7 @@
 <li><a href="#installation">Installation</a></li>
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#usage">Usage</a></li>
+<li><a href="#diagram">Class Diagram</a></li>
 <li><a href="#contributing">Contributing</a></li>
 <li><a href="#license">License</a></li>
 </ul>
@@ -105,6 +117,7 @@ To use the Nextcloud Talk Bot, you will need:</p>
 <li>A Nextcloud instance with the Talk app installed</li>
 <li>A bot user with apppassword setup</li>
 <li>Python 3.7 or higher</li>
+<li>Pip modules: "cryptography" and "requests"</li>
 </ul>
 <h2 id="installation">Installation</h2>
 <p><a id='installation'></a></p>
@@ -117,10 +130,7 @@ To use the Nextcloud Talk Bot, you will need:</p>
 </code></pre>
 <h2 id="configuration">Configuration</h2>
 <p><a id='configuration'></a></p>
-<p>There is an interactive script which guides you through the configuration, see <a href="https://nextcloud-talk-bot.readthedocs.io/en/latest/FirstRunSetup/">FirstRunSetup</a></p>
-<h2 id="contributing">Contributing</h2>
-<p>Create a PullRequest on the <a href="https://github.com/sowoi/nextcloud-talk-bot">Git</a>.
-You are also welcome to translate.</p>
+<p>There is an interactive script which guides you through the configuration, see <a href="FirstRunSetup">FirstRunSetup</a></p>
 <h2 id="usage">Usage</h2>
 <p><a id='usage'></a>
 The FirstRunSetup does not have to be performed, but it makes it easier to use.</p>
@@ -136,6 +146,14 @@ user = NextcloudUser(url, username, password)
 preferred_language = user.get_preferred_language()
 
 </code></pre>
+<h2 id="class-diagram">Class Diagram</h2>
+<p><a id='diagarm'></a></p>
+<p><img alt="ClassDiagram" src="diagrams/ClassDiagram.png" /></p>
+<h2 id="contributing">Contributing</h2>
+<p><a id='contributing'></a></p>
+<p>Create a PullRequest on the <a href="https://github.com/sowoi/nextcloud-talk-bot">Git</a>.<br />
+You are also welcome to translate.<br />
+Contact me via my <a href="https://okxo.de">website</a>.  </p>
 <h2 id="license">License</h2>
 <p>Licensed under the terms of GNU General Public License v3.0.</p>
               
@@ -185,5 +203,5 @@ preferred_language = user.get_preferred_language()
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-11 20:25:09.666321+00:00
+Build Date UTC : 2023-04-12 14:41:44.516524+00:00
 -->

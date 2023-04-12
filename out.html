@@ -1,0 +1,46 @@
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2>Requirements</h2>
+<p><a id='requirements'></a>
+To use the Nextcloud Talk Bot, you will need:</p>
+<ul>
+<li>A Nextcloud instance with the Talk app installed</li>
+<li>A bot user with apppassword setup</li>
+<li>Python 3.7 or higher</li>
+</ul>
+<h2>Installation</h2>
+<p><a id='installation'></a></p>
+<p>Via PIP:</p>
+<p><code>pip install nextcloudtalkbot</code></p>
+<p>or manually:</p>
+<p>Clone this repository:</p>
+<p><code>git clone https://github.com/sowoi/nextcloud-talk-bot.git</code></p>
+<h2>Configuration</h2>
+<p><a id='configuration'></a></p>
+<p>There is an interactive script which guides you through the configuration, see <a href="https://nextcloud-talk-bot.readthedocs.io/en/latest/FirstRunSetup/">FirstRunSetup</a></p>
+<h2>Contributing</h2>
+<p>Create a PullRequest on the <a href="https://github.com/sowoi/nextcloud-talk-bot">Git</a>.
+You are also welcome to translate.</p>
+<h2>Usage</h2>
+<p><a id='usage'></a>
+The FirstRunSetup does not have to be performed, but it makes it easier to use.</p>
+<p>```
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot</p>
+<p>bot = NextcloudTalkBot()
+url = bot.NEXTCLOUD_URL
+username = bot.USERNAME
+password = bot.PASSWORD</p>
+<p>user = NextcloudUser(url, username, password)
+preferred_language = user.get_preferred_language()</p>
+<p>```</p>
+<h2>License</h2>
+<p>Licensed under the terms of GNU General Public License v3.0.</p>
+<h2>Class Diagram</h2>
+<p><img src="data:image/png;base64," style="max-width:300px;max-height:300px" width="100%" class="uml myDiagram" alt="My super diagram placeholder" title="My super diagram" id="myDiag" /></p>
