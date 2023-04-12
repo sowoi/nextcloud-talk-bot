@@ -1,4 +1,4 @@
-# Nextcloud Talk Bot: Meeting
+# Nextcloud Talk Bot: Poll
 
 NextcloudPoll  can be used to create, get, and close polls in a Nextcloud Talk room. 
 
