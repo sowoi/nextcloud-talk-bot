@@ -9,6 +9,11 @@ class TestNextcloudMeeting(unittest.TestCase):
         self.username = "user"
         self.password = "password"
         self.meeting = NextcloudMeeting(self.base_url, self.username, self.password)
+        
+        with patch('nextcloud_talk_bot.nextcloud_meeting.NextcloudRequests') as mock_nextcloud_requests:
+            self.mock_send_request = MagicMock()
+            mock_nextcloud_requests.return_value.send_request = self.mock_send_request
+
 
     @patch("nextcloud_talk_bot.nextcloud_meeting.NextcloudTalkExtractor")
     @patch("nextcloud_talk_bot.nextcloud_meeting.NextcloudRequests")
