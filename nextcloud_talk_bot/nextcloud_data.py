@@ -50,7 +50,8 @@ class NextcloudData:
                 encrypted_password = password_file.readline()
                 decrypted_password = f.decrypt(encrypted_password).decode()
                 data['PASSWORD'] = decrypted_password
-            
+        
+        print(data)    
         return data
 
 if __name__ == "__main__":

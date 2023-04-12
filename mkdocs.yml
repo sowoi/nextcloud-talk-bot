@@ -6,6 +6,7 @@ nav:
     - NextcloudActivities: NextcloudActivities.md
     - NextcloudFileOperations: NextcloudFileOperations.md
     - NextcloudMeeting: NextcloudMeeting.md
+    - NextcloudMessages: NextcloudMessages.md
     - NextcloudPoll: NextcloudPoll.md
     - NextcloudTalkExtractor: NextcloudTalkExtractor.md
     - NextcloudUser: NextcloudUser.md

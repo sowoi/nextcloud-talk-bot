@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudMessages/</loc>
+         <lastmod>2023-04-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudPoll/</loc>
          <lastmod>2023-04-12</lastmod>
          <changefreq>daily</changefreq>
