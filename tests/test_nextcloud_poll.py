@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 from nextcloud_talk_bot.nextcloud_poll import NextcloudPoll
 
 
@@ -9,6 +9,7 @@ class TestNextcloudPoll(unittest.TestCase):
         self.base_url = "https://example.com"
         self.username = "testuser"
         self.password = "testpassword"
+        self.room = "t"
         self.room_name = "testroom"
         self.question = "What is your favorite color?"
         self.voting_options = ["Red", "Blue", "Green"]
@@ -18,6 +19,10 @@ class TestNextcloudPoll(unittest.TestCase):
 
         self.nextcloud_poll = NextcloudPoll(self.base_url, self.username, self.password, self.room_name, self.question,
                                             self.voting_options, self.max_votes, self.result_mode, self.poll_id)
+        
+        with patch('nextcloud_talk_bot.nextcloud_poll.NextcloudRequests') as mock_nextcloud_requests:
+            self.mock_send_request = MagicMock()
+            mock_nextcloud_requests.return_value.send_request = self.mock_send_request
 
     def test_create_poll(self):
         self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids = MagicMock(
