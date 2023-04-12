@@ -1,7 +1,7 @@
 import sys
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
-from .confirmation import are_you_sure
+from .confirmation import Confirmation
 
 class NextcloudPoll:
     """
@@ -89,7 +89,7 @@ def close_poll(self, poll_id=0):
             return "PollId not found"
         else:
             poll_question = NextcloudPoll.get_poll_result(self, poll_id)["ocs"]["data"]["question"]
-            if are_you_sure("close", poll_question):
+            if Confirmation.are_you_sure("close", poll_question):
                 room_token = conversation_list[room_name]
                 endpoint = f"/ocs/v2.php/apps/spreed/api/v1/poll/{room_token}/{poll_id}"
                 self.nextcloud_requests.delete_request(endpoint)

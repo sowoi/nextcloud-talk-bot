@@ -1,7 +1,7 @@
 import sys
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
-from .confirmation import are_you_sure
+from .confirmation import Confirmation
 
 
 class NextcloudMeeting:
@@ -60,7 +60,7 @@ class NextcloudMeeting:
         if room_name not in conversation_list:
             return f"{room_name} does not exist"
         else:
-            if are_you_sure("delete", room_name):
+            if Confirmation.are_you_sure("delete", room_name):
                 delete_room = conversation_list[room_name]    
                 endpoint = f"/ocs/v2.php/apps/spreed/api/v4/room/{delete_room}"
                 self.nextcloud_requests.delete_request(endpoint)
