@@ -27,5 +27,4 @@ jobs:
  
     - name: Run unit tests
       run: |
-        # Replace `your_test_module.py` with the name of your test module
         python -m unittest discover -s tests -p 'test_*.py
