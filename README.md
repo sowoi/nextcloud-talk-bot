@@ -34,3 +34,4 @@ Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
 
 
 ![Linting](https://github.com/sowoi/nextcloud-talk-bot//actions/workflows/python-lint.yml/badge.svg)
+![Unittests](https://github.com/sowoi/nextcloud-talk-bot//actions/workflows/python-unittest.yml/badge.svg)
