@@ -22,7 +22,8 @@ class TestNextcloudRequests(unittest.TestCase):
             mock_get.assert_called_with(
                 f"{self.base_url}{endpoint}",
                 headers=self.nextcloud_requests.headers,
-                params=None)
+                params=None, 
+                timeout=10)
 
     def test_post_request(self):
         endpoint = "/api/v1/users"
@@ -38,7 +39,8 @@ class TestNextcloudRequests(unittest.TestCase):
             mock_post.assert_called_with(
                 f"{self.base_url}{endpoint}",
                 headers=self.nextcloud_requests.headers,
-                json=json_payload)
+                json=json_payload,
+                timeout=10)
 
     def test_delete_request(self):
         endpoint = "/api/v1/users/testuser"
@@ -49,7 +51,8 @@ class TestNextcloudRequests(unittest.TestCase):
             self.nextcloud_requests.delete_request(endpoint)
             mock_delete.assert_called_with(
                 f"{self.base_url}{endpoint}",
-                headers=self.nextcloud_requests.headers)
+                headers=self.nextcloud_requests.headers,
+                timeout=10)
 
 
 if __name__ == "__main__":

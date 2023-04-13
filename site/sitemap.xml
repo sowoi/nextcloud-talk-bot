@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/FirstRunSetup/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudActivities/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudFileOperations/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudMeeting/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudMessages/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudPoll/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudTalkExtractor/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/NextcloudUser/</loc>
-         <lastmod>2023-04-12</lastmod>
+         <lastmod>2023-04-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

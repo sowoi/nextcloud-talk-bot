@@ -4,78 +4,72 @@ from nextcloud_talk_bot.nextcloud_poll import NextcloudPoll
 
 
 class TestNextcloudPoll(unittest.TestCase):
-
     def setUp(self):
-        self.base_url = "https://example.com"
-        self.username = "testuser"
-        self.password = "testpassword"
-        self.room = "t"
-        self.room_name = "testroom"
-        self.question = "What is your favorite color?"
-        self.voting_options = ["Red", "Blue", "Green"]
-        self.max_votes = 1
-        self.result_mode = 0
-        self.poll_id = 0
-
-        self.nextcloud_poll = NextcloudPoll(
-            self.base_url,
-            self.username,
-            self.password,
-            self.room_name,
-            self.question,
-            self.voting_options,
-            self.max_votes,
-            self.result_mode,
-            self.poll_id)
+        self.base_url = "https://example.com/nextcloud"
+        self.username = "user"
+        self.password = "password"
+        self.room_name = "room_name"
 
         with patch('nextcloud_talk_bot.nextcloud_poll.NextcloudRequests') as mock_nextcloud_requests:
             self.mock_send_request = MagicMock()
-            mock_nextcloud_requests.return_value.send_request = self.mock_send_request
+            mock_nextcloud_requests.return_value = self.mock_send_request
 
-    def test_create_poll(self):
-        self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids = MagicMock(
-            return_value={self.room_name: "token"})
-        self.nextcloud_poll.nextcloud_requests.post_request = MagicMock()
+            with patch('nextcloud_talk_bot.nextcloud_poll.NextcloudTalkExtractor') as mock_nextcloud_talk_extractor:
+                self.mock_talk_extractor = MagicMock()
+                mock_nextcloud_talk_extractor.return_value = self.mock_talk_extractor
 
-        self.nextcloud_poll.create_poll(
-            self.question,
-            self.voting_options,
-            self.max_votes,
-            self.result_mode)
+                self.nextcloud_poll = NextcloudPoll(
+                    self.base_url, self.username, self.password, self.room_name)
 
-        self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids.assert_called_once()
-        self.nextcloud_poll.nextcloud_requests.post_request.assert_called_once()
+    def test_create_poll_success(self):
+        self.mock_talk_extractor.get_conversations_ids.return_value = {self.room_name: "12345"}
 
-    def test_get_poll_result(self):
-        self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids = MagicMock(
-            return_value={self.room_name: "token"})
-        self.nextcloud_poll.nextcloud_requests.send_request = MagicMock()
+        question = "Sample Question"
+        voting_options = ["Option 1", "Option 2"]
+        max_votes = 2
+        result_mode = 1
 
-        self.nextcloud_poll.get_poll_result(self.poll_id)
+        self.nextcloud_poll.create_poll(question, voting_options, max_votes, result_mode)
+        self.mock_send_request.post_request.assert_called()
 
-        self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids.assert_called_once()
-        self.nextcloud_poll.nextcloud_requests.send_request.assert_called_once()
+    def test_create_poll_room_not_exist(self):
+        self.mock_talk_extractor.get_conversations_ids.return_value = {}
 
-    def test_close_poll(self):
-        self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids = MagicMock(
-            return_value={self.room_name: "token"})
-        self.nextcloud_poll.get_poll_result = MagicMock(
-            return_value={
-                "ocs": {
-                    "meta": {
-                        "statuscode": 200}, "data": {
-                        "question": self.question}}})
-        self.nextcloud_poll.nextcloud_requests.delete_request = MagicMock()
-        Confirmation = MagicMock()
-        Confirmation.are_you_sure = MagicMock(return_value=True)
+        result = self.nextcloud_poll.create_poll("Sample Question", ["Option 1", "Option 2"])
+        self.assertEqual(result, f"{self.room_name} does not exist")
 
-        self.nextcloud_poll.close_poll(self.poll_id)
+    def test_get_poll_result_success(self):
+        self.mock_talk_extractor.get_conversations_ids.return_value = {self.room_name: "12345"}
+        poll_id = 1
+        sample_response = {"ocs": {"data": {"some_data": "data"}}}
+        self.mock_send_request.send_request.return_value = sample_response
 
-        self.nextcloud_poll.nextcloud_talk_extractor.get_conversations_ids.assert_called_once()
-        self.nextcloud_poll.get_poll_result.assert_called_once()
-        self.nextcloud_poll.nextcloud_requests.delete_request.assert_called_once()
-        Confirmation.are_you_sure.assert_called_once_with(
-            "close", self.question)
+        result = self.nextcloud_poll.get_poll_result(poll_id)
+        self.assertEqual(result, sample_response)
+
+    def test_get_poll_result_room_not_exist(self):
+        self.mock_talk_extractor.get_conversations_ids.return_value = {}
+
+        result = self.nextcloud_poll.get_poll_result(1)
+        self.assertEqual(result, f"{self.room_name} does not exist")
+
+    @patch("nextcloud_talk_bot.nextcloud_poll.Confirmation")
+    def test_close_poll_success(self, mock_confirmation):
+        self.mock_talk_extractor.get_conversations_ids.return_value = {self.room_name: "12345"}
+        mock_confirmation.are_you_sure.return_value = True
+        poll_id = 1
+        sample_response = {"ocs": {"meta": {"statuscode": 200}, "data": {"question": "Sample Question"}}}
+        self.mock_send_request.send_request.return_value = sample_response
+
+        with patch("builtins.print") as mock_print:
+            self.nextcloud_poll.close_poll(poll_id)
+            mock_print.assert_called_with(f"Closed poll '{self.room_name}'")
+
+    def test_close_poll_room_not_exist(self):
+        self.mock_talk_extractor.get_conversations_ids.return_value = {}
+
+        result = self.nextcloud_poll.close_poll(1)
+        self.assertEqual(result, f"{self.room_name} does not exist")
 
 
 if __name__ == "__main__":
