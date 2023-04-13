@@ -1,9 +1,9 @@
 name: Publish to PyPI
 
 on:
-  push:
-    branches:
-      - main  # Change this to the default branch of your repository, if it's not "main"
+  release:
+    types:
+      - created
 
 jobs:
   publish:
