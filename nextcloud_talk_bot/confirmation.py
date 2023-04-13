@@ -3,15 +3,18 @@ class Confirmation:
     A class used to confirm user actions with irreversible consequences.
     """
 
-    def __init__(self, object, entity):
+    def __init__(self, object, entity, input_func=input):
         """
         :param object: str
             The action to be confirmed (e.g., "delete", "overwrite").
         :param entity: str
             The name of the item the action will be applied to (e.g., "file", "record").
+        :param input_func: Callable
+            A function used to get user input. Defaults to the built-in `input()` function.
         """
         self.object = object
         self.entity = entity
+        self.input_func = input_func
 
     def are_you_sure(self):
         """
@@ -21,7 +24,7 @@ class Confirmation:
             True if the user confirms the action, False otherwise.
         """
         while True:
-            user_input = input(
+            user_input = self.input_func(
                 f"Are you sure you want to {self.object} '{self.entity}'? This process is irrevocable! (yes/no): "
             )
             if user_input.lower() == "no":

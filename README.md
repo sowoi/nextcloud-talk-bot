@@ -38,3 +38,4 @@ Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
 ![License](https://img.shields.io/pypi/l/nextcloudtalkbot?style=plastic)
 ![Dependencies](https://img.shields.io/librariesio/github/sowoi/nextcloud-talk-bot?style=plastic)
 ![Versions](https://img.shields.io/pypi/pyversions/nextcloudtalkbot?style=plastic)
+![Release](https://img.shields.io/pypi/status/nextcloudtalkbot?style=plastic)
