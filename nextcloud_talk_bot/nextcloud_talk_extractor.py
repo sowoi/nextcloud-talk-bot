@@ -10,7 +10,13 @@ class NextcloudTalkExtractor:
     A class to interact with the Nextcloud Talk API and extract data.
     """
 
-    def __init__(self, base_url, username, password, room_id=None, message_limit=None):
+    def __init__(
+            self,
+            base_url,
+            username,
+            password,
+            room_id=None,
+            message_limit=None):
         """
         Initialize the NextcloudTalkExtractor class with the required credentials.
 
@@ -26,8 +32,6 @@ class NextcloudTalkExtractor:
         self.message_limit = message_limit
         self.nextcloud_requests = NextcloudRequests(base_url, password)
 
-
-
     def get_conversations_ids(self):
         """
         Get the list of conversations for the authenticated user.
@@ -42,10 +46,9 @@ class NextcloudTalkExtractor:
         for room in conversation_list["ocs"]["data"]:
             conversation_token = room["token"]
             conversation_name = room["displayName"]
-            conversation_ids[conversation_name] = conversation_token       
+            conversation_ids[conversation_name] = conversation_token
         return conversation_ids
-    
-    
+
     def get_participants(self, room_id):
         """
         Get the list of participants in a specific conversation.
@@ -61,7 +64,7 @@ class NextcloudTalkExtractor:
             participant_name = participants["displayName"]
             participant_names.append(participant_name)
         return participant_names
-    
+
     def get_user_permissions(self, room_id):
         """
         Get the permissions of all users in a Nextcloud Talk room.
@@ -81,7 +84,7 @@ class NextcloudTalkExtractor:
             user_id = participant["actorId"]
             user_permissions = participant["permissions"]
             allowed_actions = []
- 
+
             for code, description in permissions_map.items():
                 if user_permissions & code == code:
                     allowed_actions.append(description)
@@ -90,7 +93,6 @@ class NextcloudTalkExtractor:
 
         return all_users_permissions
 
-            
     def get_messages(self, room_id, message_limit=1):
         """
         Get the messages in a specific conversation, with an optional limit.
@@ -105,7 +107,8 @@ class NextcloudTalkExtractor:
             "lookIntoFuture": 0
         }
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/chat/{room_id}"
-        response = self.nextcloud_requests.send_request(endpoint, params=paramsMessages)
+        response = self.nextcloud_requests.send_request(
+            endpoint, params=paramsMessages)
 
         # Extract the participants IDs
         messages_list = []
@@ -114,8 +117,11 @@ class NextcloudTalkExtractor:
             messages_list.append(messages)
         return messages_list
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
     args = parser.parse_args()
     data = NextcloudData.read_nextcloud_data()
     for key, value in data.items():

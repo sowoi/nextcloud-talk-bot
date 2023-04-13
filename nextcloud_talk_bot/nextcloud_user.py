@@ -1,6 +1,7 @@
 # nextcloud_user.py
 from .nextcloud_requests import NextcloudRequests
 
+
 class NextcloudUser:
     """
     This class represents a Nextcloud User and provides functionality to fetch the user's data
@@ -44,7 +45,8 @@ class NextcloudUser:
         :rtype: str
         """
         endpoint = f"/ocs/v2.php/cloud/users/{self.user}"
-        user_data = self.nextcloud_requests.send_request(endpoint)["ocs"]["data"]
+        user_data = self.nextcloud_requests.send_request(endpoint)[
+            "ocs"]["data"]
         return user_data["language"]
 
     def get_quota(self):
@@ -56,5 +58,6 @@ class NextcloudUser:
         :rtype: dict
         """
         endpoint = f"/ocs/v2.php/cloud/users/{self.user}"
-        user_data = self.nextcloud_requests.send_request(endpoint)["ocs"]["data"]
+        user_data = self.nextcloud_requests.send_request(endpoint)[
+            "ocs"]["data"]
         return user_data["quota"]

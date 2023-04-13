@@ -1,6 +1,7 @@
 # nextcloud_file_operations.py
 import requests
 import os
+import mimetypes
 import xml.etree.ElementTree as ET
 from requests.auth import HTTPBasicAuth
 from .nextcloud_data import NextcloudData
@@ -11,7 +12,14 @@ class NextcloudFileOperations:
     A class to interact with the Nextcloud Talk API and extract data.
     """
 
-    def __init__(self, base_url, username, password, nc_remote_folder=None, local_folder=None, remote_file=None):
+    def __init__(
+            self,
+            base_url,
+            username,
+            password,
+            nc_remote_folder=None,
+            local_folder=None,
+            remote_file=None):
         """
         Initialize the NextcloudFileOperations class with the required credentials.
 
@@ -34,7 +42,6 @@ class NextcloudFileOperations:
         self.nc_remote_folder = nc_remote_folder
         self.local_folder = local_folder
         self.remote_file = remote_file
-        
 
     def list_files_in_nextcloud_folder(self):
         """
@@ -43,13 +50,19 @@ class NextcloudFileOperations:
         :return: A list of file names in the specified folder.
         :rtype: list
         """
-   
+
         # Define the WebDAV URL for the folder
         webdav_url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}"
 
         # Send a PROPFIND request to the WebDAV URL
         headers = {"Depth": "1"}
-        response = requests.request("PROPFIND", webdav_url, headers=headers, auth=HTTPBasicAuth(self.username, self.password))
+        response = requests.request(
+            "PROPFIND",
+            webdav_url,
+            headers=headers,
+            auth=HTTPBasicAuth(
+                self.username,
+                self.password))
 
         # Check if the request was successful
         if response.status_code != 207:
@@ -71,7 +84,6 @@ class NextcloudFileOperations:
 
         return file_names
 
-
     def send_local_file_to_nextcloud_folder(self):
         """
         Upload local files to a specified Nextcloud folder.
@@ -82,28 +94,28 @@ class NextcloudFileOperations:
         for filename in os.listdir(self.local_folder):
             print("Sending file to Nextcloud Talk")
             for filename in os.listdir(self.local_folder):
-                    # Create file path
-                    file_path = os.path.join(self.local_folder, filename)
+                # Create file path
+                file_path = os.path.join(self.local_folder, filename)
 
-                    # Send file to Nextcloud Talk Room
-                    with open(file_path, "rb") as file:
-                        content_type = mimetypes.guess_type(file_path)[0]
-                        headers = headers.copy()
-                        headers["Content-Type"] = content_type
-                    
-                        url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{filename}"
+                # Send file to Nextcloud Talk Room
+                with open(file_path, "rb") as file:
+                    content_type = mimetypes.guess_type(file_path)[0]
+                    headers = headers.copy()
+                    headers["Content-Type"] = content_type
 
-                        try:
-                            print("Sending ", filename)
-                            response = requests.put(url, headers=headers, data=file)
-                            response.raise_for_status()
-                            # If success delete the local file
-                            if response.status_code == 201:
-                                print("Send successfull")
-                                os.remove(file_path)
-                        except requests.exceptions.HTTPError as e:
-                            print(f"Error sending the file {filename}: {e}")
+                    url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{filename}"
 
+                    try:
+                        print("Sending ", filename)
+                        response = requests.put(
+                            url, headers=headers, data=file)
+                        response.raise_for_status()
+                        # If success delete the local file
+                        if response.status_code == 201:
+                            print("Send successfull")
+                            os.remove(file_path)
+                    except requests.exceptions.HTTPError as e:
+                        print(f"Error sending the file {filename}: {e}")
 
     def delete_remote_file_in_nextcloud(self):
         """
@@ -111,8 +123,7 @@ class NextcloudFileOperations:
 
         This method sends a DELETE request to the Nextcloud server to remove the remote file
         located in the user's specified folder.
-        """   
+        """
         delete_url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{self.remote_file}"
         requests.delete(delete_url, auth=(self.username, self.password))
         print(f"deleted: {self.remote_file} in {self.nc_remote_folder}")
-           

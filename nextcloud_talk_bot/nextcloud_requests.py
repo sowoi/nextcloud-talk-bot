@@ -26,7 +26,11 @@ class NextcloudRequests:
         """
         headers = self.headers
         url = f"{self.base_url}{endpoint}"
-        response = requests.get(url, headers=headers, params=params, timeout=10)
+        response = requests.get(
+            url,
+            headers=headers,
+            params=params,
+            timeout=10)
 
         try:
             response.raise_for_status()
@@ -51,7 +55,8 @@ class NextcloudRequests:
         try:
             response.raise_for_status()
         except requests.exceptions.RequestException as e:
-            raise Exception(f"Error: {response.status_code}, {url} {headers}, {json}. {e}") from None
+            raise Exception(
+                f"Error: {response.status_code}, {url} {headers}, {json}. {e}") from None
 
         return response.json()
 

@@ -4,6 +4,7 @@ import grp
 import pwd
 import sys
 
+
 class SudoPrivileges:
     @staticmethod
     def check_user_and_abort_if_root_or_sudo():
@@ -25,6 +26,7 @@ class SudoPrivileges:
         # Check if the user is a member of the 'www-data' group
         if 'www-data' in user_groups:
             print("The user '{}' is a member of the 'www-data' group.".format(user))
+
 
 if __name__ == "__main__":
     SudoPrivileges.check_user_and_abort_if_root_or_sudo()

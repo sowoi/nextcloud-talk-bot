@@ -4,6 +4,7 @@ from .nextcloud_data import NextcloudData
 from .translations import TRANSLATIONS
 from .nextcloud_requests import NextcloudRequests
 
+
 class NextcloudActivities:
     """
     A class to handle Nextcloud activities.
@@ -24,7 +25,7 @@ class NextcloudActivities:
         """
         endpoint = "/ocs/v2.php/cloud/activity"
         response = self.nextcloud_requests.send_request(endpoint)
-        
+
         return response['ocs']['data']
 
     def search_last_activities(self, activity):
@@ -44,12 +45,12 @@ class NextcloudActivities:
 
         return filtered_data
 
-if __name__ == "__main__":
-    data = read_nextcloud_data()
 
+if __name__ == "__main__":
+    ncdata = NextcloudData
+    data = ncdata.read_nextcloud_data()
     for key, value in data.items():
         locals()[key] = value
-
 
     nextcloud = NextcloudActivities(NEXTCLOUD_URL, USERNAME, PASSWORD)
     last_activities = nextcloud.search_last_activities(activity="event")
