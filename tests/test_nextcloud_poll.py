@@ -22,24 +22,28 @@ class TestNextcloudPoll(unittest.TestCase):
                     self.base_url, self.username, self.password, self.room_name)
 
     def test_create_poll_success(self):
-        self.mock_talk_extractor.get_conversations_ids.return_value = {self.room_name: "12345"}
+        self.mock_talk_extractor.get_conversations_ids.return_value = {
+            self.room_name: "12345"}
 
         question = "Sample Question"
         voting_options = ["Option 1", "Option 2"]
         max_votes = 2
         result_mode = 1
 
-        self.nextcloud_poll.create_poll(question, voting_options, max_votes, result_mode)
+        self.nextcloud_poll.create_poll(
+            question, voting_options, max_votes, result_mode)
         self.mock_send_request.post_request.assert_called()
 
     def test_create_poll_room_not_exist(self):
         self.mock_talk_extractor.get_conversations_ids.return_value = {}
 
-        result = self.nextcloud_poll.create_poll("Sample Question", ["Option 1", "Option 2"])
+        result = self.nextcloud_poll.create_poll(
+            "Sample Question", ["Option 1", "Option 2"])
         self.assertEqual(result, f"{self.room_name} does not exist")
 
     def test_get_poll_result_success(self):
-        self.mock_talk_extractor.get_conversations_ids.return_value = {self.room_name: "12345"}
+        self.mock_talk_extractor.get_conversations_ids.return_value = {
+            self.room_name: "12345"}
         poll_id = 1
         sample_response = {"ocs": {"data": {"some_data": "data"}}}
         self.mock_send_request.send_request.return_value = sample_response
@@ -55,10 +59,15 @@ class TestNextcloudPoll(unittest.TestCase):
 
     @patch("nextcloud_talk_bot.nextcloud_poll.Confirmation")
     def test_close_poll_success(self, mock_confirmation):
-        self.mock_talk_extractor.get_conversations_ids.return_value = {self.room_name: "12345"}
+        self.mock_talk_extractor.get_conversations_ids.return_value = {
+            self.room_name: "12345"}
         mock_confirmation.are_you_sure.return_value = True
         poll_id = 1
-        sample_response = {"ocs": {"meta": {"statuscode": 200}, "data": {"question": "Sample Question"}}}
+        sample_response = {
+            "ocs": {
+                "meta": {
+                    "statuscode": 200}, "data": {
+                    "question": "Sample Question"}}}
         self.mock_send_request.send_request.return_value = sample_response
 
         with patch("builtins.print") as mock_print:

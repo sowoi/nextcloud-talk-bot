@@ -22,7 +22,7 @@ class TestNextcloudRequests(unittest.TestCase):
             mock_get.assert_called_with(
                 f"{self.base_url}{endpoint}",
                 headers=self.nextcloud_requests.headers,
-                params=None, 
+                params=None,
                 timeout=10)
 
     def test_post_request(self):

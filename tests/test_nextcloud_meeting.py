@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 from nextcloud_talk_bot.nextcloud_meeting import NextcloudMeeting
 
+
 class TestNextcloudMeeting(unittest.TestCase):
     def setUp(self):
         self.base_url = "https://example.com/nextcloud"
@@ -19,7 +20,6 @@ class TestNextcloudMeeting(unittest.TestCase):
                 self.nextcloud_meeting = NextcloudMeeting(
                     self.base_url, self.username, self.password)
 
-
     def test_create_room_success(self):
         room_name = "test_room"
         self.mock_talk_extractor.get_conversations_ids.return_value = {}
@@ -34,7 +34,8 @@ class TestNextcloudMeeting(unittest.TestCase):
 
     def test_create_room_already_exists(self):
         room_name = "test_room"
-        self.mock_talk_extractor.get_conversations_ids.return_value = {room_name: "12345"}
+        self.mock_talk_extractor.get_conversations_ids.return_value = {
+            room_name: "12345"}
 
         result = self.nextcloud_meeting.create_room(room_name)
         self.assertEqual(result, f"{room_name} already exists")
@@ -42,7 +43,8 @@ class TestNextcloudMeeting(unittest.TestCase):
     @patch("nextcloud_talk_bot.nextcloud_meeting.Confirmation")
     def test_delete_room_success(self, mock_confirmation):
         room_name = "test_room"
-        self.mock_talk_extractor.get_conversations_ids.return_value = {room_name: "12345"}
+        self.mock_talk_extractor.get_conversations_ids.return_value = {
+            room_name: "12345"}
         mock_confirmation.are_you_sure.return_value = True
 
         with patch("builtins.print") as mock_print:
