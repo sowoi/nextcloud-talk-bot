@@ -4,6 +4,7 @@ nav:
     - Index: index.md
     - First Run Setup : FirstRunSetup.md
     - NextcloudActivities: NextcloudActivities.md
+    - NextcloudCommands: NextcloudCommands.md
     - NextcloudFileOperations: NextcloudFileOperations.md
     - NextcloudMeeting: NextcloudMeeting.md
     - NextcloudMessages: NextcloudMessages.md
