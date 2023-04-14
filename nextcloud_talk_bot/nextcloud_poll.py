@@ -100,7 +100,7 @@ class NextcloudPoll:
         Close a specific poll in the specified Nextcloud Talk room.
 
         :param poll_id: The ID of the poll to close.
-        """        
+        """
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         if self.room_name not in conversation_list:
             return f"{self.room_name} does not exist"

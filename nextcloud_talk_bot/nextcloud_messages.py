@@ -51,7 +51,7 @@ class NextcloudMessages:
         :type message_limit: int, optional, default: 1
         :return: A dictionary with message ids as keys and tuples of actor and message as values.
         :rtype: dict
-        """        
+        """
         self.message_limit = message_limit
 
         paramsMessages = {
@@ -71,7 +71,7 @@ class NextcloudMessages:
             messages_dict[id] = actor, message
         return messages_dict
 
-    def delete_message_in_nextcloud_talk_group(self, message_id=None):        
+    def delete_message_in_nextcloud_talk_group(self, message_id=None):
         """
         Delete a message in a Nextcloud Talk group.
 

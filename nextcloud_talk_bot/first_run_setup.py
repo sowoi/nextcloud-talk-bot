@@ -101,7 +101,8 @@ class FirstRunSetup:
         :return: collections.namedtuple - A named tuple containing a boolean indicating if the credentials are valid, the room name and the room token.
         """
 
-        Result = collections.namedtuple("Result", ["valid", "room_name", "room_token"])
+        Result = collections.namedtuple(
+            "Result", ["valid", "room_name", "room_token"])
         user = NextcloudUser(url, username, password)
         user_data = user.test_user_login()
         user_data = json.loads(json.dumps(user_data))
@@ -119,7 +120,10 @@ class FirstRunSetup:
                 if i == roomSelection - 1:
                     selectedRoom = rooms
             room_token = conversation_ids[selectedRoom]
-            return Result(valid=True, room_name=selectedRoom, room_token=room_token)
+            return Result(
+                valid=True,
+                room_name=selectedRoom,
+                room_token=room_token)
         return Result(valid=False, room_name=None, room_token=None)
 
     @staticmethod
@@ -161,7 +165,7 @@ class FirstRunSetup:
         if not result.valid:
             print("Incorrect login data. Please try again.")
             return
-        
+
         room_name = result.room_name
         room_token = result.room_token
 
