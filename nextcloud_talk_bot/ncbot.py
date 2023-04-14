@@ -7,7 +7,6 @@ import nextcloud_talk_bot
 from nextcloud_talk_bot.first_run_setup import FirstRunSetup
 
 
-
 class FirstSetup:
     @staticmethod
     def start_setup():
@@ -42,7 +41,6 @@ class NextcloudCommands:
             self.room_token = self.bot.ROOM_TOKEN
         else:
             FirstRunSetup.first_run()
-
 
     def map_input_to_module(self, input_name):
         mapping = {
