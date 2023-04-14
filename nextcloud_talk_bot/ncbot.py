@@ -8,7 +8,6 @@ import ast
 import nextcloud_talk_bot
 
 
-
 class NextcloudCommands:
     """
     A class for printing the docstrings of classes and methods from specified modules.
