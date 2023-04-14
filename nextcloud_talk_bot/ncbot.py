@@ -6,7 +6,7 @@ import inspect
 import ast
 
 import nextcloud_talk_bot
-from .Nextcloudtalkbot import NextcloudTalkBot
+
 
 
 class NextcloudCommands:
