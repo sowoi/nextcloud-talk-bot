@@ -1,11 +1,17 @@
-#!.venv/bin/python
-
 import argparse
 import importlib
 import inspect
 import ast
 
 import nextcloud_talk_bot
+from nextcloud_talk_bot.first_run_setup import FirstRunSetup
+
+
+
+class FirstSetup:
+    @staticmethod
+    def start_setup():
+        FirstRunSetup.first_run()
 
 
 class NextcloudCommands:
@@ -28,11 +34,15 @@ class NextcloudCommands:
         else:
             self.module_name = None
         self.bot = nextcloud_talk_bot.NextcloudTalkBot()
-        self.url = self.bot.NEXTCLOUD_URL
-        self.username = self.bot.USERNAME
-        self.password = self.bot.PASSWORD
-        self.room_name = self.bot.ROOM_NAME
-        self.room_token = self.bot.ROOM_TOKEN
+        if hasattr(self.bot, "NEXTCLOUD_URL"):
+            self.url = self.bot.NEXTCLOUD_URL
+            self.username = self.bot.USERNAME
+            self.password = self.bot.PASSWORD
+            self.room_name = self.bot.ROOM_NAME
+            self.room_token = self.bot.ROOM_TOKEN
+        else:
+            FirstRunSetup.first_run()
+
 
     def map_input_to_module(self, input_name):
         mapping = {
@@ -187,6 +197,13 @@ if __name__ == "__main__":
         action="store_true",
         help="List available options or functions.")
 
+    parser.add_argument(
+        "--setup",
+        "-s",
+        dest="setup_flag",
+        action="store_true",
+        help="First Run setup")
+
     args = parser.parse_args()
 
     if args.input_name is not None:
@@ -213,5 +230,8 @@ if __name__ == "__main__":
         if args.list_flag:
             nextcloud_command = NextcloudCommands(args.input_name)
             nextcloud_command.print_available_classes()
+        elif args.setup_flag:
+            nextcloud_command = FirstSetup()
+            nextcloud_command.start_setup()
         else:
             parser.print_help()
