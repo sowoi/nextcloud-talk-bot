@@ -1,3 +1,5 @@
+#!.venv/bin/python
+
 import argparse
 import importlib
 import inspect
