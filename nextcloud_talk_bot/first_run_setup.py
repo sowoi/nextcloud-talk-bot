@@ -1,3 +1,7 @@
+"""
+runs setup for this application and prompts user for credentials and stores the necessary information in a local file
+"""
+
 from .check_local_user_enviroment import SudoPrivileges
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .nextcloud_user import NextcloudUser
@@ -94,10 +98,10 @@ class FirstRunSetup:
         :param url (str): The Nextcloud URL.
         :param username (str): The username.
         :param password (str): The password.
-        :return: collections.namedtuple - A named tuple containing a boolean indicating if the credentials are valid and the room name.
+        :return: collections.namedtuple - A named tuple containing a boolean indicating if the credentials are valid, the room name and the room token.
         """
 
-        Result = collections.namedtuple("Result", ["valid", "room"])
+        Result = collections.namedtuple("Result", ["valid", "room_name", "room_token"])
         user = NextcloudUser(url, username, password)
         user_data = user.test_user_login()
         user_data = json.loads(json.dumps(user_data))
@@ -114,9 +118,9 @@ class FirstRunSetup:
             for i, rooms in enumerate(conversation_ids):
                 if i == roomSelection - 1:
                     selectedRoom = rooms
-            room = conversation_ids[selectedRoom]
-            return Result(valid=True, room=room)
-        return Result(valid=False, room=None)
+            room_token = conversation_ids[selectedRoom]
+            return Result(valid=True, room_name=selectedRoom, room_token=room_token)
+        return Result(valid=False, room_name=None, room_token=None)
 
     @staticmethod
     def select_nextcloud_talk_room(conversation_ids):
@@ -157,7 +161,9 @@ class FirstRunSetup:
         if not result.valid:
             print("Incorrect login data. Please try again.")
             return
-        room = result.room
+        
+        room_name = result.room_name
+        room_token = result.room_token
 
         # Encryption of the password and storage of the key
         FirstRunSetup.encrypt_password(password)
@@ -168,7 +174,8 @@ class FirstRunSetup:
         with open(nextclouddata_file_path, "w") as data_file:
             data_file.write(f"NEXTCLOUD_URL::{nextcloud_url}\n")
             data_file.write(f"USERNAME::{username}\n")
-            data_file.write(f"ROOM::{room}\n")
+            data_file.write(f"ROOM_NAME::{room_name}\n")
+            data_file.write(f"ROOM_TOKEN::{room_token}\n")
 
         # Delete the password from the working memory to keep it safe
         del password

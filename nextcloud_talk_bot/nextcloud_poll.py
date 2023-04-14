@@ -1,3 +1,6 @@
+"""
+create poll, get poll results, close polls
+"""
 import sys
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
@@ -73,7 +76,6 @@ class NextcloudPoll:
         }
 
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/poll/{room_token}"
-
         self.nextcloud_requests.post_request(endpoint, json=poll_data)
 
     def get_poll_result(self, poll_id=0):
@@ -94,6 +96,11 @@ class NextcloudPoll:
         return response
 
     def close_poll(self, poll_id=0):
+        """
+        Close a specific poll in the specified Nextcloud Talk room.
+
+        :param poll_id: The ID of the poll to close.
+        """        
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         if self.room_name not in conversation_list:
             return f"{self.room_name} does not exist"

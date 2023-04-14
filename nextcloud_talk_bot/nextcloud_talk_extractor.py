@@ -1,4 +1,7 @@
-# nextcloud_talk_extractor.py
+"""
+interact with the Nextcloud Talk API and extract data
+"""
+
 import argparse
 from .nextcloud_data import NextcloudData
 from .nextcloud_requests import NextcloudRequests

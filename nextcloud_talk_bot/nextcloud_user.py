@@ -1,4 +1,7 @@
-# nextcloud_user.py
+"""
+provides functionality to fetch the user's data and test user login.
+"""
+
 from .nextcloud_requests import NextcloudRequests
 
 
@@ -8,7 +11,7 @@ class NextcloudUser:
     and test user login.
     """
 
-    def __init__(self, base_url, user, password):
+    def __init__(self, base_url, username, password):
         """
         Initialize the NextcloudUser instance with Nextcloud credentials.
 
@@ -20,7 +23,7 @@ class NextcloudUser:
         :type password: str
         """
         self.base_url = base_url
-        self.user = user
+        self.username = username
         self.password = password
         self.nextcloud_requests = NextcloudRequests(base_url, password)
 
@@ -44,7 +47,7 @@ class NextcloudUser:
                  raises an exception otherwise.
         :rtype: str
         """
-        endpoint = f"/ocs/v2.php/cloud/users/{self.user}"
+        endpoint = f"/ocs/v2.php/cloud/users/{self.username}"
         user_data = self.nextcloud_requests.send_request(endpoint)[
             "ocs"]["data"]
         return user_data["language"]
@@ -57,7 +60,7 @@ class NextcloudUser:
                  raises an exception otherwise.
         :rtype: dict
         """
-        endpoint = f"/ocs/v2.php/cloud/users/{self.user}"
+        endpoint = f"/ocs/v2.php/cloud/users/{self.username}"
         user_data = self.nextcloud_requests.send_request(endpoint)[
             "ocs"]["data"]
         return user_data["quota"]

@@ -1,3 +1,7 @@
+"""
+send requests to the Nextcloud API
+"""
+
 import requests
 from .headers import NextcloudHeaders
 

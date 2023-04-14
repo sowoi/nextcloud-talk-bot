@@ -1,3 +1,6 @@
+"""_summary_
+create a meeting room using the Nextcloud Talk API
+"""
 import sys
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor

@@ -1,4 +1,8 @@
-# nextcloud_file_operations.py
+
+"""
+send files to a Nextcloud Talk room, delete files, etc.
+"""
+
 import requests
 import os
 import mimetypes
@@ -9,7 +13,7 @@ from .nextcloud_data import NextcloudData
 
 class NextcloudFileOperations:
     """
-    A class to interact with the Nextcloud Talk API and extract data.
+    A class to interact with the Nextcloud Talk API  in order to send files to a Nextcloud Talk room
     """
 
     def __init__(

@@ -1,2 +1,2 @@
 - [ ] --help configuration via docstrings 
-- [x] latest poll_id via binary search
+- [ ] Breakout rooms

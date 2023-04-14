@@ -39,7 +39,7 @@ messages.send_message_to_nextcloud_talk_group("Hello, everyone!")
 # receive jlast 10 messages
 messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=10)
 
-# receiveds
+# receives
 # {
 #  id_1: (actor_1, message_1),
 #  id_2: (actor_2, message_2),

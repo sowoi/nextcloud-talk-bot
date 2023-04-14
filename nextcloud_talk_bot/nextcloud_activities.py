@@ -1,4 +1,6 @@
-# nextcloud_activites.py
+"""
+handle activities
+"""
 
 from .nextcloud_data import NextcloudData
 from .translations import TRANSLATIONS

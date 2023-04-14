@@ -15,17 +15,16 @@ class NextcloudData:
         Returns:
             data (dict): A dictionary containing the Nextcloud configuration data, including the decrypted password.
         """
-        current_directory = os.path.dirname(os.path.realpath(__file__))
-        nextclouddata_file_path = os.path.join(
-            current_directory, ".nextclouddata")
-        password_file_path = os.path.join(current_directory, ".password")
-        decode_file_path = os.path.join(current_directory, ".decode")
+        home_dir = os.path.expanduser("~")
+        nextclouddata_file_path = os.path.join(home_dir, ".nextclouddata")
+        password_file_path = os.path.join(home_dir, ".password")
+        decode_file_path = os.path.join(home_dir, ".decode")
 
         # Check if the .nextclouddata file exists
         if not os.path.exists(nextclouddata_file_path):
             print(
                 "The .nextclouddata file does not exist. Please run the first_run_setup script first.")
-            return
+            return None
 
         # Read the .nextclouddata file and extract the data
         data = {}
@@ -52,7 +51,6 @@ class NextcloudData:
                 decrypted_password = f.decrypt(encrypted_password).decode()
                 data['PASSWORD'] = decrypted_password
 
-        print(data)
         return data
 
 
