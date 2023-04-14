@@ -14,9 +14,18 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 ## Usage
 
 ```
-from nextcloud_talk_bot.nextcloud_meeting import NextcloudMeeting
-# create instance
-ncm = NextcloudMeeting(base_url="https://example.com", username="user", password="password")
+# Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via module
+
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
 ```
     
 ## Methods
@@ -32,8 +41,8 @@ This method deletes a meeting room with the specified name, after asking for con
 
 ```python
 # create room
-ncm.create_room(room_name="My Meeting Room")
+bot.meeting.create_room(room_name="My Meeting Room")
 
 # delete room
-ncm.delete_room(room_name="My Meeting Room")
+bot.meeting.delete_room(room_name="My Meeting Room")
 ```

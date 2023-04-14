@@ -132,7 +132,14 @@
 <li>poll_id: The ID of an existing poll to get or close.</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<pre><code>from nextcloud_talk_bot.nextcloud_poll import NextcloudPoll
+<pre><code># Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via Module
+from nextcloud_talk_bot.nextcloud_poll import NextcloudPoll
 # create instance
 poll = NextcloudPoll(base_url=&quot;https://example.com&quot;, username=&quot;user&quot;, password=&quot;password&quot;, room_name=&quot;My Room&quot;, question=&quot;Do you like pizza?&quot;, voting_options=[&quot;Yes&quot;, &quot;No&quot;])
 </code></pre>
@@ -147,13 +154,13 @@ This method closes a specific poll in the specified Nextcloud Talk room after as
 </ol>
 <h2 id="examples">Examples</h2>
 <pre><code class="language-python"># create poll
-poll.create_poll(question=&quot;Do you like pizza?&quot;, voting_options=[&quot;Yes&quot;, &quot;No&quot;])
+bot.poll.create_poll(question=&quot;Do you like pizza?&quot;, voting_options=[&quot;Yes&quot;, &quot;No&quot;])
 
 # get poll result
-poll.get_poll_result(poll_id=0)
+bot.poll.get_poll_result(poll_id=0)
 
 # close poll
-poll.close_poll(poll_id=0)
+bot.poll.close_poll(poll_id=0)
 </code></pre>
               
             </div>

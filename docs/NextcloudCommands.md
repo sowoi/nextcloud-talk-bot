@@ -78,3 +78,28 @@ The following arguments are available:
 - --help, -h: Print help.
 - --list, -l: List available options or functions.
 - --setup, -s: Run the first run setup.
+
+
+
+# Use in the Nextcloud Talk app:
+
+The new commands are started directly in the chat with /ncb.
+
+## Examples
+
+```
+# print help
+/ncb -h 
+
+# show list of options
+/ncb -l
+
+# show list of functions
+/ncb <option> -l
+
+# run function
+/ncb <option> <function>
+
+# print help to option or function
+/ncb <option>/<function> -h
+```

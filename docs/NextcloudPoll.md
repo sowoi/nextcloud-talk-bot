@@ -20,6 +20,13 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 ## Usage
 
 ```
+# Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via Module
 from nextcloud_talk_bot.nextcloud_poll import NextcloudPoll
 # create instance
 poll = NextcloudPoll(base_url="https://example.com", username="user", password="password", room_name="My Room", question="Do you like pizza?", voting_options=["Yes", "No"])
@@ -38,11 +45,11 @@ This method closes a specific poll in the specified Nextcloud Talk room after as
 
 ```python
 # create poll
-poll.create_poll(question="Do you like pizza?", voting_options=["Yes", "No"])
+bot.poll.create_poll(question="Do you like pizza?", voting_options=["Yes", "No"])
 
 # get poll result
-poll.get_poll_result(poll_id=0)
+bot.poll.get_poll_result(poll_id=0)
 
 # close poll
-poll.close_poll(poll_id=0)
+bot.poll.close_poll(poll_id=0)
 ```

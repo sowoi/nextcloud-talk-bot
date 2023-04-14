@@ -126,9 +126,18 @@
 <li>password: The password for the Nextcloud user account.</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<pre><code>from nextcloud_talk_bot.nextcloud_meeting import NextcloudMeeting
-# create instance
-ncm = NextcloudMeeting(base_url=&quot;https://example.com&quot;, username=&quot;user&quot;, password=&quot;password&quot;)
+<pre><code># Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via module
+
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
 </code></pre>
 <h2 id="methods">Methods</h2>
 <ol>
@@ -143,10 +152,10 @@ This method deletes a meeting room with the specified name, after asking for con
 </ol>
 <h2 id="examples">Examples</h2>
 <pre><code class="language-python"># create room
-ncm.create_room(room_name=&quot;My Meeting Room&quot;)
+bot.meeting.create_room(room_name=&quot;My Meeting Room&quot;)
 
 # delete room
-ncm.delete_room(room_name=&quot;My Meeting Room&quot;)
+bot.meeting.delete_room(room_name=&quot;My Meeting Room&quot;)
 </code></pre>
               
             </div>

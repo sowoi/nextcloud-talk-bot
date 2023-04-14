@@ -15,6 +15,14 @@ To create an instance of the NextcloudTalkExtractor class, you will need the fol
 ## Usage
 
 ```
+# Via bot
+# Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via module
 from nextcloud_talk_bot.nextcloud_messages import NextcloudMessages
 # create instance
 messages = NextcloudMessages(base_url="https://example.com/nextcloud", username="user", password="pass", room="myroom")
@@ -34,10 +42,10 @@ Deletes a message from a Nextcloud Talk group if message_id is provided. If not:
 
 ```python
 # send message
-messages.send_message_to_nextcloud_talk_group("Hello, everyone!")
+bot.messages.send_message_to_nextcloud_talk_group("Hello, everyone!")
 
 # receive jlast 10 messages
-messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=10)
+bot.messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=10)
 
 # receives
 # {
@@ -48,6 +56,6 @@ messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=
 
 
 # delete message
-messages.delete_message_in_nextcloud_talk_group(message_id=1234)
+bot.messages.delete_message_in_nextcloud_talk_group(message_id=1234)
 
 ```

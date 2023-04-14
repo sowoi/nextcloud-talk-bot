@@ -5,16 +5,24 @@ This module provides the NextcloudActivities class for handling Nextcloud activi
 
 ## Usage
 ```python
-    from nextcloud_talk_bot.nextcloud_activities import NextcloudActivities
-    
-    #Initialize the NextcloudActivities class:
-    nextcloud = NextcloudActivities(base_url, username, password)
 
-    #Get the last activities from Nextcloud:
-    last_activities = nextcloud.get_last_activities()
+# Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
 
-    #Search for specific activities in the last activities:
-    filtered_activities = nextcloud.search_last_activities(activity)
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via Module
+from nextcloud_talk_bot.nextcloud_activities import NextcloudActivities
+
+#Initialize the NextcloudActivities class:
+nextcloud = NextcloudActivities(base_url, username, password)
+
+#Get the last activities from Nextcloud:
+last_activities = nextcloud.get_last_activities()
+
+#Search for specific activities in the last activities:
+filtered_activities = nextcloud.search_last_activities(activity)
 
 ```
 

@@ -119,16 +119,24 @@
                 <h1 id="nextcloud-talk-bot-activities">Nextcloud Talk Bot: Activities</h1>
 <p>This module provides the NextcloudActivities class for handling Nextcloud activities.</p>
 <h2 id="usage">Usage</h2>
-<pre><code class="language-python">    from nextcloud_talk_bot.nextcloud_activities import NextcloudActivities
+<pre><code class="language-python">
+# Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
 
-    #Initialize the NextcloudActivities class:
-    nextcloud = NextcloudActivities(base_url, username, password)
+#Initialize bot:
+bot = NextcloudTalkBot()
 
-    #Get the last activities from Nextcloud:
-    last_activities = nextcloud.get_last_activities()
+# Via Module
+from nextcloud_talk_bot.nextcloud_activities import NextcloudActivities
 
-    #Search for specific activities in the last activities:
-    filtered_activities = nextcloud.search_last_activities(activity)
+#Initialize the NextcloudActivities class:
+nextcloud = NextcloudActivities(base_url, username, password)
+
+#Get the last activities from Nextcloud:
+last_activities = nextcloud.get_last_activities()
+
+#Search for specific activities in the last activities:
+filtered_activities = nextcloud.search_last_activities(activity)
 
 </code></pre>
 <h2 id="methods">Methods</h2>

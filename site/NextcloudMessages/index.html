@@ -127,7 +127,15 @@
 <li>room_name: The name of the room where messages are handled.</li>
 </ul>
 <h2 id="usage">Usage</h2>
-<pre><code>from nextcloud_talk_bot.nextcloud_messages import NextcloudMessages
+<pre><code># Via bot
+# Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via module
+from nextcloud_talk_bot.nextcloud_messages import NextcloudMessages
 # create instance
 messages = NextcloudMessages(base_url=&quot;https://example.com/nextcloud&quot;, username=&quot;user&quot;, password=&quot;pass&quot;, room=&quot;myroom&quot;)
 </code></pre>
@@ -143,10 +151,10 @@ Deletes a message from a Nextcloud Talk group if message_id is provided. If not:
 </ol>
 <h2 id="examples">Examples</h2>
 <pre><code class="language-python"># send message
-messages.send_message_to_nextcloud_talk_group(&quot;Hello, everyone!&quot;)
+bot.messages.send_message_to_nextcloud_talk_group(&quot;Hello, everyone!&quot;)
 
 # receive jlast 10 messages
-messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=10)
+bot.messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=10)
 
 # receives
 # {
@@ -157,7 +165,7 @@ messages_dict = messages.receive_messages_of_nextcloud_talk_group(message_limit=
 
 
 # delete message
-messages.delete_message_in_nextcloud_talk_group(message_id=1234)
+bot.messages.delete_message_in_nextcloud_talk_group(message_id=1234)
 
 </code></pre>
               
