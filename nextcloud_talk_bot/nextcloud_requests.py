@@ -47,7 +47,7 @@ class NextcloudRequests:
             raise Exception(f"Error: {url} {headers}, {params}. {e}") from None
 
         return response.json()
-    
+
     def post_request(self, endpoint, json=None):
         """
         Send a POST request to the specified Nextcloud API endpoint.

@@ -2,17 +2,23 @@ import unittest
 from unittest.mock import patch
 from nextcloud_talk_bot.nextcloud_monitoring import NextcloudMonitoring
 
+
 class TestNextcloudMonitoring(unittest.TestCase):
 
     def test_init_with_token(self):
         nc = NextcloudMonitoring("https://example.com", token="my-token")
-        self.assertEqual(nc.url, "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info")
+        self.assertEqual(
+            nc.url,
+            "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info")
         self.assertEqual(nc.token, "my-token")
 
-    @patch("nextcloud_talk_bot.nextcloud_monitoring.NextcloudMonitoring._read_token", return_value="my-token")
+    @patch("nextcloud_talk_bot.nextcloud_monitoring.NextcloudMonitoring._read_token",
+           return_value="my-token")
     def test_init_without_token(self, mock_read_token):
         nc = NextcloudMonitoring("https://example.com")
-        self.assertEqual(nc.url, "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info")
+        self.assertEqual(
+            nc.url,
+            "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info")
         self.assertEqual(nc.token, "my-token")
         mock_read_token.assert_called_once()
 
@@ -34,7 +40,8 @@ class TestNextcloudMonitoring(unittest.TestCase):
         self.assertEqual(data, {"ocs": "test_data"})
         mock_get.assert_called_once()
 
-    # Additional tests can be added for check_monitoring() to validate printed output and warnings.
+    # Additional tests can be added for check_monitoring() to validate printed
+    # output and warnings.
 
 
 if __name__ == '__main__':
