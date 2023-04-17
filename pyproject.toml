@@ -42,7 +42,6 @@ dependencies = [
     "cryptography",
     "requests",
     "caldav",
-    "caldav.elements",
     "icalendar",
     "vobject",
     "dateutil",
