@@ -10,7 +10,6 @@ from .nextcloud_messages import NextcloudMessages
 from .nextcloud_monitoring import NextcloudMonitoring
 from .nextcloud_poll import NextcloudPoll
 from .nextcloud_data import NextcloudData
-from .nextcloud_messages import NextcloudMessages
 from .headers import NextcloudHeaders
 from .translations import TRANSLATIONS
 from .permissions_map import permissions_map
