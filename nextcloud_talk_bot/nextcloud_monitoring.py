@@ -45,9 +45,6 @@ class NextcloudMonitoring:
             raise Exception(f"Request failed with status code {response.status_code}")
 
     def check_monitoring(self):
-        """
-        Fetch the monitoring data and print relevant information and warnings.
-        """
         data = self.get_monitoring_data_raw()
         nextcloud_data = data['ocs']['data']['nextcloud']
         system_data = nextcloud_data['system']
@@ -71,6 +68,18 @@ class NextcloudMonitoring:
 
         if swap_free < system_data['swap_total']:
             print("Warning: The system is swapping.")
+
+        if storage_free < 10 * 1024 * 1024 * 1024:
+            print("Warning: Less than 10GB storage free.")
+
+        if max(cpuload) > 10:
+            print("Warning: CPU load is greater than 10.")
+
+        if app_updates:
+            print("Warning: There are app updates available for the following apps:")
+            for app, version in app_updates.items():
+                print(f"  - {app}: {version}")
+
  
 if __name__ == "__main__":
     nextcloud_url = "https://nextcloudserver.abxys"

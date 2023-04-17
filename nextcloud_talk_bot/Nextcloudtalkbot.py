@@ -6,16 +6,15 @@ from .nextcloud_file_operations import NextcloudFileOperations
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .nextcloud_user import NextcloudUser
 from .nextcloud_meeting import NextcloudMeeting
+from .nextcloud_messages import NextcloudMessages
+from .nextcloud_monitoring import NextcloudMonitoring
 from .nextcloud_poll import NextcloudPoll
-# from .nextcloud_requests import NextcloudRequests
 from .nextcloud_data import NextcloudData
 from .nextcloud_messages import NextcloudMessages
 from .headers import NextcloudHeaders
 from .translations import TRANSLATIONS
-# from .confirmation import Confirmation
 from .permissions_map import permissions_map
 from .conversations_map import conversations_map
-# from .docstring_printer import DocstringPrinter
 
 
 class NextcloudTalkBot:
@@ -93,6 +92,7 @@ class NextcloudTalkBot:
             **self.config["nextcloud_base_data_with_room_name"])
         self.messages = NextcloudMessages(
             **self.config["nextcloud_base_data_with_room_token"])
+        self.messages = NextcloudMonitoring()
         self.setup = FirstRunSetup()
         self.translations = TRANSLATIONS
         self.permissions_map = permissions_map
