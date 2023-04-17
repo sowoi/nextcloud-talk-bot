@@ -1,3 +1,8 @@
-- [ ] --help configuration via docstrings 
+- [x] --help configuration via docstrings 
 - [ ] Breakout rooms
-- [ ] Monitoring
+- [x] Monitoring
+- [ ] The chatbot can execute commands to search for files or folders within a user's Nextcloud instance based on specific criteria such as file type, file name, or creation date.
+- [ ] integrate the chatbot with the Nextcloud Tasks app to allow users to add, edit, or delete tasks directly in the chat.
+- [ ] Integrate ith the Nextcloud Calendar app to allow users to add, edit, or delete events directly in the chat.
+- [ ] execute commands to retrieve current weather information for a specific location and display it in the chat.
+- [ ] send notifications and reminders based on the calendar events, tasks, or custom reminders.

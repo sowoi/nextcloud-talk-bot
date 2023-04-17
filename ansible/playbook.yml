@@ -1,0 +1,65 @@
+---
+- name: Nextcloud Talk Bot Setup
+  hosts: nextcloud_server
+  gather_facts: yes
+  become: yes
+  vars:
+    install_directory: /path/to/install/directory
+    nextcloud_directory: /path/to/nextcloud
+    response: 2
+    enabled: 2
+
+  tasks:
+    - name: Ensure install directory exists
+      file:
+        path: "{{ install_directory }}"
+        state: directory
+
+    - name: Create virtual environment
+      command:
+        cmd: python3 -m venv {{ install_directory }}/.venv
+        creates: "{{ install_directory }}/.venv"
+
+    - name: Install NextcloudTalkBot in virtual environment
+      pip:
+        name: nextcloudtalkbot
+        virtualenv: "{{ install_directory }}/.venv"
+        virtualenv_command: python3 -m venv
+
+    - name: Download ncbot.py from Github
+      get_url:
+        url: https://raw.githubusercontent.com/sowoi/nextcloud-talk-bot/main/nextcloud_talk_bot/ncbot.py
+        dest: "{{ install_directory }}/ncbot.py"
+        mode: '0755'
+
+    - name: Create ncbot.sh
+      copy:
+        dest: "{{ install_directory }}/ncbot.sh"
+        mode: '0755'
+        content: |
+          #!/usr/bin/env bash
+          args="\$@"
+          eval "{{ install_directory }}/.venv/bin/python {{ install_directory }}/ncbot.py \$args"
+
+    - name: Set ownership of ncbot files
+      file:
+        path: "{{ install_directory }}/{{ item }}"
+        owner: www-data
+        group: www-data
+      with_items:
+        - ncbot.py
+        - ncbot.sh
+
+    - name: Add Nextcloud Talk command
+      command:
+        cmd: >
+          sudo -u www-data php {{ nextcloud_directory }}/occ talk:command:add ncb nct
+          "{{ install_directory }}/ncbot.sh {ARGUMENTS}" {{ response }} {{ enabled }}
+      register: talk_command_output
+      changed_when: "'Command executed successfully' in talk_command_output.stdout"
+
+    - name: Run first-time setup
+      command:
+        cmd: sudo -u www-data {{ install_directory }}/ncbot.sh --setup
+      register: setup_output
+      changed_when: "'Setup executed successfully' in setup_output.stdout"
