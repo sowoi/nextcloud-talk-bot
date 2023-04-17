@@ -1,5 +1,5 @@
 # Nextcloud Talk Bot: Setup via Ansible
-This Ansible playbook sets up a Nextcloud Talk bot on your Nextcloud server.
+This Ansible playbook [playbook.yml](https://raw.githubusercontent.com/sowoi/nextcloud-talk-bot/main/ansible/playbook.yml) sets up a Nextcloud Talk bot on your Nextcloud server.
 
 ## Overview
 
