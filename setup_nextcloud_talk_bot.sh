@@ -7,7 +7,6 @@
 # If the directory where the script was started is deleted, you will have to start the setup from scratch. 
 #
 
-set -u
 create_virtualenv() {
   # Check if the script is already running in a virtual environment
   if [[ $VIRTUAL_ENV != "" ]]; then 
@@ -65,7 +64,33 @@ uninstall() {
 
     echo 'No virtual environment found. Nothing to uninstall.'
   fi
+
+  echo "Removing Setup files"
+  rm ~/.nextclouddata
+  rm ~/.password
+  rm ~/.decode
 }
+
+
+generate_random_token() {
+  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1
+}
+
+
+ask_for_monitoring() {
+  read -p "Do you want to enable monitoring? (yes/no): " enable_monitoring
+
+  if [[ $enable_monitoring == "yes" ]]; then
+    random_token=$(generate_random_token)
+    sudo -u www-data bash -c "echo $random_token > /var/www/.monitoring"
+    echo "Monitoring enabled with the following token: $random_token"
+    read -p "Please enter the Nextcloud installation directory: " nextcloud_directory
+    sudo -u www-data php ${nextcloud_directory}/occ config:app:set serverinfo token --value $random_token
+  else
+    echo "Monitoring not enabled."
+  fi
+}
+
 
 main() {
   current_user=$(getent passwd www-data | cut -d: -f1)
@@ -78,6 +103,7 @@ main() {
     uninstall
     exit 0
   fi
+
   
   create_virtualenv
   
@@ -99,7 +125,6 @@ main() {
 
 cat <<EOF > ncbot.sh
 #!/usr/bin/env bash
-set -u
 args="\$@"
 eval "$script_directory/.venv/bin/python $script_directory/ncbot.py \$args"
 EOF
@@ -121,7 +146,7 @@ EOF
 
   echo "Setup executed successfully."
   
-
+  ask_for_monitoring
   
 
   deactivate
@@ -129,6 +154,8 @@ EOF
 
 if [[ "$1" == "--uninstall" ]]; then
   uninstall
+elif [[ "$1" == "--monitoring" ]]; then
+  ask_for_monitoring
 else
   main
 fi

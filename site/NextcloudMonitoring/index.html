@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudUser/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudMonitoring/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>User - Nextcloud Talk Bot</title>
+    <title>Monitoring - Nextcloud Talk Bot</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "User";
-        var mkdocs_page_input_path = "NextcloudUser.md";
-        var mkdocs_page_url = "/NextcloudUser/";
+        var mkdocs_page_name = "Monitoring";
+        var mkdocs_page_input_path = "NextcloudMonitoring.md";
+        var mkdocs_page_url = "/NextcloudMonitoring/";
       </script>
     
     <script src="../js/jquery-3.6.0.min.js" defer></script>
@@ -71,8 +71,18 @@
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudMessages/">Messages</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMonitoring/">Monitoring</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Monitoring</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#warnings">Warnings</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <ul>
@@ -83,16 +93,8 @@
                 <li class="toctree-l1"><a class="reference internal" href="../NextcloudTalkExtractor/">Extractor</a>
                 </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">User</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#example">Example</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudUser/">User</a>
                 </li>
               </ul>
       </div>
@@ -109,7 +111,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>User</li>
+      <li>Monitoring</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -118,59 +120,49 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="nextcloud-talk-bot-user">Nextcloud Talk Bot: User</h1>
-<p>The NextcloudUser class represents a Nextcloud user and provides functionality to fetch user data and test user login by interacting with the Nextcloud API.</p>
+                <h1 id="nextcloud-talk-bot-monitoring">Nextcloud Talk Bot: Monitoring</h1>
+<p>NextcloudMonitoring interacts with Nextcloud's monitoring API to fetch server information. It allows users to check the current status of their Nextcloud instance, including memory usage, storage space, CPU load, and available app updates.</p>
 <h2 id="initialization">Initialization</h2>
-<p>To create an instance of the NextcloudUser class, you will need the following information:</p>
+<p>To create an instance of the NextcloudTalkExtractor class, you will need the following information:</p>
 <ul>
-<li>base_url: The base URL for the Nextcloud server.</li>
-<li>username: The username for the Nextcloud user account.</li>
-<li>password: The password for the Nextcloud user account.</li>
+<li>nextcloud_url = "https://your-nextcloud-instance.com"</li>
+<li>nc_token = "your-token-here"  # Replace with your own nc token created via ocs command on your server (this is not your bot app token!)</li>
 </ul>
-<h2 id="methods">Methods</h2>
-<p>_send_request(self, endpoint)<br />
-This method sends a request to the Nextcloud API and returns the response.</p>
-<p>Arguments:<br />
-endpoint (str): The API endpoint to send the request to.</p>
-<p>Returns:<br />
-dict: A dictionary containing the response data if the request is successful, raises an exception otherwise.</p>
-<p>test_user_login(self)<br />
-This method tests user login by attempting to retrieve user data from Nextcloud using the provided credentials.  </p>
-<p>Returns:<br />
-dict: A dictionary containing the user's data if the login is successful, an error message otherwise.</p>
-<p>get_preferred_language(self)<br />
-This method gets the user's preferred language from the Nextcloud server.  </p>
-<p>Returns:<br />
-str: The preferred language if the request is successful, raises an exception otherwise.</p>
-<p>get_quota(self)<br />
-This method gets the user's quota information from the Nextcloud server.  </p>
-<p>Returns:<br />
-dict: A dictionary containing the user's quota information if the request is successful, raises an exception otherwise.</p>
-<h2 id="example">Example</h2>
-<pre><code class="language-python">#  create an instance of the NextcloudUser class, test user login, get the user's preferred language, and fetch their quota information
-from nextcloud_user import NextcloudUser
-
-base_url = &quot;https://your-nextcloud-instance.com&quot;
-user = &quot;your-username&quot;
-password = &quot;your-password&quot;
-
-nc_user = NextcloudUser(base_url, user, password)
-login_response = nc_user.test_user_login()
-
-if &quot;ocs&quot; in login_response and &quot;data&quot; in login_response[&quot;ocs&quot;]:
-    print(&quot;Login successful!&quot;)
-    preferred_language = nc_user.get_preferred_language()
-    print(f&quot;Preferred language: {preferred_language}&quot;)
-    quota = nc_user.get_quota()
-    print(f&quot;Quota: {quota}&quot;)
-else:
-    print(&quot;Login failed!&quot;)
+<pre><code>monitoring = NextcloudMonitoring(nextcloud_url, nc_token)
 </code></pre>
+<p>If the token is not provided, the class will attempt to read the token from a .monitoring file in the user's home directory.</p>
+<h2 id="usage">Usage</h2>
+<pre><code># Via module
+from nextcloud_talk_bot.nextcloud_monitoring import NextcloudMonitoring
+
+# create instance
+monitoring = NextcloudMonitoring(nextcloud_url, nc_token)
+
+monitoring.check_monitoring()
+</code></pre>
+<h2 id="methods">Methods</h2>
+<ol>
+<li>get_monitoring_data_raw()<br />
+Prints raw data of your Nextcloud instance  </li>
+<li>check_monitoring()<br />
+This method will print the memory usage, storage space, CPU load, and available app updates, along with any applicable warnings.
+returns: mesage dictionary with message_id and actor</li>
+</ol>
+<h2 id="warnings">Warnings</h2>
+<p>The check_monitoring() method will generate warnings under the following conditions:</p>
+<ul>
+<li>less than 20% of memory is free.</li>
+<li>the system is swapping.</li>
+<li>Less than 10 GB of storage space is free.</li>
+<li>the CPU load is greater than 10.</li>
+<li>App updates are available.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../NextcloudTalkExtractor/" class="btn btn-neutral float-left" title="Extractor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NextcloudMessages/" class="btn btn-neutral float-left" title="Messages"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../NextcloudPoll/" class="btn btn-neutral float-right" title="Poll">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -193,8 +185,10 @@ else:
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../NextcloudTalkExtractor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../NextcloudMessages/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../NextcloudPoll/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -3,14 +3,15 @@ site_url: https://nextcloud-talk-bot.readthedocs.io
 nav:
     - Index: index.md
     - First Run Setup : FirstRunSetup.md
-    - NextcloudActivities: NextcloudActivities.md
-    - NextcloudCommands: NextcloudCommands.md
-    - NextcloudFileOperations: NextcloudFileOperations.md
-    - NextcloudMeeting: NextcloudMeeting.md
-    - NextcloudMessages: NextcloudMessages.md
-    - NextcloudPoll: NextcloudPoll.md
-    - NextcloudTalkExtractor: NextcloudTalkExtractor.md
-    - NextcloudUser: NextcloudUser.md
+    - Activities: NextcloudActivities.md
+    - Commands: NextcloudCommands.md
+    - Files: NextcloudFileOperations.md
+    - Meeting: NextcloudMeeting.md
+    - Messages: NextcloudMessages.md
+    - Monitoring: NextcloudMonitoring.md
+    - Poll: NextcloudPoll.md
+    - Extractor: NextcloudTalkExtractor.md
+    - User: NextcloudUser.md
 
 plugins:
   - search
