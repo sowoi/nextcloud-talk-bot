@@ -3,6 +3,7 @@ site_url: https://nextcloud-talk-bot.readthedocs.io
 nav:
     - Index: index.md
     - First Run Setup : FirstRunSetup.md
+    - AnsiblePlaybook: AnsiblePlaybook.md
     - Activities: NextcloudActivities.md
     - Commands: NextcloudCommands.md
     - Files: NextcloudFileOperations.md
