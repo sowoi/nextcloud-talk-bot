@@ -44,7 +44,7 @@ dependencies = [
     "caldav",
     "icalendar",
     "vobject",
-    "dateutil",
+    "python-dateutil",
 ]
 
 keywords = ["nextcloud", "nextcloud talk", "bot"]
