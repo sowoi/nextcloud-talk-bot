@@ -40,6 +40,7 @@ git clone https://github.com/sowoi/nextcloud-talk-bot.git
 
 Not a developer?
 There is a fully automated bash script that you can run on your NextcloudServer to do the installation and configuration: See [Commands](NextcloudCommands).
+For those who don't want to use a bash script, there is also an Ansible script: See [AnsiblePlaybook](AnsiblePlaybook). 
 
 
 ## Configuration

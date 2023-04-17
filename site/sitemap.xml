@@ -6,6 +6,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://nextcloud-talk-bot.readthedocs.io/AnsiblePlaybook/</loc>
+         <lastmod>2023-04-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://nextcloud-talk-bot.readthedocs.io/FirstRunSetup/</loc>
          <lastmod>2023-04-17</lastmod>
          <changefreq>daily</changefreq>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/AnsiblePlaybook/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Nextcloud Talk Bot: Setup via Ansible - Nextcloud Talk Bot</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Nextcloud Talk Bot: Setup via Ansible";
+        var mkdocs_page_input_path = "AnsiblePlaybook.md";
+        var mkdocs_page_url = "/AnsiblePlaybook/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.12.2/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Nextcloud Talk Bot
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Index</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../FirstRunSetup/">First Run Setup</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">Activities</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudCommands/">Commands</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudFileOperations/">Files</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMeeting/">Meeting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMessages/">Messages</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudMonitoring/">Monitoring</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudPoll/">Poll</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudTalkExtractor/">Extractor</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NextcloudUser/">User</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Nextcloud Talk Bot</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Nextcloud Talk Bot: Setup via Ansible</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="nextcloud-talk-bot-setup-via-ansible">Nextcloud Talk Bot: Setup via Ansible</h1>
+<p>This Ansible playbook sets up a Nextcloud Talk bot on your Nextcloud server.</p>
+<h2 id="overview">Overview</h2>
+<p>The playbook performs the following tasks:</p>
+<ul>
+<li>Ensure the installation directory exists.</li>
+<li>Create a Python virtual environment.</li>
+<li>Install the NextcloudTalkBot package in the virtual environment.</li>
+<li>Download the ncbot.py script from Github.</li>
+<li>Create the ncbot.sh script.</li>
+<li>Set the ownership of the ncbot.py and ncbot.sh files.</li>
+<li>Add the Nextcloud Talk command.</li>
+<li>Run the first-time setup for the bot.</li>
+</ul>
+<h2 id="variables">Variables</h2>
+<p>The playbook uses the following variables:</p>
+<ul>
+<li>install_directory: The path to the directory where the bot will be installed.</li>
+<li>nextcloud_directory: The path to the Nextcloud installation directory.</li>
+<li>response: The response mode for the bot (default 2: send system messages).</li>
+<li>enabled: The enabled state for the bot command (default 2: enabled for all user).</li>
+</ul>
+<h2 id="tasks">Tasks</h2>
+<p>Ensure install directory exists<br />
+This task creates the installation directory if it does not exist.</p>
+<p>Create virtual environment<br />
+This task creates a Python virtual environment in the installation directory.</p>
+<p>Install NextcloudTalkBot in virtual environment<br />
+This task installs the nextcloudtalkbot package in the virtual environment.  </p>
+<p>Download ncbot.py from Github<br />
+This task downloads the ncbot.py script from the Github repository and saves it in the installation directory with executable permissions.</p>
+<p>Create ncbot.sh<br />
+This task creates the ncbot.sh script in the installation directory, which is a wrapper around the ncbot.py script. The script sets the correct virtual environment and Python interpreter.</p>
+<p>Set ownership of ncbot files<br />
+This task sets the ownership of the ncbot.py and ncbot.sh files to the www-data user and group.</p>
+<p>Add Nextcloud Talk command<br />
+This task adds the Nextcloud Talk command using the occ command-line tool. The command is registered with the bot's script, response mode, and enabled state.</p>
+<p>Run first-time setup<br />
+This task runs the first-time setup for the bot by calling the ncbot.sh script with the --setup flag. The setup process configures the bot for the Nextcloud Talk instance.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
