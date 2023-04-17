@@ -41,6 +41,11 @@ classifiers = [
 dependencies = [
     "cryptography",
     "requests",
+    "caldav",
+    "caldav.elements",
+    "icalendar",
+    "vobject",
+    "dateutil",
 ]
 
 keywords = ["nextcloud", "nextcloud talk", "bot"]
