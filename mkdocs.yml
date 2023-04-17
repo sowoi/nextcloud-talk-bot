@@ -2,17 +2,19 @@ site_name: Nextcloud Talk Bot
 site_url: https://nextcloud-talk-bot.readthedocs.io
 nav:
     - Index: index.md
-    - First Run Setup : FirstRunSetup.md
-    - Setup via Ansible: AnsiblePlaybook.md
-    - Activities: NextcloudActivities.md
-    - Commands: NextcloudCommands.md
-    - Files: NextcloudFileOperations.md
-    - Meeting: NextcloudMeeting.md
-    - Messages: NextcloudMessages.md
-    - Monitoring: NextcloudMonitoring.md
-    - Poll: NextcloudPoll.md
-    - Extractor: NextcloudTalkExtractor.md
-    - User: NextcloudUser.md
+    - Setup:
+      - First Run Setup : FirstRunSetup.md
+      - Setup via Ansible: AnsiblePlaybook.md
+    - Functions:
+        - Activities: NextcloudActivities.md
+        - Commands: NextcloudCommands.md
+        - Files: NextcloudFileOperations.md
+        - Meeting: NextcloudMeeting.md
+        - Messages: NextcloudMessages.md
+        - Monitoring: NextcloudMonitoring.md
+        - Poll: NextcloudPoll.md
+        - Extractor: NextcloudTalkExtractor.md
+        - User: NextcloudUser.md
 
 plugins:
   - search
