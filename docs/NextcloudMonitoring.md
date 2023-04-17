@@ -49,6 +49,6 @@ The check_monitoring() method will generate warnings under the following conditi
 
 ## Nextcloud Talk Command
 
-If you want to use monitoring via nextcloud commands, follow the steps under [Commands](Commands)  or if you want to implement it afterwards, start the bash script with the --monitoring flag.
+If you want to use monitoring via nextcloud commands, follow the steps under [Commands](NextcloudCommands)  or if you want to implement it afterwards, start the bash script with the --monitoring flag.
 
 You can manually create a token using the `occ config:app:set serverinfo token --value <YourToken>` command

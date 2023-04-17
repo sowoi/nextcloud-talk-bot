@@ -39,7 +39,7 @@ git clone https://github.com/sowoi/nextcloud-talk-bot.git
 ```
 
 Not a developer?
-There is a fully automated bash script that you can run on your NextcloudServer to do the installation [Commands](Commands).
+There is a fully automated bash script that you can run on your NextcloudServer to do the installation [Commands](NextcloudCommands).
 
 
 ## Configuration
