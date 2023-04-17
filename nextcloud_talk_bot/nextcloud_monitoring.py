@@ -38,7 +38,6 @@ class NextcloudMonitoring:
         """
         headers = {'Accept': 'application/json', 'Content-Type': 'application/json', 'OCS-APIRequest': 'true',"NC-Token": self.token}
         response = requests.get(self.url, headers=headers)
-        #print(response)
         if response.status_code == 200:
             data = response.json()
             return data

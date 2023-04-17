@@ -19,16 +19,21 @@ class NextcloudRequests:
         self.password = password
         self.headers = NextcloudHeaders.create_headers(password)
 
-    def send_request(self, endpoint, params=None):
+    def send_request(self, endpoint, params=None, extra_headers=None):
         """
         Send a GET request to the specified Nextcloud API endpoint.
 
         :param endpoint: The API endpoint to send the request to.
         :param params: Optional dictionary of query parameters to include in the request. Default is None.
+        :param extra_headers: Optional dictionary of additional headers to include in the request. Default is None.
         :return: The JSON response from the server.
         :raises Exception: If the response status code is not 200.
         """
-        headers = self.headers
+        headers = self.headers.copy()
+
+        if extra_headers:
+            headers.update(extra_headers)
+
         url = f"{self.base_url}{endpoint}"
         response = requests.get(
             url,
@@ -42,7 +47,7 @@ class NextcloudRequests:
             raise Exception(f"Error: {url} {headers}, {params}. {e}") from None
 
         return response.json()
-
+    
     def post_request(self, endpoint, json=None):
         """
         Send a POST request to the specified Nextcloud API endpoint.
