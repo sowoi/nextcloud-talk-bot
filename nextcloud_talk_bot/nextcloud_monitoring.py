@@ -1,6 +1,12 @@
 import os
 import json
 import requests
+import gettext
+
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 
 class NextcloudMonitoring:
@@ -62,26 +68,26 @@ class NextcloudMonitoring:
         cpuload = system_data['cpuload']
         app_updates = apps_data['app_updates']
 
-        print(f"Memory Free: {mem_free}")
-        print(f"Swap Free: {swap_free}")
-        print(f"Storage Free: {storage_free}")
-        print(f"CPU Load: {cpuload}")
+        print(f"{_('Memory Free: ')}{mem_free}")
+        print(f"{_('Swap Free: ')}{swap_free}")
+        print(f"{_('Storage Free: ')}{storage_free}")
+        print(f"{_('CPU Load: ')}{cpuload}")
 
         mem_free_percentage = (mem_free / system_data['mem_total']) * 100
         if mem_free_percentage < 20:
-            print("Warning: Less than 20% memory free.")
+            print(_("Warning: Less than 20% memory free."))
 
         if swap_free < system_data['swap_total']:
-            print("Warning: The system is swapping.")
+            print(_("Warning: The system is swapping."))
 
         if storage_free < 10 * 1024 * 1024 * 1024:
-            print("Warning: Less than 10GB storage free.")
+            print(_("Warning: Less than 10GB storage free."))
 
         if max(cpuload) > 10:
-            print("Warning: CPU load is greater than 10.")
+            print(_("Warning: CPU load is greater than 10."))
 
         if app_updates:
-            print("Warning: There are app updates available for the following apps:")
+            print(_("Warning: There are app updates available for the following apps:"))
             for app, version in app_updates.items():
                 print(f"  - {app}: {version}")
 

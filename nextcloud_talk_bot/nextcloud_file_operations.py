@@ -9,7 +9,13 @@ import mimetypes
 import xml.etree.ElementTree as ET
 from requests.auth import HTTPBasicAuth
 from .nextcloud_data import NextcloudData
+import gettext
 
+
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 class NextcloudFileOperations:
     """
@@ -96,7 +102,7 @@ class NextcloudFileOperations:
         Nextcloud folder, and deletes the local file upon successful upload.
         """
         for filename in os.listdir(self.local_folder):
-            print("Sending file to Nextcloud Talk")
+            print(_("Sending file to Nextcloud Talk"))
             for filename in os.listdir(self.local_folder):
                 # Create file path
                 file_path = os.path.join(self.local_folder, filename)
@@ -130,4 +136,4 @@ class NextcloudFileOperations:
         """
         delete_url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{self.remote_file}"
         requests.delete(delete_url, auth=(self.username, self.password))
-        print(f"deleted: {self.remote_file} in {self.nc_remote_folder}")
+        print(f"{_('deleted: ')}{self.remote_file} in {self.nc_remote_folder}")

@@ -1,3 +1,10 @@
+import gettext
+
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
+
 class Confirmation:
     """
     A class used to confirm user actions with irreversible consequences.
@@ -25,11 +32,11 @@ class Confirmation:
         """
         while True:
             user_input = self.input_func(
-                f"Are you sure you want to {self.object} '{self.entity}'? This process is irrevocable! (yes/no): "
+                f"{_('Are you sure you want to ')}{self.object} '{self.entity}'? {_('This process is irrevocable! (yes/no): ')}"
             )
-            if user_input.lower() == "no":
+            if user_input.lower() == _("no"):
                 return False
-            elif user_input.lower() == "yes":
+            elif user_input.lower() == _("yes"):
                 return True
             else:
-                print("Invalid input. Please enter 'yes' or 'no'.")
+                print(_("Invalid input. Please enter 'yes' or 'no'."))

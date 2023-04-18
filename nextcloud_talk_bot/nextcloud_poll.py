@@ -2,10 +2,15 @@
 create poll, get poll results, close polls
 """
 import sys
+import gettext
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .confirmation import Confirmation
 
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 class NextcloudPoll:
     """
@@ -63,7 +68,7 @@ class NextcloudPoll:
 
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         if self.room_name not in conversation_list:
-            return f"{self.room_name} does not exist"
+            return f"{self.room_name}{_(' does not exist')}"
         else:
             room_token = conversation_list[self.room_name]
 
@@ -86,7 +91,7 @@ class NextcloudPoll:
         """
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         if self.room_name not in conversation_list:
-            return f"{self.room_name} does not exist"
+            return f"{self.room_name}{_(' does not exist')}"
         else:
             room_token = conversation_list[self.room_name]
 
@@ -103,11 +108,11 @@ class NextcloudPoll:
         """
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         if self.room_name not in conversation_list:
-            return f"{self.room_name} does not exist"
+            return f"{self.room_name}{_(' does not exist')}"
         else:
             if not NextcloudPoll.get_poll_result(
                     self, poll_id)["ocs"]["meta"]["statuscode"] == 200:
-                return "PollId not found"
+                return _("PollId not found")
             else:
                 poll_question = NextcloudPoll.get_poll_result(
                     self, poll_id)["ocs"]["data"]["question"]
@@ -115,7 +120,7 @@ class NextcloudPoll:
                     room_token = conversation_list[self.room_name]
                     endpoint = f"/ocs/v2.php/apps/spreed/api/v1/poll/{room_token}/{poll_id}"
                     self.nextcloud_requests.delete_request(endpoint)
-                    print(f"Closed poll '{self.room_name}'")
+                    print(f"{_('Closed poll ')}'{self.room_name}'")
                 else:
-                    print("Poll closing aborted.")
+                    print(_("Poll closing aborted."))
                     sys.exit()

@@ -3,7 +3,12 @@ import os
 import grp
 import pwd
 import sys
+import gettext
 
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 class SudoPrivileges:
     @staticmethod
@@ -20,12 +25,12 @@ class SudoPrivileges:
 
         # Check if the user is 'root' or running the script with 'sudo'
         if uid == 0:
-            print("Error: This script should not be run as root or with sudo.")
+            print(_("Error: This script should not be run as root or with sudo."))
             sys.exit(1)
 
         # Check if the user is a member of the 'www-data' group
         if 'www-data' in user_groups:
-            print("The user '{}' is a member of the 'www-data' group.".format(user))
+            print(_('The user ')}{}{_(' is a member of the 'www-data' group.')}.format(user)))
 
 
 if __name__ == "__main__":

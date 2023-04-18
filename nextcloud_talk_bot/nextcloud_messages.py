@@ -3,10 +3,14 @@ send messages, receives messages, etc
 """
 
 import sys
-
+import gettext
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 class NextcloudMessages:
     def __init__(self, base_url, username, password, room_token):
@@ -41,7 +45,7 @@ class NextcloudMessages:
         data = {'actorDisplayName': "Guest", 'message': message}
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/chat/{self.room_token}"
         self.nextcloud_requests.post_request(endpoint, json=data)
-        print(f"Message sent: {message}")
+        print(f"{_('Message sent: ')}{message}")
 
     def receive_messages_of_nextcloud_talk_group(self, message_limit=1):
         """
@@ -90,20 +94,20 @@ class NextcloudMessages:
             for i, message in last_messages:
                 print(f"{i}: {message}")
 
-            selection = input(
-                "Please select a message from the list that you want to delete [0-9]: ")
+            selection = input(_()
+                "Please select a message from the list that you want to delete [0-9]: "))
             selection_index = int(selection)
             if selection_index < len(last_messages):
                 selected_message = list(
                     last_messages_dict.values())[selection_index]
             else:
-                print("Invalid selection.")
+                print(_("Invalid selection."))
                 sys.exit()
             selected_message = list(
                 last_messages_dict.values())[selection_index]
             selected_actor = selected_message[0]
             print(
-                f"You have selected the following message:: {selected_message[1]}")
+                f"{_('You have selected the following message: ')}{selected_message[1]}")
             print(f"created by: {selected_actor}")
 
             for message_id, message_tuple in last_messages_dict.items():
@@ -116,4 +120,4 @@ class NextcloudMessages:
             endpoint = f"/ocs/v2.php/apps/spreed/api/v1/chat/{self.room_token}/{message_id}"
 
         self.nextcloud_requests.delete_request(endpoint)
-        return "Message deleted"
+        return _("Message deleted")

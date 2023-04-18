@@ -10,9 +10,15 @@ import sys
 import getpass
 import json
 import collections
+import gettext
 from cryptography.fernet import Fernet
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 
 class FirstRunSetup:
@@ -66,8 +72,8 @@ class FirstRunSetup:
         :return: str - The Nextcloud URL.
         """
 
-        nextcloud_url = input(
-            "Please enter your complete Nextcloud address including https://: ")
+        nextcloud_url = input(_(
+            "Please enter your complete Nextcloud address including https://: "))
         return nextcloud_url
 
     @staticmethod
@@ -77,7 +83,7 @@ class FirstRunSetup:
         :return: str - The username.
         """
 
-        username = input("Please specify the username of the bot user:")
+        username = input(_("Please specify the username of the bot user:"))
         return username
 
     @staticmethod
@@ -87,7 +93,7 @@ class FirstRunSetup:
         :return: str - The password.
         """
 
-        password = getpass.getpass("Please enter the bot user's app password:")
+        password = getpass.getpass(_("Please enter the bot user's app password:"))
         return password
 
     @staticmethod
@@ -108,10 +114,10 @@ class FirstRunSetup:
         user_data = json.loads(json.dumps(user_data))
         status_code = user_data["ocs"]["meta"]["statuscode"]
         if (status_code == 200):
-            print("Login data are OK")
+            print(_("Login data are OK"))
             extractor = NextcloudTalkExtractor(url, username, password)
             conversation_ids = extractor.get_conversations_ids()
-            print("Found the following chats about the entered user. Select the chat by entering the number in front of it.")
+            print(_("Found the following chats about the entered user. Select the chat by entering the number in front of it."))
             for i, rooms in enumerate(conversation_ids):
                 print(f"{i+1}. {rooms}")
             roomSelection = FirstRunSetup.select_nextcloud_talk_room(
@@ -138,13 +144,13 @@ class FirstRunSetup:
         while True:
             try:
                 roomSelection = int(
-                    input("Please enter the number of the list item you want to select: "))
+                    input(_("Please enter the number of the list item you want to select: ")))
                 if roomSelection < 1 or roomSelection > len(conversation_ids):
                     raise ValueError
                 break
             except ValueError:
-                print(
-                    "Invalid input. Please enter a number between 1 and",
+                print(_(
+                    "Invalid input. Please enter a number between 1 and"),
                     len(conversation_ids),
                     ".")
         return roomSelection
@@ -163,7 +169,7 @@ class FirstRunSetup:
         result = FirstRunSetup.check_nextcloud_credentials(
             nextcloud_url, username, password)
         if not result.valid:
-            print("Incorrect login data. Please try again.")
+            print(_("Incorrect login data. Please try again."))
             return
 
         room_name = result.room_name
@@ -184,7 +190,7 @@ class FirstRunSetup:
         # Delete the password from the working memory to keep it safe
         del password
 
-        print(f"Data successfully written to {nextclouddata_file_path}")
+        print(f"{_('Data successfully written to '}){nextclouddata_file_path}")
 
     def check_if_data_file_already_exists():
         """
@@ -195,19 +201,19 @@ class FirstRunSetup:
         home_dir = os.path.expanduser("~")
         nextclouddata_file_path = os.path.join(home_dir, ".nextclouddata")
         if os.path.exists(nextclouddata_file_path):
-            print(
-                "The .nextclouddata file already exists. If you continue, this file will be overwritten.")
+            print(_(
+                "The .nextclouddata file already exists. If you continue, this file will be overwritten."))
             while True:
-                user_input = input(
-                    "Are you sure you want to continue? (yes/no): ")
+                user_input = input(_(
+                    "Are you sure you want to continue? (yes/no): "))
                 if user_input.lower() == 'no':
-                    print("FirstRunSetup aborted.")
+                    print(_("FirstRunSetup aborted."))
                     sys.exit()
                 elif user_input.lower() == 'yes':
-                    print("Continuing with FirstRunSetup...")
+                    print(_("Continuing with FirstRunSetup..."))
                     break
                 else:
-                    print("Invalid input. Please enter 'yes' or 'no'.")
+                    print(_("Invalid input. Please enter 'yes' or 'no'."))
         return
 
     @staticmethod
@@ -217,9 +223,9 @@ class FirstRunSetup:
         """
         FirstRunSetup.check_if_data_file_already_exists()
         SudoPrivileges.check_user_and_abort_if_root_or_sudo()
-        print(
+        print(_(
             """This wizard guides you through the configuration of the framework.
 Make sure you have created a bot user that has only limited rights.
 Enable 2FA for this bot user and create an app password in Nextcloud.
-        """)
+        """))
         FirstRunSetup.get_credentials()

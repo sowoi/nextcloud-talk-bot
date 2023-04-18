@@ -1,12 +1,17 @@
 """
 interact with the Nextcloud Talk API and extract data
 """
-
+import gettext
 import argparse
 from .nextcloud_data import NextcloudData
 from .nextcloud_requests import NextcloudRequests
 from .permissions_map import permissions_map
 
+
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 class NextcloudTalkExtractor:
     """

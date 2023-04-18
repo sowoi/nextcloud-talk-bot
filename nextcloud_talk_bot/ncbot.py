@@ -2,10 +2,15 @@ import argparse
 import importlib
 import inspect
 import ast
+import gettext
 
 import nextcloud_talk_bot
 from nextcloud_talk_bot.first_run_setup import FirstRunSetup
 
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 class FirstSetup:
     @staticmethod
@@ -76,7 +81,7 @@ class NextcloudCommands:
             else:
                 print(f"{cls.__name__} has no docstring.")
         else:
-            print(f"No classes found in module {self.module_name}.")
+            print(f"{_('No classes found in module ')}{self.module_name}.")
 
     def print_method_docstring(self, method_name):
         cls = self.get_first_class()
@@ -87,12 +92,12 @@ class NextcloudCommands:
                 if docstring:
                     print(f"{docstring}\n")
                 else:
-                    print(f"Method '{method_name}' has no docstring.")
+                    print(f"{_('Function ')}{method_name}{_(' has no docstring.')}")
             else:
                 print(
                     f"Method '{method_name}' not found in class '{cls.__name__}'.")
         else:
-            print(f"No classes found in module {self.module_name}.")
+            print(f"{_('No classes found in module ')}{self.module_name}.")
 
     def call_class_method(self, method_name, *args, **kwargs):
         unpacked_args = []
@@ -100,13 +105,10 @@ class NextcloudCommands:
             if arg.startswith('[') and arg.endswith(']'):
                 parsed_arg = ast.literal_eval(arg)
                 if isinstance(parsed_arg, list):
-                    print(parsed_arg, " ist eine Liste")
                     unpacked_args.append(parsed_arg)
                 else:
-                    print("appending ", arg)
                     unpacked_args.append(arg)
             else:
-                print("appending ", arg)
                 unpacked_args.append(arg)
         cls = self.get_first_class()
         if cls:
@@ -120,12 +122,12 @@ class NextcloudCommands:
                     return method()
             else:
                 print(
-                    f"Method '{method_name}' not found in class '{cls.__name__}'.")
+                    f"{_('Function ')}{method_name}{_(' not found in class ')}{cls.__name__}'.")
         else:
-            print(f"No classes found in module {self.module_name}.")
+            print(f"{_('No classes found in module ')}{self.module_name}.")
 
     def print_available_classes_and_methods(self):
-        print(f"Classes and methods in module {self.module_name}:\n")
+        print(f"{_('Classes and methods in module ')}{self.module_name}:\n")
         for name, obj in inspect.getmembers(self.module):
             if inspect.isclass(obj) and self.module_name in obj.__module__:
                 print(f"Class: {name}")
@@ -139,12 +141,12 @@ class NextcloudCommands:
             method = getattr(cls, method_name, None)
             if method:
                 signature = inspect.signature(method)
-                print(f"Parameters for function '{method_name}':\n{signature}")
+                print(f"{_('Parameters for function ')}{method_name}':\n{signature}")
             else:
                 print(
-                    f"Function '{method_name}' not found in class '{cls.__name__}'.")
+                    f"{_('Function ')}{method_name}{_(' not found in class ')}{cls.__name__}'.")
         else:
-            print(f"No classes found in module {self.module_name}.")
+            print(f"{_('No classes found in module ')}{self.module_name}.")
 
     def print_available_classes(self):
         classes = [
@@ -155,19 +157,19 @@ class NextcloudCommands:
             "messages",
             "poll",
             "extractor"]
-        print("Available options:")
+        print(_("Available options:"))
         for options in classes:
             print(options)
-        print("type options --list to get available functions")
+        print(_("type options --list to get available functions"))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Call Nextcloud Commands via NextcloudTalkBot Framework",
+        description=_("Call Nextcloud Commands via NextcloudTalkBot Framework"),
         add_help=False)
     parser.add_argument(
         "input_name",
-        help="Option name. Type --list to get all options.",
+        help=_("Option name. Type --list to get all options."),
         nargs="?",
         default=None)
     parser.add_argument(
@@ -175,13 +177,13 @@ if __name__ == "__main__":
         "-f",
         dest="method_name",
         default=None,
-        help="Function to call. Type option --list to get all parameters or option --help for help")
+        help=_("Function to call. Type option --list to get all parameters or option --help for help"))
     parser.add_argument(
         "--args",
         "-a",
         nargs="*",
         default=[],
-        help="Arguments to pass to the function.")
+        help=_("Arguments to pass to the function."))
     parser.add_argument(
         "--help",
         "-h",
@@ -193,14 +195,14 @@ if __name__ == "__main__":
         "-l",
         dest="list_flag",
         action="store_true",
-        help="List available options or functions.")
+        help=_("List available options or functions."))
 
     parser.add_argument(
         "--setup",
         "-s",
         dest="setup_flag",
         action="store_true",
-        help="First Run setup")
+        help=_("First Run setup"))
 
     args = parser.parse_args()
 
@@ -218,7 +220,7 @@ if __name__ == "__main__":
             result = nextcloud_command.call_class_method(
                 args.method_name, *args.args)
             if result:
-                print(f"Result: {result}")
+                print(f"{_('Result: ')}{result}")
         elif args.list_flag:
             nextcloud_command.print_available_classes_and_methods()
         else:

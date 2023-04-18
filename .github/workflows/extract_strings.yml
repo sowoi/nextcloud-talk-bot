@@ -28,14 +28,12 @@ jobs:
       run: |
         sudo apt-get install -y gettext
         xgettext -o locales/strings.pot --language=Python --add-comments --sort-output --from-code=UTF-8 $(find . -name "*.py") --verbose
-        xgettext -L Python -o locales/base.pot nextcloud_talk_bot/translations.py --verbose
         
     - name: Commit and push updated POT file
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add locales/strings.pot
-        git add locales/base.pot
         git commit -m "Update POT file" || echo "No changes to commit"
         git push origin "HEAD:${{ github.ref }}" || echo "No changes to push"
       env:

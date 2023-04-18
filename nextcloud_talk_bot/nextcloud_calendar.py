@@ -4,6 +4,12 @@ from icalendar import Event, Calendar
 import vobject
 from datetime import datetime, timedelta
 from dateutil import tz
+import gettext
+
+locale_path = "../locales"
+supported_languages = ["de", "fr", "es"]
+translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+_ = translation.gettext
 
 
 class NextcloudCalendar:
@@ -142,12 +148,12 @@ class NextcloudCalendar:
 
             while True:
                 try:
-                    choice = int(input("Please choose event by number: "))
+                    choice = int(input(_("Please choose event by number: ")))
                     if 1 <= choice <= len(event_list):
                         selected_uid = event_list[choice - 1][0]
                         return selected_uid
                         break
                     else:
-                        print("Invalid entry.")
+                        print(_("Invalid entry."))
                 except ValueError:
-                    print("Please enter a number.")
+                    print(_("Please enter a number."))
