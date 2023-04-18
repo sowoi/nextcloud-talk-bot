@@ -1,0 +1,8 @@
+.nextclouddata
+.password
+.decode
+.venv
+.tox
+__pycache__
+dist
+.coverage
