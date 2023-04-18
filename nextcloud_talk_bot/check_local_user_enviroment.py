@@ -11,7 +11,7 @@ translation = gettext.translation(
     "NextcloudTalkBot",
     localedir=locale_path,
     languages=supported_languages,
-     fallback=True)
+    fallback=True)
 _ = translation.gettext
 
 
@@ -32,10 +32,6 @@ class SudoPrivileges:
         if uid == 0:
             print(_("Error: This script should not be run as root or with sudo."))
             sys.exit(1)
-
-        # Check if the user is a member of the 'www-data' group
-        if 'www-data' in user_groups:
-            print({_('The user ')}{}{_(' is a member of the 'www - data' group.')}.format(user))
 
 
 if __name__ == "__main__":

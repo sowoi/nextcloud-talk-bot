@@ -13,7 +13,7 @@ translation = gettext.translation(
     "NextcloudTalkBot",
     localedir=locale_path,
     languages=supported_languages,
-     fallback=True)
+    fallback=True)
 _ = translation.gettext
 
 
@@ -99,16 +99,16 @@ class NextcloudMessages:
             for i, message in last_messages:
                 print(f"{i}: {message}")
 
-            selection = input(_(
-                "Please select a message from the list that you want to delete [0-9]: "))
-            selection_index=int(selection)
+            selection = input(
+                _("Please select a message from the list that you want to delete [0-9]: "))
+            selection_index = int(selection)
             if selection_index < len(last_messages):
-                selected_message=list(
+                selected_message = list(
                     last_messages_dict.values())[selection_index]
             else:
                 print(_("Invalid selection."))
                 sys.exit()
-            selected_message=list(
+            selected_message = list(
                 last_messages_dict.values())[selection_index]
             selected_actor = selected_message[0]
             print(
