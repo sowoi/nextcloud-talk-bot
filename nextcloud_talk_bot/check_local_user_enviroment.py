@@ -35,7 +35,7 @@ class SudoPrivileges:
 
         # Check if the user is a member of the 'www-data' group
         if 'www-data' in user_groups:
-            print(_('The user ')}{}{_(' is a member of the 'www - data' group.')}.format(user)))
+            print({_('The user ')}{}{_(' is a member of the 'www - data' group.')}.format(user))
 
 
 if __name__ == "__main__":

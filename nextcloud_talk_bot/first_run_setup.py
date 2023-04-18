@@ -196,7 +196,7 @@ class FirstRunSetup:
         # Delete the password from the working memory to keep it safe
         del password
 
-        print(f"{_('Data successfully written to '}){nextclouddata_file_path}")
+        print(f"{_('Data successfully written to ')}{nextclouddata_file_path}")
 
     def check_if_data_file_already_exists():
         """

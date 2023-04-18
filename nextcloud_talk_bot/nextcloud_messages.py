@@ -99,7 +99,7 @@ class NextcloudMessages:
             for i, message in last_messages:
                 print(f"{i}: {message}")
 
-            selection = input(_()
+            selection = input(_(
                 "Please select a message from the list that you want to delete [0-9]: "))
             selection_index=int(selection)
             if selection_index < len(last_messages):
