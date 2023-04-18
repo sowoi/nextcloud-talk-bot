@@ -1,14 +1,18 @@
+import gettext
+
+_ = gettext.gettext
+
 TRANSLATIONS = {
     "activities": {
         "en": {
-            "ACT.EVENT": "event",
-            "ACT.TODO": "to-do",
-            "ACT.SHARED": "Shared",
-            "ACT.FILES": {"deleted", "created", "changed"},
+            "ACT.EVENT": _("event"),
+            "ACT.TODO": _("to-do"),
+            "ACT.SHARED": _("Shared"),
+            "ACT.FILES": {_("deleted"), _("created"), _("changed")},
         },
         "de": {
-            "ACT.EVENT": "Termin",
-            "ACT:TODO": "Aufgabe",
+            "ACT.EVENT": _("Termin"),
+            "ACT.TODO": _("Aufgabe"),
         },
     }
 }
