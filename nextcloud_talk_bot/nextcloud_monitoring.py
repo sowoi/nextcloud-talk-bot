@@ -5,7 +5,11 @@ import gettext
 
 locale_path = "../locales"
 supported_languages = ["de", "fr", "es"]
-translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+translation = gettext.translation(
+    "NextcloudTalkBot",
+    localedir=locale_path,
+    languages=supported_languages,
+    fallback=True)
 _ = translation.gettext
 
 
@@ -87,7 +91,8 @@ class NextcloudMonitoring:
             print(_("Warning: CPU load is greater than 10."))
 
         if app_updates:
-            print(_("Warning: There are app updates available for the following apps:"))
+            print(
+                _("Warning: There are app updates available for the following apps:"))
             for app, version in app_updates.items():
                 print(f"  - {app}: {version}")
 

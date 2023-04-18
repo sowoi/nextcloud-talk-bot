@@ -17,7 +17,11 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 locale_path = "../locales"
 supported_languages = ["de", "fr", "es"]
-translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+translation = gettext.translation(
+    "NextcloudTalkBot",
+    localedir=locale_path,
+    languages=supported_languages,
+    fallback=True)
 _ = translation.gettext
 
 
@@ -72,8 +76,8 @@ class FirstRunSetup:
         :return: str - The Nextcloud URL.
         """
 
-        nextcloud_url = input(_(
-            "Please enter your complete Nextcloud address including https://: "))
+        nextcloud_url = input(
+            _("Please enter your complete Nextcloud address including https://: "))
         return nextcloud_url
 
     @staticmethod
@@ -93,7 +97,8 @@ class FirstRunSetup:
         :return: str - The password.
         """
 
-        password = getpass.getpass(_("Please enter the bot user's app password:"))
+        password = getpass.getpass(
+            _("Please enter the bot user's app password:"))
         return password
 
     @staticmethod
@@ -144,7 +149,8 @@ class FirstRunSetup:
         while True:
             try:
                 roomSelection = int(
-                    input(_("Please enter the number of the list item you want to select: ")))
+                    input(
+                        _("Please enter the number of the list item you want to select: ")))
                 if roomSelection < 1 or roomSelection > len(conversation_ids):
                     raise ValueError
                 break
@@ -201,8 +207,8 @@ class FirstRunSetup:
         home_dir = os.path.expanduser("~")
         nextclouddata_file_path = os.path.join(home_dir, ".nextclouddata")
         if os.path.exists(nextclouddata_file_path):
-            print(_(
-                "The .nextclouddata file already exists. If you continue, this file will be overwritten."))
+            print(
+                _("The .nextclouddata file already exists. If you continue, this file will be overwritten."))
             while True:
                 user_input = input(_(
                     "Are you sure you want to continue? (yes/no): "))
@@ -223,8 +229,8 @@ class FirstRunSetup:
         """
         FirstRunSetup.check_if_data_file_already_exists()
         SudoPrivileges.check_user_and_abort_if_root_or_sudo()
-        print(_(
-            """This wizard guides you through the configuration of the framework.
+        print(
+            _("""This wizard guides you through the configuration of the framework.
 Make sure you have created a bot user that has only limited rights.
 Enable 2FA for this bot user and create an app password in Nextcloud.
         """))

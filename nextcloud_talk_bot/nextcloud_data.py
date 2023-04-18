@@ -4,7 +4,11 @@ import gettext
 
 locale_path = "../locales"
 supported_languages = ["de", "fr", "es"]
-translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+translation = gettext.translation(
+    "NextcloudTalkBot",
+    localedir=locale_path,
+    languages=supported_languages,
+    fallback=True)
 _ = translation.gettext
 
 
@@ -28,8 +32,8 @@ class NextcloudData:
 
         # Check if the .nextclouddata file exists
         if not os.path.exists(nextclouddata_file_path):
-            print(_(
-                "The .nextclouddata file does not exist. Please run the first_run_setup script first."))
+            print(
+                _("The .nextclouddata file does not exist. Please run the first_run_setup script first."))
             return None
 
         # Read the .nextclouddata file and extract the data

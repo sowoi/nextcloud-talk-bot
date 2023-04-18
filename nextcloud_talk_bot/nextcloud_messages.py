@@ -9,8 +9,13 @@ from .nextcloud_talk_extractor import NextcloudTalkExtractor
 
 locale_path = "../locales"
 supported_languages = ["de", "fr", "es"]
-translation = gettext.translation("NextcloudTalkBot", localedir=locale_path, languages=supported_languages, fallback=True)
+translation = gettext.translation(
+    "NextcloudTalkBot",
+    localedir=locale_path,
+    languages=supported_languages,
+     fallback=True)
 _ = translation.gettext
+
 
 class NextcloudMessages:
     def __init__(self, base_url, username, password, room_token):
@@ -96,14 +101,14 @@ class NextcloudMessages:
 
             selection = input(_()
                 "Please select a message from the list that you want to delete [0-9]: "))
-            selection_index = int(selection)
+            selection_index=int(selection)
             if selection_index < len(last_messages):
-                selected_message = list(
+                selected_message=list(
                     last_messages_dict.values())[selection_index]
             else:
                 print(_("Invalid selection."))
                 sys.exit()
-            selected_message = list(
+            selected_message=list(
                 last_messages_dict.values())[selection_index]
             selected_actor = selected_message[0]
             print(
