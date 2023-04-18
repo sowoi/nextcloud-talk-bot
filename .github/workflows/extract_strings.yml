@@ -1,0 +1,41 @@
+name: Extract Strings
+
+on:
+  push:
+    branches:
+      - main  # Ersetzen Sie "main" durch den Namen Ihres Haupt-Branches, wenn er anders heißt.
+  pull_request:
+    branches:
+      - main  # Ersetzen Sie "main" durch den Namen Ihres Haupt-Branches, wenn er anders heißt.
+
+jobs:
+  extract_strings:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.x
+
+    - name: Install gettext
+      run: sudo apt-get install gettext
+     
+    - name: Create translations directory
+      run: mkdir -p translations
+      
+    - name: Extract strings
+      run: |
+        xgettext -o locale/strings.pot --language=Python --add-comments --sort-output --from-code=UTF-8 $(find . -name "*.py")
+        
+    - name: Commit and push updated POT file
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add locale/strings.pot
+        git commit -m "Update POT file" || echo "No changes to commit"
+        git push
+
