@@ -3,10 +3,10 @@ name: Extract Strings
 on:
   push:
     branches:
-      - main  # Ersetzen Sie "main" durch den Namen Ihres Haupt-Branches, wenn er anders heißt.
+      - main
   pull_request:
     branches:
-      - main  # Ersetzen Sie "main" durch den Namen Ihres Haupt-Branches, wenn er anders heißt.
+      - main
 
 jobs:
   extract_strings:
@@ -22,13 +22,13 @@ jobs:
         python-version: 3.x
     
     - name: Create translations directory
-      run: mkdir -p locales
+      run: mkdir -vp locales
       
     - name: Extract strings
       run: |
         sudo apt-get install -y gettext
-        xgettext -o locales/strings.pot --language=Python --add-comments --sort-output --from-code=UTF-8 $(find . -name "*.py")
-        xgettext -L Python -o locales/base.pot nextcloud_talk_bot/translations.py
+        xgettext -o locales/strings.pot --language=Python --add-comments --sort-output --from-code=UTF-8 $(find . -name "*.py") --verbose
+        xgettext -L Python -o locales/base.pot nextcloud_talk_bot/translations.py --verbose
         
     - name: Commit and push updated POT file
       run: |
