@@ -63,7 +63,7 @@ pycodestyle==2.10.0
 pycparser==2.21
 pydantic==1.10.7
 pyflakes==3.0.1
-Pygments==2.15.0
+Pygments==2.15.1
 pymdown-extensions==9.11
 pyparsing==3.0.9
 pyproject_api==1.5.1
