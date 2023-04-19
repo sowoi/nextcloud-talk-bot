@@ -140,7 +140,8 @@ Returns: A list of search provider dictionaries.</li>
 <li>search(query, provider_id)<br />
 Searches Nextcloud using the given query and provider ID.</li>
 <li>query: The search query.</li>
-<li>provider_id: The optional provider ID. If not provided, all available providers will be used.
+<li>provider_id: The optional provider ID. If not provided, all available providers will be used.</li>
+<li>limit = limit of search results (default: 5)
 Returns: A dictionary of search results for each provider. Each key in the dictionary represents the provider ID, and the corresponding value is a list of search result dictionaries.</li>
 </ol>
 <p>Exceptions:<br />
@@ -151,6 +152,9 @@ bot.search(&quot;Test&quot;, &quot;mail&quot;)
 
 # search for &quot;Test&quot; on all provider
 bot.search(&quot;Test&quot;)
+
+# search for &quot;Test&quot; on provider fulltextsearch and limit results to first 5
+bot.search(&quot;Test&quot;, &quot;fulltextsearch&quot;, limit=5)
 
 </code></pre>
               
