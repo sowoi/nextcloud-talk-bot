@@ -1,0 +1,62 @@
+from .nextcloud_requests import NextcloudRequests
+from .i18n import _
+
+class NextcloudSearch:
+    def __init__(self, base_url, username, password):
+        """
+        Initializes the NextcloudSearch class.
+        
+        :param base_url: The base URL of the Nextcloud instance.
+        :param username: The username for authentication.
+        :param password: The password for authentication.
+        """
+        self.base_url = base_url
+        self.username = username
+        self.password = password
+        self.nextcloud_requests = NextcloudRequests(base_url, password)
+
+    def get_providers(self):
+        """
+        Retrieves the ID of the given search provider.
+        
+        :param provider_name: The name of the search provider.
+        :return: The ID of the search provider if found, None otherwise.
+        """       
+        endpoint = f"/ocs/v2.php/search/providers"
+        response = self.nextcloud_requests.send_request(endpoint)
+        providers = response['ocs']['data']
+
+        return providers
+
+    def search(self, query, provider_id=None):
+        """
+        Searches Nextcloud using the given query and provider ID.
+        
+        :param query: The search query.
+        :param provider_id: The optional provider ID. If not provided, all available providers will be used.
+        :return: A list of search results.
+        """
+        if provider_id is None:
+            providers = self.get_providers()
+        else:
+            providers = [provider for provider in self.get_providers() if provider['id'] == provider_id]
+            
+        if not providers:
+            raise ValueError(f"Provider {provider_id} not found.")
+
+        results = []
+        searchProviderResults = {}
+        for provider in providers:
+            print(f"Searching for {query} in {provider['id']}")
+            endpoint = f"/ocs/v2.php/search/providers/{provider['id']}/search?term={query}"
+            response = self.nextcloud_requests.send_request(endpoint)
+  
+            for entry in response['ocs']['data']['entries']:
+                result = {}
+                result['title'] = entry.get('title', '')
+                result['subline'] = entry.get('subline', '')
+                result['resourceUrl'] = entry.get('resourceUrl', '')
+                results.append(result)
+        searchProviderResults[provider['id']] = results
+
+        return searchProviderResults

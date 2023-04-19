@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://nextcloud-talk-bot.readthedocs.io/NextcloudSearch/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Nextcloud Talk Bot: Search - Nextcloud Talk Bot</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Nextcloud Talk Bot: Search";
+        var mkdocs_page_input_path = "NextcloudSearch.md";
+        var mkdocs_page_url = "/NextcloudSearch/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.12.2/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Nextcloud Talk Bot
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Index</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Setup</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../FirstRunSetup/">First Run Setup</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../AnsiblePlaybook/">Setup via Ansible</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Functions</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudActivities/">Activities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudCommands/">Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudFileOperations/">Files</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudMeeting/">Meeting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudMessages/">Messages</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudMonitoring/">Monitoring</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudPoll/">Poll</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudTalkExtractor/">Extractor</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../NextcloudUser/">User</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Nextcloud Talk Bot</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Nextcloud Talk Bot: Search</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="nextcloud-talk-bot-search">Nextcloud Talk Bot: Search</h1>
+<p>NextcloudSearch provides methods for searching Nextcloud using the Nextcloud Search API. It is designed to be used in conjunction with a Nextcloud instance, and requires authentication credentials to access the API.</p>
+<h2 id="initialization">Initialization</h2>
+<p>To create an instance of the NextcloudSarch class, you will need the following information:</p>
+<ul>
+<li>base_url: The base URL for the Nextcloud server.</li>
+<li>username: The username for the Nextcloud user account.</li>
+<li>password: The password for the Nextcloud user account.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<pre><code># Via Bot
+from nextcloud_talk_bot.Nextcloudtalkbot import NextcloudTalkBot
+
+#Initialize bot:
+bot = NextcloudTalkBot()
+
+# Via Module
+from nextcloud_talk_bot.nextcloud_search import NextcloudSearch
+# create instance
+search = NextcloudSearch(base_url=&quot;https://example.com&quot;, username=&quot;user&quot;, password=&quot;password&quot;)
+</code></pre>
+<h2 id="methods">Methods</h2>
+<ol>
+<li>get_providers()<br />
+Retrieves the available search providers from the Nextcloud Search API.
+Returns: A list of search provider dictionaries.</li>
+<li>search(query, provider_id)<br />
+Searches Nextcloud using the given query and provider ID.</li>
+<li>query: The search query.</li>
+<li>provider_id: The optional provider ID. If not provided, all available providers will be used.
+Returns: A dictionary of search results for each provider. Each key in the dictionary represents the provider ID, and the corresponding value is a list of search result dictionaries.</li>
+</ol>
+<p>Exceptions:<br />
+Raises a ValueError exception if the specified provider ID is not found.</p>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python"># search for &quot;Test&quot; in mails
+bot.search(&quot;Test&quot;, &quot;mail&quot;)
+
+# search for &quot;Test&quot; on all provider
+bot.search(&quot;Test&quot;)
+
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
