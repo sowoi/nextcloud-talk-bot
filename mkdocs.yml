@@ -13,6 +13,7 @@ nav:
         - Messages: NextcloudMessages.md
         - Monitoring: NextcloudMonitoring.md
         - Poll: NextcloudPoll.md
+        - Search: NextcloudSearch.md
         - Extractor: NextcloudTalkExtractor.md
         - User: NextcloudUser.md
 
