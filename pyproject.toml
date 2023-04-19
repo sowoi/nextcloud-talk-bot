@@ -21,7 +21,7 @@ exclude = [
 
 [project]
 name = "nextcloudtalkbot"
-version = "0.0.39"
+version = "0.0.40"
 home-page = "https://okxo.de"
 authors = [
   { name="Massoud Ahmed", email="okko@okxo.de", home-page="https://okxo.de"},
@@ -46,6 +46,7 @@ dependencies = [
     "icalendar",
     "vobject",
     "python-dateutil",
+    "spacy",
 ]
 
 keywords = ["nextcloud", "nextcloud talk", "bot"]
