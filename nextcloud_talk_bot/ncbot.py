@@ -13,10 +13,10 @@ class FirstSetup:
     def start_setup():
         FirstRunSetup.first_run()
 
+
 class NLPCommands:
     def __init__(self):
         self.nlp = spacy.load("en_core_web_sm")
-
 
     def classify_poll_method(self, doc):
         close_poll_keywords = ["close", "end", "finish", "stop"]
@@ -43,9 +43,10 @@ class NLPCommands:
             return "get_poll_result"
         else:
             return "unknown"
-        
+
     def classify_user_method(self, doc):
-        get_preferred_language_keywords = ["language", "preferred", "preference"]
+        get_preferred_language_keywords = [
+            "language", "preferred", "preference"]
         get_quota_keywords = ["quota", "limit", "storage", "space"]
         test_user_login_keywords = ["login", "authenticate", "sign in", "test"]
 
@@ -70,7 +71,7 @@ class NLPCommands:
         else:
             return "unknown"
 
-    def classify_message_method(self,doc):
+    def classify_message_method(self, doc):
         delete_message_keywords = ["delete", "remove", "erase", "clear"]
         receive_messages_keywords = ["receive", "get", "read"]
         send_message_keywords = ["send", "post", "write", "create"]
@@ -86,7 +87,7 @@ class NLPCommands:
                 receive_messages_count += 1
             elif token.lemma_.lower() in send_message_keywords:
                 send_message_count += 1
-        
+
         if delete_message_count > receive_messages_count and delete_message_count > send_message_count:
             return "delete_message_in_nextcloud_talk_group"
         elif receive_messages_count > delete_message_count and receive_messages_count > send_message_count:
@@ -95,16 +96,17 @@ class NLPCommands:
             return "send_message_to_nextcloud_talk_group"
         else:
             return "unknown"
-        
-        
-    def classify_activity_method(self,doc):
-        get_last_activities_keywords = ["last", "recent", "latest", "show", "get", "see"]
-        search_last_activities_keywords = ["search", "find", "lookup", "seek", "where"]
+
+    def classify_activity_method(self, doc):
+        get_last_activities_keywords = [
+            "last", "recent", "latest", "show", "get", "see"]
+        search_last_activities_keywords = [
+            "search", "find", "lookup", "seek", "where"]
 
         search_query = None
         for token in doc:
             if token.pos_ == "NOUN":
-                search_query = token.text 
+                search_query = token.text
                 break
         get_last_activities_count = 0
         search_last_activities_count = 0
@@ -121,11 +123,14 @@ class NLPCommands:
             return "search_last_activities", search_query
         else:
             return "unknown"
-        
-    def classify_file_method(self,doc):
-        delete_remote_file_in_nextcloud_keywords = ["delete", "remove", "remote", "file", "files"]
-        list_files_in_nextcloud_folder_keywords = ["list", "show", "files", "file", "folders", "folder"]
-        send_local_file_to_nextcloud_folder_keywords = ["create", "send", "upload", "local", "file", "files", "folder"]
+
+    def classify_file_method(self, doc):
+        delete_remote_file_in_nextcloud_keywords = [
+            "delete", "remove", "remote", "file", "files"]
+        list_files_in_nextcloud_folder_keywords = [
+            "list", "show", "files", "file", "folders", "folder"]
+        send_local_file_to_nextcloud_folder_keywords = [
+            "create", "send", "upload", "local", "file", "files", "folder"]
         delete_remote_file_in_nextcloud_count = 0
         list_files_in_nextcloud_folder_count = 0
         send_local_file_to_nextcloud_folder_count = 0
@@ -147,8 +152,7 @@ class NLPCommands:
         else:
             return "unknown"
 
-
-    def classify_meeting_method(self,doc):
+    def classify_meeting_method(self, doc):
         create_room_keywords = ["create", "set up", "start"]
         delete_room_keywords = ["delete", "remove", "end", "stop"]
         create_room_count = 0
@@ -166,18 +170,21 @@ class NLPCommands:
             return "delete_room"
         else:
             return "unknown"
-        
 
-
-        
     def classify_search_method(self, doc):
         search_settings = ["settings_apps", "setting", "settings"]
-        search_fulltext = ["fulltextsearch"] 
+        search_fulltext = ["fulltextsearch"]
         search_files = ["file", "files"]
         search_systemtags = ["systemtags", "tags", "tag"]
         search_comments = ["comments", "comment"]
         search_contacts = ["contact", "contacts"]
-        search_talk = ["chat", "messages", "talk", "talk-message", "talk-conversations", "talk-message-current"]
+        search_talk = [
+            "chat",
+            "messages",
+            "talk",
+            "talk-message",
+            "talk-conversations",
+            "talk-message-current"]
         search_mail = ["mail", "mails", "e-mail", "e-mails"]
         search_calendar = ["calendar"]
         search_task = ["task", "tasks"]
@@ -212,17 +219,25 @@ class NLPCommands:
                 calendar_score += 1
             if token.text.lower() in search_task:
                 task_score += 1
-                
+
         search_query = None
         for token in doc:
             if token.pos_ == "NOUN":
-                search_query = token.text 
+                search_query = token.text
                 break
 
-        max_score = max(settings_score, fulltext_score, files_score, systemtags_score,
-                        comments_score, contacts_score, talk_score, mail_score,
-                        calendar_score, task_score)
-        
+        max_score = max(
+            settings_score,
+            fulltext_score,
+            files_score,
+            systemtags_score,
+            comments_score,
+            contacts_score,
+            talk_score,
+            mail_score,
+            calendar_score,
+            task_score)
+
         if max_score == settings_score:
             return "settings", search_query
         elif max_score == fulltext_score:
@@ -246,18 +261,17 @@ class NLPCommands:
         else:
             return "unknown"
 
-
-    def classify_calendar_method(self,doc):
+    def classify_calendar_method(self, doc):
         add_event_keywords = ["add", "create", "schedule"]
         get_calendars_keywords = ["get", "list", "view", "show"]
         list_events_keywords = ["list", "view", "show", "display"]
         search_event_keywords = ["search", "find", "look for", "locate"]
-        
+
         verbs = [token.text.lower() for token in doc if token.pos_ == "VERB"]
         search_query = None
         for token in doc:
             if token.pos_ == "NOUN":
-                search_query = token.text 
+                search_query = token.text
                 break
 
         if any(keyword in verbs for keyword in add_event_keywords):
@@ -274,21 +288,38 @@ class NLPCommands:
     def nlpcheck(self, user_input):
         doc = self.nlp(user_input)
 
-        contains_poll_keyword = any(token.lemma_.lower() in ["poll", "polls"] for token in doc)
-        contains_user_keyword = any(token.lemma_.lower() in ["user", "users"] for token in doc)
-        contains_message_keyword = any(token.lemma_.lower() in ["message", "messages"] for token in doc)
-        contains_activity_keyword = any(token.lemma_.lower() in ["activity", "activities"] for token in doc)
-        contains_meeting_keyword = any(token.lemma_.lower() in ["meeting", "meetings"] for token in doc)
-        contains_file_keyword = any(token.lemma_.lower() in ["file", "files"] for token in doc)
-        contains_search_keyword = any(token.lemma_.lower() in ["search for", "find", "seek"] for token in doc)
-        contains_calendar_keyword = any(token.lemma_.lower() in ["calendar", "calendars"] for token in doc)
+        contains_poll_keyword = any(
+            token.lemma_.lower() in [
+                "poll", "polls"] for token in doc)
+        contains_user_keyword = any(
+            token.lemma_.lower() in [
+                "user", "users"] for token in doc)
+        contains_message_keyword = any(
+            token.lemma_.lower() in [
+                "message", "messages"] for token in doc)
+        contains_activity_keyword = any(
+            token.lemma_.lower() in [
+                "activity", "activities"] for token in doc)
+        contains_meeting_keyword = any(
+            token.lemma_.lower() in [
+                "meeting", "meetings"] for token in doc)
+        contains_file_keyword = any(
+            token.lemma_.lower() in [
+                "file", "files"] for token in doc)
+        contains_search_keyword = any(
+            token.lemma_.lower() in [
+                "search for",
+                "find",
+                "seek"] for token in doc)
+        contains_calendar_keyword = any(
+            token.lemma_.lower() in [
+                "calendar", "calendars"] for token in doc)
 
-        
         if contains_poll_keyword:
             poll_method = self.classify_poll_method(doc)
             if poll_method == "close_poll":
                 print("User intends to close a poll.")
-                return("poll", "close_poll", None)
+                return ("poll", "close_poll", None)
             elif poll_method == "create_poll":
                 print("User intends to create a poll.")
             elif poll_method == "get_poll_result":
@@ -299,36 +330,45 @@ class NLPCommands:
             user_method = self.classify_user_method(doc)
             if user_method == "get_preferred_language":
                 print("User intends to get preferred language.")
-                return("user", "get_preferred_language", None)
+                return ("user", "get_preferred_language", None)
             elif user_method == "get_quota":
                 print("User intends to get quota.")
-                return("user", "get_quota", None)
+                return ("user", "get_quota", None)
             elif user_method == "test_user_login":
                 print("User intends to test user login.")
-                return("user", "test_user_login", None)
+                return ("user", "test_user_login", None)
             else:
                 print("Unable to determine the user's intention.")
         elif contains_message_keyword:
             message_method = self.classify_message_method(doc)
             if message_method == "delete_message_in_nextcloud_talk_group":
                 print("User intends to delete a message in Nextcloud Talk group.")
-                return("messages", "delete_message_in_nextcloud_talk_group", None)
+                return (
+                    "messages",
+                    "delete_message_in_nextcloud_talk_group",
+                    None)
             elif message_method == "receive_messages_of_nextcloud_talk_group":
                 print("User intends to receive messages from Nextcloud Talk group.")
-                return("messages", "receive_messages_of_nextcloud_talk_group", None)
+                return (
+                    "messages",
+                    "receive_messages_of_nextcloud_talk_group",
+                    None)
             elif message_method == "send_message_to_nextcloud_talk_group":
                 print("User intends to send a message to Nextcloud Talk group.")
-                return("messages", "send_message_to_nextcloud_talk_group", None)
+                return (
+                    "messages",
+                    "send_message_to_nextcloud_talk_group",
+                    None)
             else:
                 print("Unable to determine the user's intention.")
         elif contains_activity_keyword:
             activity_method, search_query = self.classify_activity_method(doc)
             if activity_method == "get_last_activities":
                 print("User intends to get last activities.")
-                return("activities", "get_last_activities", None)
+                return ("activities", "get_last_activities", None)
             elif activity_method == "search_last_activities":
                 print("User intends to search for last activities.")
-                return("activities", "get_last_activities", search_query)
+                return ("activities", "get_last_activities", search_query)
             else:
                 print("Unable to determine the user's intention.")
         elif contains_file_keyword:
@@ -345,68 +385,87 @@ class NLPCommands:
             meeting_method = self.classify_meeting_method(doc)
             if meeting_method == "create_room":
                 print("User intends to create a meeting room.")
-                return("meeting", "create_room", None)
+                return ("meeting", "create_room", None)
             elif meeting_method == "delete_room":
                 print("User intends to delete a meeting room.")
-                return("meeting", "delete_room", None)
+                return ("meeting", "delete_room", None)
             else:
                 print("Unable to determine the user's intention.")
         elif contains_search_keyword:
             search_provider, search_query = self.classify_search_method(doc)
             if search_provider == "settings":
-                print("User intends to search for settings with the query: ", search_query)
-                return("search", "search" ,"settings "+ search_query)
+                print(
+                    "User intends to search for settings with the query: ",
+                    search_query)
+                return ("search", "search", "settings " + search_query)
             elif search_provider == "fulltext":
-                print("User intends to perform a fulltext search with the query: ", search_query)
-                return("search", "search" ,"fulltext "+ search_query)
+                print(
+                    "User intends to perform a fulltext search with the query: ",
+                    search_query)
+                return ("search", "search", "fulltext " + search_query)
             elif search_provider == "files":
-                print("User intends to search for files with the query: ", search_query)
-                return("search", "search" ,"files "+ search_query)
+                print(
+                    "User intends to search for files with the query: ",
+                    search_query)
+                return ("search", "search", "files " + search_query)
             elif search_provider == "systemtags":
-                print("User intends to search for system tags with the query: ", search_query)
-                return("search", "search" ,"systemtags "+ search_query)
+                print(
+                    "User intends to search for system tags with the query: ",
+                    search_query)
+                return ("search", "search", "systemtags " + search_query)
             elif search_provider == "comments":
-                print("User intends to search for comments with the query: ", search_query)
-                return("search", "search" ,"comments "+ search_query)
+                print(
+                    "User intends to search for comments with the query: ",
+                    search_query)
+                return ("search", "search", "comments " + search_query)
             elif search_provider == "contacts":
-                print("User intends to search for contacts with the query: ", search_query)
-                return("search", "search" ,"contacts "+ search_query)
+                print(
+                    "User intends to search for contacts with the query: ",
+                    search_query)
+                return ("search", "search", "contacts " + search_query)
             elif search_provider == "talk":
-                print("User intends to search for chat messages with the query: ", search_query)
-                return("search", "search" ,"talk-message "+ search_query)
+                print(
+                    "User intends to search for chat messages with the query: ",
+                    search_query)
+                return ("search", "search", "talk-message " + search_query)
             elif search_provider == "mail":
-                print("User intends to search for mails with the query: ", search_query)
-                return("search", "search" ,"mail "+ search_query)
+                print(
+                    "User intends to search for mails with the query: ",
+                    search_query)
+                return ("search", "search", "mail " + search_query)
             elif search_provider == "calendar":
-                print("User intends to search for events on the calendar with the query: ", search_query)
-                return("search", "search" ,"calendar "+ search_query)
+                print(
+                    "User intends to search for events on the calendar with the query: ",
+                    search_query)
+                return ("search", "search", "calendar " + search_query)
             elif search_provider == "task":
-                print("User intends to search for tasks with the query: ", search_query)
-                return("search", "search" ,"tasks "+ search_query)
+                print(
+                    "User intends to search for tasks with the query: ",
+                    search_query)
+                return ("search", "search", "tasks " + search_query)
             else:
-                print(f"Unable to determine the user's intention in search. {search_query}")
+                print(
+                    f"Unable to determine the user's intention in search. {search_query}")
         elif contains_calendar_keyword:
             calendar_method, search_query = self.classify_calendar_method(doc)
             if calendar_method == "add_event":
                 print("User intends to add an event to the calendar.")
-                return("calendar", "add_event" , None)
+                return ("calendar", "add_event", None)
             elif calendar_method == "get_calendars":
                 print("User intends to retrieve a list of calendars.")
-                return("calendar", "get_calendars" , None)
+                return ("calendar", "get_calendars", None)
             elif calendar_method == "list_events":
                 print("User intends to list events from the calendar.")
-                return("calendar", "get_calendars" , None)           
+                return ("calendar", "get_calendars", None)
             elif calendar_method == "search_event":
                 print("User intends to search for an event in the calendar.")
-                return("calendar", "search_event" , search_query)
+                return ("calendar", "search_event", search_query)
             else:
                 print("Unable to determine the user's intention.")
 
         else:
             print("The text does not contain 'activity' or 'activities'.")
 
-
-        
 
 class NextcloudCommands:
     """
@@ -555,26 +614,25 @@ class NextcloudCommands:
         for options in classes:
             print(options)
         print("type options --list to get available functions")
-        
+
     def lowercase_or_none(self, x):
         if x is not None:
             return x.lower()
         else:
             return None
-        
-        
+
+
 if __name__ == "__main__":
     nc = NextcloudCommands()
     parser = argparse.ArgumentParser(
         description="Call Nextcloud Commands via NextcloudTalkBot Framework",
-        add_help=False)    
+        add_help=False)
     parser.add_argument(
         "input_name",
         type=nc.lowercase_or_none,
         help="Option name. Type --list to get all options.",
         nargs="?",
         default=None)
-
 
     parser.add_argument(
         "--function",
@@ -584,7 +642,6 @@ if __name__ == "__main__":
         default=None,
         help="Function to call. Type option --list to get all parameters or option --help for help")
 
-
     parser.add_argument(
         "--args",
         "-a",
@@ -593,14 +650,12 @@ if __name__ == "__main__":
         default=[],
         help="Arguments to pass to the function.")
 
-
     parser.add_argument(
         "--help",
         "-h",
         dest="help_flag",
         action="store_true",
         help="Print help.")
-
 
     parser.add_argument(
         "--list",
@@ -609,7 +664,6 @@ if __name__ == "__main__":
         action="store_true",
         help="List available options or functions.")
 
-
     parser.add_argument(
         "--setup",
         "-s",
@@ -617,9 +671,7 @@ if __name__ == "__main__":
         action="store_true",
         help="First Run setup")
 
-
     args, unknown = parser.parse_known_args()
-    
 
     if unknown:
         nlp = NLPCommands()
@@ -630,9 +682,8 @@ if __name__ == "__main__":
 
         print(args.input_name)
         print(args.method_name)
-    #args = parser.parse_known_args()
+    # args = parser.parse_known_args()
 
- 
     print(args)
 
     if args.input_name is not None:

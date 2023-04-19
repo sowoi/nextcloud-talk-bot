@@ -15,13 +15,13 @@ class NextcloudCalendar:
     :param username: The username for authentication.
     :param password: The password for authentication.
     """
+
     def __init__(self, base_url, username, password):
         self.password = password
         self.client = caldav.DAVClient(
             base_url, username, self.password)
         self.principal = self.client.principal()
         self.calendars = self.principal.calendars()
-
 
     def get_calendars(self, calendar_name=None):
         """
