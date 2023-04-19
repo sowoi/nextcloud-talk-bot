@@ -7,8 +7,6 @@ from dateutil import tz
 from .i18n import _
 
 
-
-
 class NextcloudCalendar:
     def __init__(self, url, username, password):
         self.client = caldav.DAVClient(
