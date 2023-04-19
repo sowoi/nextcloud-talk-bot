@@ -105,7 +105,6 @@ class NextcloudTalkBot:
         self.messages = NextcloudMonitoring(
             **self.config["nextcloud_base_data_monitoring"])
         self.search = NextcloudSearch(**self.config["nextcloud_base_data"])
-        self.calendar = NextcloudCalendar(**self.config["nextcloud_base_data"])
         self.setup = FirstRunSetup()
         self.translations = TRANSLATIONS
         self.permissions_map = permissions_map
