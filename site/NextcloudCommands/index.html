@@ -150,6 +150,13 @@ call_class_method(): A method that calls the class method with arguments.
 print_available_classes_and_methods(): A method that prints the available classes and methods of the module.
 print_method_parameters(): A method that prints the parameters of the method.
 print_available_classes(): A method that prints the available options.</p>
+<h2 id="nlpcommands">NLPCommands</h2>
+<p>This class provides natural language processing (NLP) functionality to classify user intents and extract relevant information from user queries. 
+It uses the spaCy library for NLP and includes methods to classify user intents related to polls, users, messages, activities, files, meetings, search, and calendar events.</p>
+<p>To use Spacy as a Natural Language Processor, it is necessary to download a model.</p>
+<pre><code>python -m spacy download en_core_web_sm
+</code></pre>
+<p>The command downloads the model for the English language file. </p>
 <h2 id="usage">Usage</h2>
 <pre><code class="language-SHELL">python ncbot.py [--function METHOD_NAME] [--args [ARGS ...]] [--help] [--list] [--setup] [input_name]
 </code></pre>

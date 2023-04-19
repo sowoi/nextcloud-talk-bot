@@ -119,7 +119,7 @@
 <p>To create an instance of the NextcloudTalkExtractor class, you will need the following information:</p>
 <ul>
 <li>nextcloud_url = "https://your-nextcloud-instance.com"</li>
-<li>nc_token = "your-token-here"  # Replace with your own nc token created via ocs command on your server (this is not your bot app token!)</li>
+<li>monitoring_token = "your-token-here"  # Replace with your own nc token created via ocs command on your server (this is not your bot app token!)</li>
 </ul>
 <pre><code>monitoring = NextcloudMonitoring(nextcloud_url, nc_token)
 </code></pre>
@@ -129,7 +129,7 @@
 from nextcloud_talk_bot.nextcloud_monitoring import NextcloudMonitoring
 
 # create instance
-monitoring = NextcloudMonitoring(nextcloud_url, nc_token)
+monitoring = NextcloudMonitoring(nextcloud_url, monitoring_token)
 
 monitoring.check_monitoring()
 </code></pre>

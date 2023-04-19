@@ -16,9 +16,27 @@ class FirstSetup:
 
 class NLPCommands:
     def __init__(self):
-        self.nlp = spacy.load("en_core_web_sm")
+        """
+        Initializes the NLPCommands class and loads the 'en_core_web_sm' model using spaCy.
+        """
+        try:
+            self.nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            print("The model 'en_core_web_sm' model could not be found. "
+                  "Please run the following command to download the model:\n\n"
+                  "python -m spacy download en_core_web_sm\n")
+            raise
 
     def classify_poll_method(self, doc):
+        """
+        Classifies the poll-related method based on the given spaCy document.
+
+        :param doc: A spaCy Doc object representing the user's input.
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: A string representing the classified method.
+        :rtype: str
+        """
         close_poll_keywords = ["close", "end", "finish", "stop"]
         create_poll_keywords = ["create", "make", "new", "start"]
         get_poll_result_keywords = ["result", "outcome", "summary"]
@@ -45,6 +63,18 @@ class NLPCommands:
             return "unknown"
 
     def classify_user_method(self, doc):
+<<<<<<< HEAD
+=======
+        """
+        Classifies the user-related method based on the given spaCy document.
+
+        :param doc: A spaCy Doc object representing the user's input.
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: A string representing the classified method.
+        :rtype: str
+        """
+>>>>>>> main
         get_preferred_language_keywords = [
             "language", "preferred", "preference"]
         get_quota_keywords = ["quota", "limit", "storage", "space"]
@@ -72,6 +102,18 @@ class NLPCommands:
             return "unknown"
 
     def classify_message_method(self, doc):
+<<<<<<< HEAD
+=======
+        """
+        Classifies the message-related method based on the given spaCy document.
+
+        :param doc: A spaCy Doc object representing the user's input.
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: A string representing the classified method.
+        :rtype: str
+        """
+>>>>>>> main
         delete_message_keywords = ["delete", "remove", "erase", "clear"]
         receive_messages_keywords = ["receive", "get", "read"]
         send_message_keywords = ["send", "post", "write", "create"]
@@ -98,6 +140,18 @@ class NLPCommands:
             return "unknown"
 
     def classify_activity_method(self, doc):
+<<<<<<< HEAD
+=======
+        """
+        Classifies user input related to activity by identifying whether the user wants to see the last activities or search for a specific activity.
+
+        :param doc: A spacy Doc object containing the user input
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: Returns a tuple containing a string that represents the user intent and the search query (if applicable), or "unknown" if the user intent cannot be determined.
+        :rtype: tuple(str, str) or str
+        """
+>>>>>>> main
         get_last_activities_keywords = [
             "last", "recent", "latest", "show", "get", "see"]
         search_last_activities_keywords = [
@@ -125,6 +179,18 @@ class NLPCommands:
             return "unknown"
 
     def classify_file_method(self, doc):
+<<<<<<< HEAD
+=======
+        """
+        Classifies user input related to files by identifying whether the user wants to delete a remote file, list files in a Nextcloud folder, or send a local file to a Nextcloud folder.
+
+        :param doc: A spacy Doc object containing the user input
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: Returns a string that represents the user intent, or "unknown" if the user intent cannot be determined.
+        :rtype: str
+        """
+>>>>>>> main
         delete_remote_file_in_nextcloud_keywords = [
             "delete", "remove", "remote", "file", "files"]
         list_files_in_nextcloud_folder_keywords = [
@@ -153,6 +219,18 @@ class NLPCommands:
             return "unknown"
 
     def classify_meeting_method(self, doc):
+<<<<<<< HEAD
+=======
+        """
+        Classifies user input related to meetings by identifying whether the user wants to create a new room or delete an existing room.
+
+        :param doc: A spacy Doc object containing the user input
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: Returns a string that represents the user intent, or "unknown" if the user intent cannot be determined.
+        :rtype: str
+        """
+>>>>>>> main
         create_room_keywords = ["create", "set up", "start"]
         delete_room_keywords = ["delete", "remove", "end", "stop"]
         create_room_count = 0
@@ -172,6 +250,15 @@ class NLPCommands:
             return "unknown"
 
     def classify_search_method(self, doc):
+        """
+        Classifies user input related to search by identifying the search category based on keywords present in the input.
+
+        :param doc: A spacy Doc object containing the user input
+        :type doc: spacy.tokens.doc.Doc
+
+        :return: Returns a tuple containing a string that represents the search category and the search query (if applicable), or "unknown" if the search category cannot be determined.
+        :rtype: tuple(str, str) or str
+        """
         search_settings = ["settings_apps", "setting", "settings"]
         search_fulltext = ["fulltextsearch"]
         search_files = ["file", "files"]
@@ -262,6 +349,15 @@ class NLPCommands:
             return "unknown"
 
     def classify_calendar_method(self, doc):
+<<<<<<< HEAD
+=======
+        """
+        Classifies the user's intention related to the calendar module based on the input text.
+        :param doc: A processed text using SpaCy library.
+        :return: A tuple with two elements: the first is a string indicating the method name and the second is either None or a
+                search query, depending on the method.
+        """
+>>>>>>> main
         add_event_keywords = ["add", "create", "schedule"]
         get_calendars_keywords = ["get", "list", "view", "show"]
         list_events_keywords = ["list", "view", "show", "display"]
@@ -286,6 +382,12 @@ class NLPCommands:
             return None
 
     def nlpcheck(self, user_input):
+        """
+        Checks the user's input text and classifies their intention based on the keywords and syntax used.
+        :param user_input: The user's input text to be processed.
+        :return: A tuple with three elements: the first is a string indicating the module name, the second is a string
+                indicating the method name, and the third is either None or a search query, depending on the method.
+        """
         doc = self.nlp(user_input)
 
         contains_poll_keyword = any(
