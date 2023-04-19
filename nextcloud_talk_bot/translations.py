@@ -1,6 +1,4 @@
-import gettext
-
-_ = gettext.gettext
+from .i18n import _
 
 TRANSLATIONS = {
     "activities": {

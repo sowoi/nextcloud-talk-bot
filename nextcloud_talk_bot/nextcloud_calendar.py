@@ -4,16 +4,9 @@ from icalendar import Event, Calendar
 import vobject
 from datetime import datetime, timedelta
 from dateutil import tz
-import gettext
+from .i18n import _
 
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
+
 
 
 class NextcloudCalendar:

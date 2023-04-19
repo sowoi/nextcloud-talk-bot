@@ -2,17 +2,8 @@
 provides functionality to fetch the user's data and test user login.
 """
 
-import gettext
 from .nextcloud_requests import NextcloudRequests
-
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
+from .i18n import _
 
 
 class NextcloudUser:

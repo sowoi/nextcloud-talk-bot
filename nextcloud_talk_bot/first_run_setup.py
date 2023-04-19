@@ -10,19 +10,11 @@ import sys
 import getpass
 import json
 import collections
-import gettext
 from cryptography.fernet import Fernet
+from .i18n import _
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
 
 
 class FirstRunSetup:

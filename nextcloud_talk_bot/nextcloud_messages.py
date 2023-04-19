@@ -3,18 +3,9 @@ send messages, receives messages, etc
 """
 
 import sys
-import gettext
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
-
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
+from .i18n import _
 
 
 class NextcloudMessages:

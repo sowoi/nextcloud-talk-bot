@@ -5,17 +5,7 @@ handle activities
 from .nextcloud_data import NextcloudData
 from .translations import TRANSLATIONS
 from .nextcloud_requests import NextcloudRequests
-import gettext
-
-
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
+from .i18n import _
 
 
 class NextcloudActivities:
