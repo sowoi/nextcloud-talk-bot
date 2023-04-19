@@ -79,7 +79,7 @@ regex==2023.3.23
 requests==2.28.2
 requests-toolbelt==0.10.1
 rfc3986==2.0.0
-rich==13.3.3
+rich==13.3.4
 SecretStorage==3.3.3
 six==1.16.0
 smart-open==6.3.0
