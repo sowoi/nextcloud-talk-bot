@@ -7,7 +7,7 @@ NextcloudMonitoring interacts with Nextcloud's monitoring API to fetch server in
 To create an instance of the NextcloudTalkExtractor class, you will need the following information:
 
 - nextcloud_url = "https://your-nextcloud-instance.com"
-- nc_token = "your-token-here"  # Replace with your own nc token created via ocs command on your server (this is not your bot app token!)
+- monitoring_token = "your-token-here"  # Replace with your own nc token created via ocs command on your server (this is not your bot app token!)
 
 ```
 monitoring = NextcloudMonitoring(nextcloud_url, nc_token)
@@ -23,7 +23,7 @@ If the token is not provided, the class will attempt to read the token from a .m
 from nextcloud_talk_bot.nextcloud_monitoring import NextcloudMonitoring
 
 # create instance
-monitoring = NextcloudMonitoring(nextcloud_url, nc_token)
+monitoring = NextcloudMonitoring(nextcloud_url, monitoring_token)
 
 monitoring.check_monitoring()
 ```

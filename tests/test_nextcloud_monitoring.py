@@ -6,7 +6,7 @@ from nextcloud_talk_bot.nextcloud_monitoring import NextcloudMonitoring
 class TestNextcloudMonitoring(unittest.TestCase):
 
     def test_init_with_token(self):
-        nc = NextcloudMonitoring("https://example.com", token="my-token")
+        nc = NextcloudMonitoring("https://example.com", monitoring_token="my-token")
         self.assertEqual(
             nc.url,
             "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info")
@@ -35,7 +35,7 @@ class TestNextcloudMonitoring(unittest.TestCase):
         mock_response.json.return_value = {"ocs": "test_data"}
         mock_get.return_value = mock_response
 
-        nc = NextcloudMonitoring("https://example.com", token="my-token")
+        nc = NextcloudMonitoring("https://example.com", monitoring_token="my-token")
         data = nc.get_monitoring_data_raw()
         self.assertEqual(data, {"ocs": "test_data"})
         mock_get.assert_called_once()

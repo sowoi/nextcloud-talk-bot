@@ -23,7 +23,7 @@ class NextcloudSearch:
         :param provider_name: The name of the search provider.
         :return: The ID of the search provider if found, None otherwise.
         """
-        endpoint = f"/ocs/v2.php/search/providers"
+        endpoint = "/ocs/v2.php/search/providers"
         response = self.nextcloud_requests.send_request(endpoint)
         providers = response['ocs']['data']
 
