@@ -6,6 +6,7 @@ build-backend = "hatchling.build"
 include = [
   "/nextcloud_talk_bot/*.py",
   "/tests/*.py",
+  "/locales/",
 ]
 exclude = [
   "/docs",
@@ -20,7 +21,7 @@ exclude = [
 
 [project]
 name = "nextcloudtalkbot"
-version = "0.0.37"
+version = "0.0.38"
 home-page = "https://okxo.de"
 authors = [
   { name="Massoud Ahmed", email="okko@okxo.de", home-page="https://okxo.de"},
