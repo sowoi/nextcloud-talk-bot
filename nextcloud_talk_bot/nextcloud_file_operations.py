@@ -9,17 +9,7 @@ import mimetypes
 import xml.etree.ElementTree as ET
 from requests.auth import HTTPBasicAuth
 from .nextcloud_data import NextcloudData
-import gettext
-
-
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
+from .i18n import _
 
 
 class NextcloudFileOperations:

@@ -2,20 +2,10 @@
 create a meeting room using the Nextcloud Talk API
 """
 import sys
-import gettext
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .confirmation import Confirmation
-
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
-
+from .i18n import _
 
 class NextcloudMeeting:
     """

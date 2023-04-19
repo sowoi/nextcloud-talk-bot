@@ -2,19 +2,12 @@ import argparse
 import importlib
 import inspect
 import ast
-import gettext
 
-import nextcloud_talk_bot
-from nextcloud_talk_bot.first_run_setup import FirstRunSetup
+import .nextcloud_talk_bot
+from .nextcloud_talk_bot.first_run_setup import FirstRunSetup
+from .i18n import _
 
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
+
 
 
 class FirstSetup:
