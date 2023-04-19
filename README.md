@@ -24,9 +24,15 @@ git clone https://github.com/sowoi/nextcloud-talk-bot.git
 
 Documentation can be found at [readthedocs.org](https://nextcloud-talk-bot.readthedocs.io).
 
+## Translations
+
+This project uses weblate for translation.
+
+
 ## License
 
 Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
+
 
 ## Developer-Website
 
@@ -35,8 +41,6 @@ Licensed under the terms of GNU General Public License v3.0. See LICENSE file.
 
 ![Linting](https://github.com/sowoi/nextcloud-talk-bot//actions/workflows/python-lint.yml/badge.svg)
 ![Unittests](https://github.com/sowoi/nextcloud-talk-bot//actions/workflows/python-tox.yml/badge.svg)
-![PySA](https://github.com/sowoi/nextcloud-talk-bot//actions/workflows/pysa.yml/badge.svg)
-![CodeQL](https://github.com/sowoi/nextcloud-talk-bot//actions/workflows/codeql.yml/badge.svg)
 ![License](https://img.shields.io/pypi/l/nextcloudtalkbot?style=plastic)
 ![Dependencies](https://img.shields.io/librariesio/github/sowoi/nextcloud-talk-bot?style=plastic)
 ![Versions](https://img.shields.io/pypi/pyversions/nextcloudtalkbot?style=plastic)
