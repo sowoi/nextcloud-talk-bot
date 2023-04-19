@@ -10,15 +10,15 @@ class NextcloudMonitoring:
     This class requires a token created via OCS command on the Nextcloud command.
     """
 
-    def __init__(self, url, token=None):
+    def __init__(self, base_url, monitoring_token=None):
         """
         Initialize the NextcloudMonitoring class.
 
         :param url: The base URL of the Nextcloud instance.
         :param token: Optional authentication token. If not provided, the token will be read from the ".monitoring" file.
         """
-        self.url = url.rstrip("/") + "/ocs/v2.php/apps/serverinfo/api/v1/info"
-        self.token = token if token else self._read_token()
+        self.url = base_url.rstrip("/") + "/ocs/v2.php/apps/serverinfo/api/v1/info"
+        self.token = monitoring_token if monitoring_token is not None else self._read_token()
 
     def _read_token(self):
         """

@@ -9,6 +9,7 @@ from .nextcloud_meeting import NextcloudMeeting
 from .nextcloud_messages import NextcloudMessages
 from .nextcloud_monitoring import NextcloudMonitoring
 from .nextcloud_poll import NextcloudPoll
+from .nextcloud_search import NextcloudSearch
 from .nextcloud_data import NextcloudData
 from .headers import NextcloudHeaders
 from .translations import TRANSLATIONS
@@ -23,7 +24,8 @@ class NextcloudTalkBot:
             username=None,
             password=None,
             room_name=None,
-            room_token=None):
+            room_token=None,
+            monitoring_token=None):
         self._data = None
         home_dir = os.path.expanduser("~")
         nextclouddata_file_path = os.path.join(home_dir, ".nextclouddata")
@@ -50,6 +52,10 @@ class NextcloudTalkBot:
                     "username": f"{self._data['USERNAME']}",
                     "password": f"{self._data['PASSWORD']}",
                     "room_name": f"{self._data['ROOM_NAME']}"
+                },
+                "nextcloud_base_data_monitoring": {
+                    "base_url": f"{self._data['NEXTCLOUD_URL']}",
+                    "monitoring_token": monitoring_token
                 }
             }
 
@@ -76,8 +82,14 @@ class NextcloudTalkBot:
                     "username": username,
                     "password": password,
                     "room_name": room_name
+                },
+                "nextcloud_base_data_monitoring": {
+                    "base_url": base_url,
+                    "monitoring_token": monitoring_token
                 }
             }
+
+                
 
         self.activities = NextcloudActivities(
             **self.config["nextcloud_base_data"])
@@ -91,7 +103,8 @@ class NextcloudTalkBot:
             **self.config["nextcloud_base_data_with_room_name"])
         self.messages = NextcloudMessages(
             **self.config["nextcloud_base_data_with_room_token"])
-        self.messages = NextcloudMonitoring()
+        self.messages = NextcloudMonitoring(**self.config["nextcloud_base_data_monitoring"])
+        self.search = NextcloudSearch(**self.config["nextcloud_base_data"])
         self.setup = FirstRunSetup()
         self.translations = TRANSLATIONS
         self.permissions_map = permissions_map
