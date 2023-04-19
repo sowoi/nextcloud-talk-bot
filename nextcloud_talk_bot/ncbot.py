@@ -18,8 +18,14 @@ class NLPCommands:
     def __init__(self):
        """
         Initializes the NLPCommands class and loads the 'en_core_web_sm' model using spaCy.
-        """        
-        self.nlp = spacy.load("en_core_web_sm")
+        """
+        try:        
+            self.nlp = spacy.load("en_core_web_sm")
+        except OSError:
+            print(f"The model 'en_core_web_sm' model could not be found. "
+                f"Please run the following command to download the model:\n\n"
+                f"python -m spacy download en_core_web_sm\n")
+            raise        
 
     def classify_poll_method(self, doc):
         """

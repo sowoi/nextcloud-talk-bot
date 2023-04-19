@@ -63,6 +63,17 @@ print_available_classes_and_methods(): A method that prints the available classe
 print_method_parameters(): A method that prints the parameters of the method.
 print_available_classes(): A method that prints the available options.
 
+## NLPCommands
+
+This class provides natural language processing (NLP) functionality to classify user intents and extract relevant information from user queries. 
+It uses the spaCy library for NLP and includes methods to classify user intents related to polls, users, messages, activities, files, meetings, search, and calendar events.
+
+To use Spacy as a Natural Language Processor, it is necessary to download a model.
+
+```
+python -m spacy download en_core_web_sm
+```
+The command downloads the model for the English language file. 
 
 ## Usage
 

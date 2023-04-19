@@ -18,7 +18,18 @@ Clone this repository:
 
 ```
 git clone https://github.com/sowoi/nextcloud-talk-bot.git
+
 ```
+
+## NLP
+
+To use Spacy as a Natural Language Processor, it is necessary to download a model.
+
+```
+python -m spacy download en_core_web_sm
+```
+The command downloads the model for the English language file. 
+
 
 ## Documentation
 
