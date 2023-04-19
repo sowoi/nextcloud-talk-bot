@@ -16,7 +16,6 @@ from .i18n import _
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
-
 class FirstRunSetup:
     """
     A class to handle the first run setup process for a Nextcloud application.

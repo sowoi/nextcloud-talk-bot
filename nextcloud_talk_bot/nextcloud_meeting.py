@@ -7,6 +7,7 @@ from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .confirmation import Confirmation
 from .i18n import _
 
+
 class NextcloudMeeting:
     """
     A class to create a meeting room using the Nextcloud Talk API.

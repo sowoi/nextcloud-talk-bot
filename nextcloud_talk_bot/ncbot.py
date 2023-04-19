@@ -8,8 +8,6 @@ from .nextcloud_talk_bot.first_run_setup import FirstRunSetup
 from .i18n import _
 
 
-
-
 class FirstSetup:
     @staticmethod
     def start_setup():
