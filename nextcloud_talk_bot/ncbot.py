@@ -3,7 +3,7 @@ import importlib
 import inspect
 import ast
 
-import .nextcloud_talk_bot
+import nextcloud_talk_bot
 from .nextcloud_talk_bot.first_run_setup import FirstRunSetup
 from .i18n import _
 
