@@ -100,7 +100,7 @@ typing_extensions==4.5.0
 tzdata==2023.3
 tzlocal==4.3
 urllib3==1.26.15
-virtualenv==20.21.0
+virtualenv==20.21.1
 vobject==0.9.6.1
 wasabi==1.1.1
 watchdog==3.0.0
