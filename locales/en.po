@@ -1,0 +1,243 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# okko <okko@okkolaptop.local>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-18 20:54+0200\n"
+"PO-Revision-Date: 2023-04-19 08:54+0200\n"
+"Last-Translator: okko <okko@okkolaptop.local>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:33
+msgid " is a member of the "
+msgstr " is a member of the "
+
+#: nextcloud_talk_bot/nextcloud_meeting.py:80
+msgid "Aborted."
+msgstr "Aborted."
+
+#: nextcloud_talk_bot/first_run_setup.py:208
+msgid "Are you sure you want to continue? (yes/no): "
+msgstr "Are you sure you want to continue? (yes/no): "
+
+#: nextcloud_talk_bot/ncbot.py:186
+msgid "Arguments to pass to the function."
+msgstr "Arguments to pass to the function."
+
+#: nextcloud_talk_bot/translations.py:15
+msgid "Aufgabe"
+msgstr "Aufgabe"
+
+#: nextcloud_talk_bot/ncbot.py:160
+msgid "Available options:"
+msgstr "Available options:"
+
+#: nextcloud_talk_bot/ncbot.py:168
+msgid "Call Nextcloud Commands via NextcloudTalkBot Framework"
+msgstr "Call Nextcloud Commands via NextcloudTalkBot Framework"
+
+#: nextcloud_talk_bot/first_run_setup.py:213
+msgid "Continuing with FirstRunSetup..."
+msgstr "Continuing with FirstRunSetup..."
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:28
+msgid "Error: This script should not be run as root or with sudo."
+msgstr "Error: This script should not be run as root or with sudo."
+
+#: nextcloud_talk_bot/ncbot.py:205
+msgid "First Run setup"
+msgstr "First Run setup"
+
+#: nextcloud_talk_bot/first_run_setup.py:210
+msgid "FirstRunSetup aborted."
+msgstr "FirstRunSetup aborted."
+
+#: nextcloud_talk_bot/first_run_setup.py:120
+msgid ""
+"Found the following chats about the entered user. Select the chat by "
+"entering the number in front of it."
+msgstr ""
+"Found the following chats about the entered user. Select the chat by "
+"entering the number in front of it."
+
+#: nextcloud_talk_bot/ncbot.py:180
+msgid ""
+"Function to call. Type option --list to get all parameters or option --help "
+"for help"
+msgstr ""
+"Function to call. Type option --list to get all parameters or option --help "
+"for help"
+
+#: nextcloud_talk_bot/first_run_setup.py:172
+msgid "Incorrect login data. Please try again."
+msgstr "Incorrect login data. Please try again."
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:157
+msgid "Invalid entry."
+msgstr "Invalid entry."
+
+#: nextcloud_talk_bot/confirmation.py:42
+#: nextcloud_talk_bot/first_run_setup.py:216
+msgid "Invalid input. Please enter 'yes' or 'no'."
+msgstr "Invalid input. Please enter 'yes' or 'no'."
+
+#: nextcloud_talk_bot/first_run_setup.py:153
+msgid "Invalid input. Please enter a number between 1 and"
+msgstr "Invalid input. Please enter a number between 1 and"
+
+#: nextcloud_talk_bot/nextcloud_messages.py:104
+msgid "Invalid selection."
+msgstr "Invalid selection."
+
+#: nextcloud_talk_bot/ncbot.py:198
+msgid "List available options or functions."
+msgstr "List available options or functions."
+
+#: nextcloud_talk_bot/first_run_setup.py:117
+msgid "Login data are OK"
+msgstr "Login data are OK"
+
+#: nextcloud_talk_bot/nextcloud_messages.py:123
+msgid "Message deleted"
+msgstr "Message deleted"
+
+#: nextcloud_talk_bot/ncbot.py:172
+msgid "Option name. Type --list to get all options."
+msgstr "Option name. Type --list to get all options."
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:151
+msgid "Please choose event by number: "
+msgstr "Please choose event by number: "
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:159
+msgid "Please enter a number."
+msgstr "Please enter a number."
+
+#: nextcloud_talk_bot/first_run_setup.py:96
+msgid "Please enter the bot user's app password:"
+msgstr "Please enter the bot user's app password:"
+
+#: nextcloud_talk_bot/first_run_setup.py:147
+msgid "Please enter the number of the list item you want to select: "
+msgstr "Please enter the number of the list item you want to select: "
+
+#: nextcloud_talk_bot/first_run_setup.py:76
+msgid "Please enter your complete Nextcloud address including https://: "
+msgstr "Please enter your complete Nextcloud address including https://: "
+
+#: nextcloud_talk_bot/first_run_setup.py:86
+msgid "Please specify the username of the bot user:"
+msgstr "Please specify the username of the bot user:"
+
+#: nextcloud_talk_bot/nextcloud_poll.py:125
+msgid "Poll closing aborted."
+msgstr "Poll closing aborted."
+
+#: nextcloud_talk_bot/nextcloud_poll.py:115
+msgid "PollId not found"
+msgstr "PollId not found"
+
+#: nextcloud_talk_bot/nextcloud_file_operations.py:105
+msgid "Sending file to Nextcloud Talk"
+msgstr "Sending file to Nextcloud Talk"
+
+#: nextcloud_talk_bot/translations.py:10
+msgid "Shared"
+msgstr "Shared"
+
+#: nextcloud_talk_bot/translations.py:14
+msgid "Termin"
+msgstr "Termin"
+
+#: nextcloud_talk_bot/first_run_setup.py:205
+msgid ""
+"The .nextclouddata file already exists. If you continue, this file will be "
+"overwritten."
+msgstr ""
+"The .nextclouddata file already exists. If you continue, this file will be "
+"overwritten."
+
+#: nextcloud_talk_bot/nextcloud_data.py:32
+msgid ""
+"The .nextclouddata file does not exist. Please run the first_run_setup "
+"script first."
+msgstr ""
+"The .nextclouddata file does not exist. Please run the first_run_setup "
+"script first."
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:33
+msgid "The user "
+msgstr "The user "
+
+#: nextcloud_talk_bot/first_run_setup.py:227
+msgid ""
+"This wizard guides you through the configuration of the framework.\n"
+"Make sure you have created a bot user that has only limited rights.\n"
+"Enable 2FA for this bot user and create an app password in Nextcloud.\n"
+"        "
+msgstr ""
+"This wizard guides you through the configuration of the framework.\n"
+"Make sure you have created a bot user that has only limited rights.\n"
+"Enable 2FA for this bot user and create an app password in Nextcloud.\n"
+"        "
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:87
+msgid "Warning: CPU load is greater than 10."
+msgstr "Warning: CPU load is greater than 10."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:84
+msgid "Warning: Less than 10GB storage free."
+msgstr "Warning: Less than 10GB storage free."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:78
+msgid "Warning: Less than 20% memory free."
+msgstr "Warning: Less than 20% memory free."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:81
+msgid "Warning: The system is swapping."
+msgstr "Warning: The system is swapping."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:90
+msgid "Warning: There are app updates available for the following apps:"
+msgstr "Warning: There are app updates available for the following apps:"
+
+#: nextcloud_talk_bot/translations.py:11
+msgid "changed"
+msgstr "changed"
+
+#: nextcloud_talk_bot/translations.py:11
+msgid "created"
+msgstr "created"
+
+#: nextcloud_talk_bot/translations.py:11
+msgid "deleted"
+msgstr "deleted"
+
+#: nextcloud_talk_bot/translations.py:8
+msgid "event"
+msgstr "event"
+
+#: nextcloud_talk_bot/confirmation.py:37
+msgid "no"
+msgstr "no"
+
+#: nextcloud_talk_bot/translations.py:9
+msgid "to-do"
+msgstr "to-do"
+
+#: nextcloud_talk_bot/ncbot.py:163
+msgid "type options --list to get available functions"
+msgstr "type options --list to get available functions"
+
+#: nextcloud_talk_bot/confirmation.py:39
+msgid "yes"
+msgstr "yes"
