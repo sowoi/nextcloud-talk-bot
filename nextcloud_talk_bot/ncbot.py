@@ -16,16 +16,16 @@ class FirstSetup:
 
 class NLPCommands:
     def __init__(self):
-       """
+        """
         Initializes the NLPCommands class and loads the 'en_core_web_sm' model using spaCy.
         """
-        try:        
+        try:
             self.nlp = spacy.load("en_core_web_sm")
         except OSError:
-            print(f"The model 'en_core_web_sm' model could not be found. "
-                f"Please run the following command to download the model:\n\n"
-                f"python -m spacy download en_core_web_sm\n")
-            raise        
+            print("The model 'en_core_web_sm' model could not be found. "
+                  "Please run the following command to download the model:\n\n"
+                  "python -m spacy download en_core_web_sm\n")
+            raise
 
     def classify_poll_method(self, doc):
         """
@@ -71,7 +71,7 @@ class NLPCommands:
 
         :return: A string representing the classified method.
         :rtype: str
-        """        
+        """
         get_preferred_language_keywords = [
             "language", "preferred", "preference"]
         get_quota_keywords = ["quota", "limit", "storage", "space"]
@@ -137,7 +137,7 @@ class NLPCommands:
         """
         Classifies user input related to activity by identifying whether the user wants to see the last activities or search for a specific activity.
 
-        :param doc: A spacy Doc object containing the user input    
+        :param doc: A spacy Doc object containing the user input
         :type doc: spacy.tokens.doc.Doc
 
         :return: Returns a tuple containing a string that represents the user intent and the search query (if applicable), or "unknown" if the user intent cannot be determined.
@@ -178,7 +178,7 @@ class NLPCommands:
 
         :return: Returns a string that represents the user intent, or "unknown" if the user intent cannot be determined.
         :rtype: str
-        """    
+        """
         delete_remote_file_in_nextcloud_keywords = [
             "delete", "remove", "remote", "file", "files"]
         list_files_in_nextcloud_folder_keywords = [
