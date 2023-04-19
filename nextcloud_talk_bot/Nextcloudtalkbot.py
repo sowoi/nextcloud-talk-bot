@@ -2,6 +2,7 @@ import os
 from .check_local_user_enviroment import SudoPrivileges
 from .first_run_setup import FirstRunSetup
 from .nextcloud_activities import NextcloudActivities
+from .nextcloud_calendar import NextcloudCalendar
 from .nextcloud_file_operations import NextcloudFileOperations
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .nextcloud_user import NextcloudUser
@@ -104,6 +105,7 @@ class NextcloudTalkBot:
         self.messages = NextcloudMonitoring(
             **self.config["nextcloud_base_data_monitoring"])
         self.search = NextcloudSearch(**self.config["nextcloud_base_data"])
+        self.calendar = NextcloudCalendar(**self.config["nextcloud_base_data"])
         self.setup = FirstRunSetup()
         self.translations = TRANSLATIONS
         self.permissions_map = permissions_map
