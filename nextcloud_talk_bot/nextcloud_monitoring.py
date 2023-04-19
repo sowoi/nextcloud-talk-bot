@@ -17,7 +17,8 @@ class NextcloudMonitoring:
         :param url: The base URL of the Nextcloud instance.
         :param token: Optional authentication token. If not provided, the token will be read from the ".monitoring" file.
         """
-        self.url = base_url.rstrip("/") + "/ocs/v2.php/apps/serverinfo/api/v1/info"
+        self.url = base_url.rstrip(
+            "/") + "/ocs/v2.php/apps/serverinfo/api/v1/info"
         self.token = monitoring_token if monitoring_token is not None else self._read_token()
 
     def _read_token(self):

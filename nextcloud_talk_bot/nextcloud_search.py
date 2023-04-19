@@ -1,11 +1,12 @@
 from .nextcloud_requests import NextcloudRequests
 from .i18n import _
 
+
 class NextcloudSearch:
     def __init__(self, base_url, username, password):
         """
         Initializes the NextcloudSearch class.
-        
+
         :param base_url: The base URL of the Nextcloud instance.
         :param username: The username for authentication.
         :param password: The password for authentication.
@@ -18,29 +19,31 @@ class NextcloudSearch:
     def get_providers(self):
         """
         Retrieves the ID of the given search provider.
-        
+
         :param provider_name: The name of the search provider.
         :return: The ID of the search provider if found, None otherwise.
-        """       
+        """
         endpoint = f"/ocs/v2.php/search/providers"
         response = self.nextcloud_requests.send_request(endpoint)
         providers = response['ocs']['data']
 
         return providers
 
-    def search(self, query, provider_id=None):
+    def search(self, query, provider_id=None, limit=5):
         """
         Searches Nextcloud using the given query and provider ID.
-        
+        0
         :param query: The search query.
         :param provider_id: The optional provider ID. If not provided, all available providers will be used.
+        :param limit: limits the search results (default: 5)
         :return: A list of search results.
         """
         if provider_id is None:
             providers = self.get_providers()
         else:
-            providers = [provider for provider in self.get_providers() if provider['id'] == provider_id]
-            
+            providers = [
+                provider for provider in self.get_providers() if provider['id'] == provider_id]
+
         if not providers:
             raise ValueError(f"Provider {provider_id} not found.")
 
@@ -48,9 +51,9 @@ class NextcloudSearch:
         searchProviderResults = {}
         for provider in providers:
             print(f"Searching for {query} in {provider['id']}")
-            endpoint = f"/ocs/v2.php/search/providers/{provider['id']}/search?term={query}"
+            endpoint = f"/ocs/v2.php/search/providers/{provider['id']}/search?term={query}&limit={limit}"
             response = self.nextcloud_requests.send_request(endpoint)
-  
+
             for entry in response['ocs']['data']['entries']:
                 result = {}
                 result['title'] = entry.get('title', '')

@@ -35,6 +35,7 @@ Returns: A list of search provider dictionaries.
 Searches Nextcloud using the given query and provider ID.
 - query: The search query.
 - provider_id: The optional provider ID. If not provided, all available providers will be used.
+- limit = limit of search results (default: 5)
 Returns: A dictionary of search results for each provider. Each key in the dictionary represents the provider ID, and the corresponding value is a list of search result dictionaries.
 
 Exceptions:  
@@ -47,5 +48,8 @@ bot.search("Test", "mail")
 
 # search for "Test" on all provider
 bot.search("Test")
+
+# search for "Test" on provider fulltextsearch and limit results to first 5
+bot.search("Test", "fulltextsearch", limit=5)
 
 ```
