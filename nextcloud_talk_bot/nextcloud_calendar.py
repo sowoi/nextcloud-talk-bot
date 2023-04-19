@@ -8,18 +8,20 @@ from .i18n import _
 
 
 class NextcloudCalendar:
-    def __init__(self, url, username, password):
+    """
+    Initialize the NextcloudCalendar class.
+
+    :param url: The URL to the Nextcloud CalDAV server.
+    :param username: The username for authentication.
+    :param password: The password for authentication.
+    """
+    def __init__(self, base_url, username, password):
+        self.password = password
         self.client = caldav.DAVClient(
-            url=url, username=username, password=password)
+            base_url, username, self.password)
         self.principal = self.client.principal()
         self.calendars = self.principal.calendars()
-        """
-        Initialize the NextcloudCalendar class.
 
-        :param url: The URL to the Nextcloud CalDAV server.
-        :param username: The username for authentication.
-        :param password: The password for authentication.
-        """
 
     def get_calendars(self, calendar_name=None):
         """
@@ -127,7 +129,7 @@ class NextcloudCalendar:
         :return: The UID of the selected event or None if not found.
         """
         events_found = NextcloudCalendar.list_events(
-            self, calendar_name, days=30, uid=1)
+            self, calendar_name, days=30)
         matching_uids = []
         matching_events = {}
 

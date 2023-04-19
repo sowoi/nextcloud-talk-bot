@@ -2,6 +2,7 @@ import os
 from .check_local_user_enviroment import SudoPrivileges
 from .first_run_setup import FirstRunSetup
 from .nextcloud_activities import NextcloudActivities
+from .nextcloud_calendar import NextcloudCalendar
 from .nextcloud_file_operations import NextcloudFileOperations
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .nextcloud_user import NextcloudUser
