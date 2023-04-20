@@ -67,7 +67,9 @@ class NextcloudFileOperations:
             headers=headers,
             auth=HTTPBasicAuth(
                 self.username,
-                self.password))
+                self.password,
+                ),
+            timeout=15)
 
         # Check if the request was successful
         if response.status_code != 207:
@@ -105,9 +107,8 @@ class NextcloudFileOperations:
                 # Send file to Nextcloud Talk Room
                 with open(file_path, "rb") as file:
                     content_type = mimetypes.guess_type(file_path)[0]
-                    headers = headers.copy()
+                    headers = {"Depth": "1"}
                     headers["Content-Type"] = content_type
-
                     url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{filename}"
 
                     try:

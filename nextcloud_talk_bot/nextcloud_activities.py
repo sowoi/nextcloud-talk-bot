@@ -34,7 +34,7 @@ class NextcloudActivities:
 
     def search_last_activities(self, activity):
         """
-        Search for events, to-dos or file-operatiosn in the given activities.
+        Search for events, to-dos or file-operations in the given activities.
 
         :param activities: he activity to search for, i.e. to-do, event, shared, deleted, created, changed
         :return: A list of filtered activities.
@@ -48,6 +48,7 @@ class NextcloudActivities:
                 filtered_data.append({'subject': subject, 'date': date})
 
         return filtered_data
+
 
 
 if __name__ == "__main__":
