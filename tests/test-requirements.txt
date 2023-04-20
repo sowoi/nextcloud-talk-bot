@@ -36,7 +36,7 @@ jsbeautifier==1.14.7
 keyring==23.13.1
 langcodes==3.3.0
 lxml==4.9.2
-Markdown==3.4.3
+Markdown==3.3.7
 markdown-it-py==2.2.0
 MarkupSafe==2.1.2
 mccabe==0.7.0
