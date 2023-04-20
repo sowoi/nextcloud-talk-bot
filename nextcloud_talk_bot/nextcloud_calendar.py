@@ -34,11 +34,10 @@ class NextcloudCalendar:
             print(calendar)
             if calendar_name is not None and calendar_name == calendar.name:
                 return calendar
-        else:
-            calendar_names = []
-            for key, value in calendars.items():
-                calendar_names.append(key)
-            return "Found:", calendar_names
+        calendar_names = []
+        for key in self.calendars.items():
+            calendar_names.append(key)
+        return "Found:", calendar_names
 
     def list_events(self, calendar_name, days=1):
         """

@@ -14,7 +14,7 @@ class NextcloudSearch:
         self.base_url = base_url
         self.username = username
         self.password = password
-        self.nextcloud_requests = NextcloudRequests(base_url, password)
+        self.nextcloud_requests = NextcloudRequests(self.base_url, self.password)
 
     def get_providers(self):
         """

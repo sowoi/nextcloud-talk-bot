@@ -102,7 +102,7 @@ class NextcloudTalkBot:
             **self.config["nextcloud_base_data_with_room_name"])
         self.messages = NextcloudMessages(
             **self.config["nextcloud_base_data_with_room_token"])
-        self.messages = NextcloudMonitoring(
+        self.monitoring = NextcloudMonitoring(
             **self.config["nextcloud_base_data_monitoring"])
         self.search = NextcloudSearch(**self.config["nextcloud_base_data"])
         self.setup = FirstRunSetup()

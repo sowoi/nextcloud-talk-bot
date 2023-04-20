@@ -18,7 +18,7 @@ class NextcloudActivities:
         self.username = username
         self.password = password
         self.activity = activity
-        self.nextcloud_requests = NextcloudRequests(base_url, password)
+        self.nextcloud_requests = NextcloudRequests(self.base_url, self.password)
 
     def get_last_activities(self):
         """

@@ -18,3 +18,12 @@ class NextcloudHeaders:
             'Accept-Language': 'en'
         }
         return headers
+
+    @staticmethod
+    def create_nc_token_headers(monitoring_token):
+        headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'OCS-APIRequest': 'true',
+            "NC-Token": monitoring_token}
+        return headers
