@@ -18,7 +18,6 @@ Clone this repository:
 
 ```
 git clone https://github.com/sowoi/nextcloud-talk-bot.git
-
 ```
 
 ## NLP
