@@ -9,7 +9,7 @@ from .i18n import _
 
 install_cache('.ncb_requests', backend='sqlite')
 session = CachedSession('.ncb_requests', backend='sqlite',
-                        expire_after=90,  use_temp=True)
+                        expire_after=90, use_temp=True)
 
 
 class NextcloudRequests:
