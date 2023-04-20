@@ -7,3 +7,7 @@ __pycache__
 dist
 .coverage
 .vscode
+ncb_requests.sqlite
+.ncb_requests.sqlite
+.gitignore
+http_cache.sqlite

@@ -50,7 +50,6 @@ class NextcloudSearch:
         results = []
         searchProviderResults = {}
         for provider in providers:
-            print(f"Searching for {query} in {provider['id']}")
             endpoint = f"/ocs/v2.php/search/providers/{provider['id']}/search?term={query}&limit={limit}"
             response = self.nextcloud_requests.send_request(endpoint)
 
