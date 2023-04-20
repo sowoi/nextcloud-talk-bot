@@ -2,8 +2,14 @@
 send requests to the Nextcloud API
 """
 import requests
+from requests_cache import CachedSession, enabled, disabled, install_cache
+
 from .headers import NextcloudHeaders
 from .i18n import _
+
+install_cache('.ncb_requests', backend='sqlite')
+session = CachedSession('.ncb_requests', backend='sqlite',
+                        expire_after=90, use_temp=True)
 
 
 class NextcloudRequests:
@@ -29,8 +35,8 @@ class NextcloudRequests:
         :return: The JSON response from the server.
         :raises Exception: If the response status code is not 200.
         """
+        session.get('https://httpbin.org/get')
         headers = self.headers.copy()
-
         if extra_headers:
             headers.update(extra_headers)
 
@@ -57,17 +63,19 @@ class NextcloudRequests:
         :return: The JSON response from the server.
         :raises Exception: If the response status code is not 200 or 201.
         """
-        headers = self.headers
-        url = f"{self.base_url}{endpoint}"
-        response = requests.post(url, headers=headers, json=json, timeout=10)
+        with disabled():
+            headers = self.headers
+            url = f"{self.base_url}{endpoint}"
+            response = requests.post(
+                url, headers=headers, json=json, timeout=10)
 
-        try:
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            raise Exception(
-                f"Error: {response.status_code}, {url} {headers}, {json}. {e}") from None
+            try:
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                raise Exception(
+                    f"Error: {response.status_code}, {url} {headers}, {json}. {e}") from None
 
-        return response.json()
+            return response.json()
 
     def delete_request(self, endpoint):
         """
@@ -77,11 +85,12 @@ class NextcloudRequests:
         :return: None
         :raises Exception: If the response status code is not 204.
         """
-        headers = self.headers
-        url = f"{self.base_url}{endpoint}"
-        response = requests.delete(url, headers=headers, timeout=10)
+        with disabled():
+            headers = self.headers
+            url = f"{self.base_url}{endpoint}"
+            response = requests.delete(url, headers=headers, timeout=10)
 
-        try:
-            response.raise_for_status()
-        except requests.exceptions.RequestException as e:
-            raise Exception(f"Error: {url} {headers}. {e}") from None
+            try:
+                response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                raise Exception(f"Error: {url} {headers}. {e}") from None
