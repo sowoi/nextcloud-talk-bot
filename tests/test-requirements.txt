@@ -24,7 +24,7 @@ docutils==0.19
 EditorConfig==0.12.3
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
 exceptiongroup==1.1.1
-filelock==3.11.0
+filelock==3.12.0
 flake8==6.0.0
 ghp-import==2.1.0
 httplib2==0.22.0
