@@ -21,7 +21,8 @@ class NextcloudMeeting:
         self.base_url = base_url
         self.username = username
         self.password = password
-        self.nextcloud_requests = NextcloudRequests(self.base_url, self.password)
+        self.nextcloud_requests = NextcloudRequests(
+            self.base_url, self.password)
         self.nextcloud_talk_extractor = NextcloudTalkExtractor(
             self.base_url, self.username, password)
 

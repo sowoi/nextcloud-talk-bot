@@ -31,7 +31,6 @@ class NextcloudMonitoring:
         with open(monitoring_file, "r") as f:
             token = f.read().strip()
             return token
-    
 
     def get_monitoring_data_raw(self):
         """
@@ -41,10 +40,11 @@ class NextcloudMonitoring:
         """
 
         endpoint = "/ocs/v2.php/apps/serverinfo/api/v1/info"
-        self.request = NextcloudRequests(self.base_url, monitoring_token=self.monitoring_token)
+        self.request = NextcloudRequests(
+            self.base_url, monitoring_token=self.monitoring_token)
         response = self.request.send_request_to_monitoring(endpoint)
         return response
-    
+
     def check_monitoring(self):
         data = self.get_monitoring_data_raw()
         nextcloud_data = data['ocs']['data']['nextcloud']

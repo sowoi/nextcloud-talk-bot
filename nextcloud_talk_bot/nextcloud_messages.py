@@ -26,7 +26,8 @@ class NextcloudMessages:
         self.username = username
         self.password = password
         self.room_token = room_token
-        self.nextcloud_requests = NextcloudRequests(self.base_url, self.password)
+        self.nextcloud_requests = NextcloudRequests(
+            self.base_url, self.password)
         self.nextcloud_talk_extractor = NextcloudTalkExtractor(
             self.base_url, self.username, self.password)
 

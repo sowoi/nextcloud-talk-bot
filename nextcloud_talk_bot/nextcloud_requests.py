@@ -31,7 +31,6 @@ class NextcloudRequests:
         self.monitoring_token = monitoring_token
         self.headers = NextcloudHeaders.create_headers(self.password)
 
-
     def send_request(self, endpoint, params=None, extra_headers=None):
         """
         Send a GET request to the specified Nextcloud API endpoint.
@@ -76,14 +75,16 @@ class NextcloudRequests:
 
     def send_request_to_monitoring(self, endpoint):
         session.get('https://httpbin.org/get')
-        headers = NextcloudHeaders.create_nc_token_headers(self.monitoring_token)
+        headers = NextcloudHeaders.create_nc_token_headers(
+            self.monitoring_token)
         url = f"{self.base_url}{endpoint}"
         response = requests.get(
             url,
             headers=headers,
             timeout=10)
         if response.status_code == 429:
-            raise ThrottlingException("Your request has been throttled. Please try again later.")
+            raise ThrottlingException(
+                "Your request has been throttled. Please try again later.")
         try:
             response.raise_for_status()
         except requests.exceptions.Timeout:
@@ -136,7 +137,6 @@ class NextcloudRequests:
                     print("There was a server-side error. Please try again later.")
                 else:
                     print(f"An HTTP error occurred: {error}")
-
 
             return response.json()
 

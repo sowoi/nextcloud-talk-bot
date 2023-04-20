@@ -26,7 +26,8 @@ class NextcloudUser:
         self.base_url = base_url
         self.username = username
         self.password = password
-        self.nextcloud_requests = NextcloudRequests(self.base_url, self.password)
+        self.nextcloud_requests = NextcloudRequests(
+            self.base_url, self.password)
 
     def test_user_login(self):
         """

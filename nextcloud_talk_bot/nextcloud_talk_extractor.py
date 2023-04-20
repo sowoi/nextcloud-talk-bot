@@ -33,7 +33,8 @@ class NextcloudTalkExtractor:
         self.password = password
         self.room_id = room_id
         self.message_limit = message_limit
-        self.nextcloud_requests = NextcloudRequests(self.base_url, self.password)
+        self.nextcloud_requests = NextcloudRequests(
+            self.base_url, self.password)
 
     def get_conversations_ids(self):
         """
