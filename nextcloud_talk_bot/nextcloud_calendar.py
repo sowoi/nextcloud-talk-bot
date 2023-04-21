@@ -29,16 +29,15 @@ class NextcloudCalendar:
         console_handler.setLevel(logging.INFO)
         console_handler.setFormatter(formatter)
         self.logger.addHandler(console_handler)
-        
+
     def calendar_init(self):
         self.caldav_url = f"{self.base_url}/remote.php/dav/"
         self.client = caldav.DAVClient(
-        self.caldav_url,
-        username=self.username,
-        password=self.password)
+            self.caldav_url,
+            username=self.username,
+            password=self.password)
         self.principal = caldav.Principal(self.client)
         self.calendars = self.principal.calendars()
-    
 
     def get_calendars(self, calendar_name=None):
         """
