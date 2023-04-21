@@ -23,7 +23,7 @@ class TestNextcloudRequests(unittest.TestCase):
                 f"{self.base_url}{endpoint}",
                 headers=self.nextcloud_requests.headers,
                 params=None,
-                timeout=10)
+                timeout=30)
 
     def test_post_request(self):
         endpoint = "/api/v1/users"

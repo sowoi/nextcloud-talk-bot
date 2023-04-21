@@ -7,7 +7,7 @@ class TestNextcloudMonitoring(unittest.TestCase):
 
     def test_init_with_token(self):
         nc = NextcloudMonitoring(
-            "https://example.com",
+            "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info",
             monitoring_token="my-token")
         self.assertEqual(
             nc.base_url,
@@ -20,7 +20,7 @@ class TestNextcloudMonitoring(unittest.TestCase):
         nc = NextcloudMonitoring("https://example.com")
         self.assertEqual(
             nc.base_url,
-            "https://example.com/ocs/v2.php/apps/serverinfo/api/v1/info")
+            "https://example.com")
         self.assertEqual(nc.monitoring_token, "my-token")
         mock_read_token.assert_called_once()
 
