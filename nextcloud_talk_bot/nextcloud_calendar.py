@@ -21,14 +21,6 @@ class NextcloudCalendar:
         self.base_url = base_url
         self.password = password
         self.username = username
-        self.caldav_url = f"{self.base_url}/remote.php/dav/"
-        self.client = caldav.DAVClient(
-            self.caldav_url,
-            username=self.username,
-            password=self.password)
-        self.principal = caldav.Principal(self.client)
-        self.calendars = self.principal.calendars()
-
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
         formatter = logging.Formatter(
@@ -37,6 +29,16 @@ class NextcloudCalendar:
         console_handler.setLevel(logging.INFO)
         console_handler.setFormatter(formatter)
         self.logger.addHandler(console_handler)
+        
+    def calendar_init(self):
+        self.caldav_url = f"{self.base_url}/remote.php/dav/"
+        self.client = caldav.DAVClient(
+        self.caldav_url,
+        username=self.username,
+        password=self.password)
+        self.principal = caldav.Principal(self.client)
+        self.calendars = self.principal.calendars()
+    
 
     def get_calendars(self, calendar_name=None):
         """
@@ -45,6 +47,7 @@ class NextcloudCalendar:
         :param calendar_name: The name of the calendar to search for (optional).
         :return: If a calendar_name is specified, returns the matching calendar; otherwise, returns a list of all available calendars.
         """
+        self.calendar_init()
         for calendar in self.calendars:
             if calendar_name is not None and calendar_name == calendar.name:
                 return calendar
@@ -67,7 +70,7 @@ class NextcloudCalendar:
         local_tz = tz.tzlocal()
         start_date = datetime.now()
         end_date = start_date + timedelta(days=days)
-        calendar = NextcloudCalendar.get_calendars(self, calendar_name)
+        calendar = self.get_calendars(calendar_name)
 
         events = calendar.search(
             start=start_date,
@@ -125,7 +128,7 @@ class NextcloudCalendar:
         :return: A string indicating that the event has been added.
         """
         local_tz = tz.tzlocal()
-        calendar = NextcloudCalendar.get_calendars(self, calendar_name)
+        calendar = self.get_calendars(self, calendar_name)
         event = Event()
         date_format = "%Y-%m-%d %H:%M"
         start_time = datetime.strptime(start, date_format)
@@ -148,8 +151,8 @@ class NextcloudCalendar:
         :param summary: The summary of the event to search for.
         :return: The UID of the selected event or None if not found.
         """
-        events_found = NextcloudCalendar.list_events(
-            self, calendar_name, days=30)
+        events_found = self.list_events(
+            calendar_name, days=30)
         matching_uids = []
         matching_events = {}
 
