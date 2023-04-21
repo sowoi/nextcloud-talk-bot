@@ -12,6 +12,7 @@ import json
 import collections
 from cryptography.fernet import Fernet
 from .i18n import _
+import logging
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -157,6 +158,12 @@ class FirstRunSetup:
         """
         Executes the full setup process, verifies the credentials and writes the data to the .nextclouddata file.
         """
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
         # Query the parameters one by one
         nextcloud_url = FirstRunSetup.get_nextcloud_url()
         username = FirstRunSetup.get_username()
@@ -166,6 +173,7 @@ class FirstRunSetup:
         result = FirstRunSetup.check_nextcloud_credentials(
             nextcloud_url, username, password)
         if not result.valid:
+            logger.error("Incorrect login data. Please try again.")
             print(_("Incorrect login data. Please try again."))
             return
 
@@ -186,7 +194,7 @@ class FirstRunSetup:
 
         # Delete the password from the working memory to keep it safe
         del password
-
+        logger.info(f"Data successfully written to {nextclouddata_file_path}")
         print(f"{_('Data successfully written to ')}{nextclouddata_file_path}")
 
     def check_if_data_file_already_exists():
@@ -220,6 +228,11 @@ class FirstRunSetup:
         """
         FirstRunSetup.check_if_data_file_already_exists()
         SudoPrivileges.check_user_and_abort_if_root_or_sudo()
+        logger.info(
+            _("""This wizard guides you through the configuration of the framework.
+Make sure you have created a bot user that has only limited rights.
+Enable 2FA for this bot user and create an app password in Nextcloud.
+        """))
         print(
             _("""This wizard guides you through the configuration of the framework.
 Make sure you have created a bot user that has only limited rights.

@@ -1,7 +1,9 @@
-"""_summary_
+"""
 create a meeting room using the Nextcloud Talk API
 """
 import sys
+import logging
+
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .confirmation import Confirmation
@@ -25,6 +27,13 @@ class NextcloudMeeting:
             self.base_url, self.password)
         self.nextcloud_talk_extractor = NextcloudTalkExtractor(
             self.base_url, self.username, password)
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
 
     def create_room(self, room_name):
         """
@@ -33,7 +42,7 @@ class NextcloudMeeting:
         :param room_name: The name of the meeting room to create.
         :return: The room ID of the created meeting room or an error message.
         """
-
+        self.logger.info(f"Creating meeting room: {room_name}")
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         for room in conversation_list.keys():
             conversation_name = room
@@ -63,7 +72,7 @@ class NextcloudMeeting:
         :param room_name: The name of the room to be deleted.
         :return: A message indicating the room does not exist, or None if the room is successfully deleted.
         """
-
+        self.logger.info(f"Deleting meeting room: {room_name}")
         conversation_list = self.nextcloud_talk_extractor.get_conversations_ids()
         if room_name not in conversation_list:
             return f"{room_name}{_(' does not exist')}"

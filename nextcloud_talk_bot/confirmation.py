@@ -1,14 +1,5 @@
-import gettext
-
-locale_path = "../locales"
-supported_languages = ["de", "fr", "es"]
-translation = gettext.translation(
-    "NextcloudTalkBot",
-    localedir=locale_path,
-    languages=supported_languages,
-    fallback=True)
-_ = translation.gettext
-
+import logging
+from .i18n import _
 
 class Confirmation:
     """
@@ -27,6 +18,12 @@ class Confirmation:
         self.object = object
         self.entity = entity
         self.input_func = input_func
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
 
     def are_you_sure(self):
         """
@@ -40,8 +37,11 @@ class Confirmation:
                 f"{_('Are you sure you want to ')}{self.object} '{self.entity}'? {_('This process is irrevocable! (yes/no): ')}"
             )
             if user_input.lower() == _("no"):
+                self.logger.info(f"Action '{self.object}' on '{self.entity}' was cancelled.")
                 return False
             elif user_input.lower() == _("yes"):
+                self.logger.info(f"Action '{self.object}' on '{self.entity}' was confirmed.")
                 return True
             else:
+                self.logger.warning("Invalid input. Please enter 'yes' or 'no'.")
                 print(_("Invalid input. Please enter 'yes' or 'no'."))
