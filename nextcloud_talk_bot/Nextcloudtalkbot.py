@@ -19,8 +19,11 @@ from .translations import TRANSLATIONS
 from .permissions_map import permissions_map
 from .conversations_map import conversations_map
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 class NextcloudTalkBot:
     def __init__(
@@ -120,6 +123,7 @@ class NextcloudTalkBot:
         if self._data and name in self._data:
             return self._data[name]
         else:
-            logger.error(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+            logger.error(
+                f"'{self.__class__.__name__}' object has no attribute '{name}'")
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{name}'")

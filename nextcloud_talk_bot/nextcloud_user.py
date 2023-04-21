@@ -36,7 +36,6 @@ class NextcloudUser:
         handler.setFormatter(formatter)
         self.logger.addHandler(handler)
 
-
     def test_user_login(self):
         """
         Test user login by attempting to retrieve user data from Nextcloud using the provided

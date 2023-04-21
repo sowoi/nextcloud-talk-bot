@@ -21,7 +21,6 @@ class NextcloudActivities:
         self.activity = activity
         self.nextcloud_requests = NextcloudRequests(
             self.base_url, self.password)
-        
 
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
@@ -58,7 +57,6 @@ class NextcloudActivities:
                 filtered_data.append({'subject': subject, 'date': date})
         self.logger.info(f"Searching for '{activity}' in the last activities")
         return filtered_data
-
 
 
 if __name__ == "__main__":

@@ -70,7 +70,7 @@ class NextcloudFileOperations:
             auth=HTTPBasicAuth(
                 self.username,
                 self.password,
-                ),
+            ),
             timeout=15)
 
         # Check if the request was successful
@@ -122,7 +122,8 @@ class NextcloudFileOperations:
                         response.raise_for_status()
                         # If success delete the local file
                         if response.status_code == 201:
-                            self.logger.debug(f"Debug: Send successfull: {response.status_code}")
+                            self.logger.debug(
+                                f"Debug: Send successfull: {response.status_code}")
                             print("Send successfull")
                             os.remove(file_path)
                     except requests.exceptions.HTTPError as e:
@@ -138,5 +139,6 @@ class NextcloudFileOperations:
         """
         delete_url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{self.remote_file}"
         requests.delete(delete_url, auth=(self.username, self.password))
-        self.logger.debug(f"{_('deleted: ')}{self.remote_file} in {self.nc_remote_folder}")
+        self.logger.debug(
+            f"{_('deleted: ')}{self.remote_file} in {self.nc_remote_folder}")
         print(f"{_('deleted: ')}{self.remote_file} in {self.nc_remote_folder}")

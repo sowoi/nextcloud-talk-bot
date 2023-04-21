@@ -25,7 +25,8 @@ class NextcloudData:
         logger = logging.getLogger(__name__)
         logger.setLevel(logging.INFO)
         handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         logger.addHandler(handler)
 
@@ -33,7 +34,8 @@ class NextcloudData:
         if not os.path.exists(nextclouddata_file_path):
             print(
                 _("The .nextclouddata file does not exist. Please run the first_run_setup script first."))
-            logger.error("The .nextclouddata file does not exist. Please run the first_run_setup script first.")
+            logger.error(
+                "The .nextclouddata file does not exist. Please run the first_run_setup script first.")
             return None
 
         # Read the .nextclouddata file and extract the data

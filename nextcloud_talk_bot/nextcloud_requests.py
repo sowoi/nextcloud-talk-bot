@@ -61,13 +61,16 @@ class NextcloudRequests:
             logger.warning(_("There was a problem connecting to the API."))
         except requests.exceptions.HTTPError as error:
             if response.status_code == 401:
-                logger.warning(_("Authentication failed. Please check your credentials."))
+                logger.warning(
+                    _("Authentication failed. Please check your credentials."))
             elif response.status_code == 403:
-                logger.warning(_("You don't have permission to access the requested resource."))
+                logger.warning(
+                    _("You don't have permission to access the requested resource."))
             elif response.status_code == 404:
                 logger.warning(_("The requested resource was not found."))
             elif response.status_code >= 500:
-                logger.warning(_("There was a server-side error. Please try again later."))
+                logger.warning(
+                    _("There was a server-side error. Please try again later."))
             else:
                 logger.warning(_(f"An HTTP error occurred: {error}"))
 
@@ -93,13 +96,16 @@ class NextcloudRequests:
             logger.warning(_("There was a problem connecting to the API."))
         except requests.exceptions.HTTPError as error:
             if response.status_code == 401:
-                logger.warning(_("Authentication failed. Please check your credentials."))
+                logger.warning(
+                    _("Authentication failed. Please check your credentials."))
             elif response.status_code == 403:
-                logger.warning(_("You don't have permission to access the requested resource."))
+                logger.warning(
+                    _("You don't have permission to access the requested resource."))
             elif response.status_code == 404:
                 logger.warning(_("The requested resource was not found."))
             elif response.status_code >= 500:
-                logger.warning(_("There was a server-side error. Please try again later."))
+                logger.warning(
+                    _("There was a server-side error. Please try again later."))
             else:
                 logger.warning(_(f"An HTTP error occurred: {error}"))
 
@@ -128,13 +134,16 @@ class NextcloudRequests:
                 logger.warning(_("There was a problem connecting to the API."))
             except requests.exceptions.HTTPError as error:
                 if response.status_code == 401:
-                    logger.warning(_("Authentication failed. Please check your credentials."))
+                    logger.warning(
+                        _("Authentication failed. Please check your credentials."))
                 elif response.status_code == 403:
-                    logger.warning(_("You don't have permission to access the requested resource."))
+                    logger.warning(
+                        _("You don't have permission to access the requested resource."))
                 elif response.status_code == 404:
                     logger.warning(_("The requested resource was not found."))
                 elif response.status_code >= 500:
-                    logger.warning(_("There was a server-side error. Please try again later."))
+                    logger.warning(
+                        _("There was a server-side error. Please try again later."))
                 else:
                     logger.warning(_(f"An HTTP error occurred: {error}"))
 
@@ -161,13 +170,16 @@ class NextcloudRequests:
                 logger.warning(_("There was a problem connecting to the API."))
             except requests.exceptions.HTTPError as error:
                 if response.status_code == 401:
-                    logger.warning(_("Authentication failed. Please check your credentials."))
+                    logger.warning(
+                        _("Authentication failed. Please check your credentials."))
                 elif response.status_code == 403:
-                    logger.warning(_("You don't have permission to access the requested resource."))
+                    logger.warning(
+                        _("You don't have permission to access the requested resource."))
                 elif response.status_code == 404:
                     logger.warning(_("The requested resource was not found."))
                 elif response.status_code >= 500:
-                    logger.warning(_("There was a server-side error. Please try again later."))
+                    logger.warning(
+                        _("There was a server-side error. Please try again later."))
                 else:
                     logger.warning(_(f"An HTTP error occurred: {error}"))
 

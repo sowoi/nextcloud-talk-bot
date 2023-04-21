@@ -25,7 +25,6 @@ class NextcloudSearch:
         handler.setFormatter(formatter)
         self.logger.addHandler(handler)
 
-
     def get_providers(self):
         """
         Retrieves the ID of the given search provider.
@@ -36,7 +35,7 @@ class NextcloudSearch:
         endpoint = "/ocs/v2.php/search/providers"
         response = self.nextcloud_requests.send_request(endpoint)
         providers = response['ocs']['data']
-        
+
         self.logger.info(f"Retrieved search providers: {providers}")
 
         return providers
@@ -72,9 +71,8 @@ class NextcloudSearch:
                 result['resourceUrl'] = entry.get('resourceUrl', '')
                 results.append(result)
         searchProviderResults[provider['id']] = results
-        
+
         self.logger.info(
             f"Search results for query '{query}' using provider {provider_id}: {results}")
-
 
         return searchProviderResults

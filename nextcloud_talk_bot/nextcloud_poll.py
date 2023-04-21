@@ -56,7 +56,6 @@ class NextcloudPoll:
         handler.setFormatter(formatter)
         self.logger.addHandler(handler)
 
-
     def create_poll(
             self,
             question=None,
@@ -88,7 +87,8 @@ class NextcloudPoll:
 
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/poll/{room_token}"
         self.nextcloud_requests.post_request(endpoint, json=poll_data)
-        self.logger.info(f"Created poll '{question}' in room '{self.room_name}' with options '{voting_options}'")
+        self.logger.info(
+            f"Created poll '{question}' in room '{self.room_name}' with options '{voting_options}'")
 
     def get_poll_result(self, poll_id=0):
         """
@@ -105,7 +105,8 @@ class NextcloudPoll:
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/poll/{room_token}/{poll_id}"
 
         response = self.nextcloud_requests.send_request(endpoint)
-        self.logger.info(f"Retrieved poll results for poll_id '{poll_id}' in room '{self.room_name}'")
+        self.logger.info(
+            f"Retrieved poll results for poll_id '{poll_id}' in room '{self.room_name}'")
         return response
 
     def close_poll(self, poll_id=0):
@@ -132,4 +133,5 @@ class NextcloudPoll:
                 else:
                     print(_("Poll closing aborted."))
                     sys.exit()
-        self.logger.info(f"Closed poll with poll_id '{poll_id}' in room '{self.room_name}'")
+        self.logger.info(
+            f"Closed poll with poll_id '{poll_id}' in room '{self.room_name}'")

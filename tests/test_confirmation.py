@@ -25,8 +25,10 @@ class TestConfirmation(unittest.TestCase):
         confirm = Confirmation("delete", "file", input_func=input_mock)
         self.assertTrue(confirm.are_you_sure())
         input_mock.assert_has_calls([
-            unittest.mock.call("Are you sure you want to delete 'file'? This process is irrevocable! (yes/no): "),
-            unittest.mock.call("Are you sure you want to delete 'file'? This process is irrevocable! (yes/no): "),
+            unittest.mock.call(
+                "Are you sure you want to delete 'file'? This process is irrevocable! (yes/no): "),
+            unittest.mock.call(
+                "Are you sure you want to delete 'file'? This process is irrevocable! (yes/no): "),
         ])
 
 

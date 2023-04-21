@@ -62,8 +62,7 @@ class NextcloudMonitoring:
         storage_free = system_data['freespace']
         cpuload = system_data['cpuload']
         app_updates = apps_data['app_updates']
-        
-        
+
         results = {
             'Memory Free': mem_free,
             'Swap Free': swap_free,

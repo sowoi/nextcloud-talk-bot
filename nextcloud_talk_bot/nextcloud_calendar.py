@@ -8,7 +8,6 @@ from dateutil import tz
 from .i18n import _
 
 
-
 class NextcloudCalendar:
     """
     Initialize the NextcloudCalendar class.
@@ -21,20 +20,23 @@ class NextcloudCalendar:
     def __init__(self, base_url, username, password):
         self.base_url = base_url
         self.password = password
-        self.username = username       
+        self.username = username
         self.caldav_url = f"{self.base_url}/remote.php/dav/"
-        self.client = caldav.DAVClient(self.caldav_url, username=self.username, password=self.password)
+        self.client = caldav.DAVClient(
+            self.caldav_url,
+            username=self.username,
+            password=self.password)
         self.principal = caldav.Principal(self.client)
         self.calendars = self.principal.calendars()
-        
+
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.INFO)
         console_handler.setFormatter(formatter)
         self.logger.addHandler(console_handler)
-
 
     def get_calendars(self, calendar_name=None):
         """
@@ -50,7 +52,8 @@ class NextcloudCalendar:
         for key in self.calendars.items():
             calendar_names.append(key)
             self.logger.debug(f"Calendar found: {calendar}")
-        self.logger.info(f"Getting calendar(s) with name '{calendar_name if calendar_name else 'all'}'")
+        self.logger.info(
+            f"Getting calendar(s) with name '{calendar_name if calendar_name else 'all'}'")
         return "Found:", calendar_names
 
     def list_events(self, calendar_name, days=1):
@@ -106,7 +109,8 @@ class NextcloudCalendar:
                         pass
 
                     events_found[event.uid.value] = summary, formatted_start_time, formatted_end_time, location
-        self.logger.info(f"Listed events from calendar '{calendar_name}' within {days} days")
+        self.logger.info(
+            f"Listed events from calendar '{calendar_name}' within {days} days")
         return (events_found)
 
     def add_event(self, calendar_name, summary, start, end, location=None):
@@ -132,7 +136,8 @@ class NextcloudCalendar:
         calendar_event = Calendar()
         calendar_event.add_component(event)
         calendar.add_event(calendar_event.to_ical())
-        self.logger.info(f"Added event '{summary}' to calendar '{calendar_name}'")
+        self.logger.info(
+            f"Added event '{summary}' to calendar '{calendar_name}'")
         return f"Added event {summary}"
 
     def search_event(self, calendar_name, summary):
@@ -153,5 +158,6 @@ class NextcloudCalendar:
             if summary in search_summary:
                 matching_uids.append(uid)
                 matching_events[uid] = event_data
-        self.logger.info(f"Searched for event '{summary}' in calendar '{calendar_name}'")
+        self.logger.info(
+            f"Searched for event '{summary}' in calendar '{calendar_name}'")
         return matching_events
