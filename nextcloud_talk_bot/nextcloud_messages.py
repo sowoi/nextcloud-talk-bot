@@ -3,6 +3,8 @@ send messages, receives messages, etc
 """
 
 import sys
+import logging
+
 from .nextcloud_requests import NextcloudRequests
 from .nextcloud_talk_extractor import NextcloudTalkExtractor
 from .i18n import _
@@ -30,6 +32,13 @@ class NextcloudMessages:
             self.base_url, self.password)
         self.nextcloud_talk_extractor = NextcloudTalkExtractor(
             self.base_url, self.username, self.password)
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
 
     def send_message_to_nextcloud_talk_group(self, message):
         """
@@ -43,6 +52,8 @@ class NextcloudMessages:
         endpoint = f"/ocs/v2.php/apps/spreed/api/v1/chat/{self.room_token}"
         self.nextcloud_requests.post_request(endpoint, json=data)
         print(f"{_('Message sent: ')}{message}")
+        self.logger.info(
+            f"Sent message '{message}' to room '{self.room_token}'")
 
     def receive_messages_of_nextcloud_talk_group(self, message_limit=1):
         """
@@ -70,6 +81,8 @@ class NextcloudMessages:
             actor = messages["actorDisplayName"]
             id = messages["id"]
             messages_dict[id] = actor, message
+        self.logger.info(
+            f"Received messages from room '{self.room_token}' with limit {message_limit}")
         return messages_dict
 
     def delete_message_in_nextcloud_talk_group(self, message_id=None):
@@ -117,4 +130,6 @@ class NextcloudMessages:
             endpoint = f"/ocs/v2.php/apps/spreed/api/v1/chat/{self.room_token}/{message_id}"
 
         self.nextcloud_requests.delete_request(endpoint)
+        self.logger.info(
+            f"Deleted message with id '{message_id}' in room '{self.room_token}'")
         return _("Message deleted")

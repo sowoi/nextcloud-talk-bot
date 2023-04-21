@@ -14,8 +14,8 @@ class NextcloudMonitoring:
         """
         Initialize the NextcloudMonitoring class.
 
-        :param url: The base URL of the Nextcloud instance.
-        :param token: Optional authentication token. If not provided, the token will be read from the ".monitoring" file.
+        :param base_url: The base URL of the Nextcloud instance.
+        :param monitoring_token: Optional authentication token. If not provided, the token will be read from the ".monitoring" file.
         """
         self.base_url = base_url
         self.monitoring_token = monitoring_token if monitoring_token is not None else self._read_token()
@@ -46,6 +46,11 @@ class NextcloudMonitoring:
         return response
 
     def check_monitoring(self):
+        """
+        Check monitoring data and generate a dictionary with results.
+
+        :return: A dictionary containing monitoring results.
+        """
         data = self.get_monitoring_data_raw()
         nextcloud_data = data['ocs']['data']['nextcloud']
         system_data = nextcloud_data['system']
@@ -58,26 +63,46 @@ class NextcloudMonitoring:
         cpuload = system_data['cpuload']
         app_updates = apps_data['app_updates']
 
-        print(f"{_('Memory Free: ')}{mem_free}")
-        print(f"{_('Swap Free: ')}{swap_free}")
-        print(f"{_('Storage Free: ')}{storage_free}")
-        print(f"{_('CPU Load: ')}{cpuload}")
+        results = {
+            'Memory Free': mem_free,
+            'Swap Free': swap_free,
+            'Storage Free': storage_free,
+            'CPU Load': cpuload,
+            'mem_free_percentage': (mem_free / system_data['mem_total']) * 100,
+            'system_swapping': swap_free < system_data['swap_total'],
+            'storage_less_than_10GB': storage_free < 10 * 1024 * 1024 * 1024,
+            'cpu_load_greater_than_10': max(cpuload) > 10,
+            'app_updates': app_updates
+        }
 
-        mem_free_percentage = (mem_free / system_data['mem_total']) * 100
-        if mem_free_percentage < 20:
+        return results
+
+    def show_monitoring_results(self):
+        """
+        Show monitoring results using the check_monitoring() method.
+
+        :return: None
+        """
+        results = self.check_monitoring()
+        print(f"{_('Memory Free: ')}{results['Memory Free']}")
+        print(f"{_('Swap Free: ')}{results['Swap Free']}")
+        print(f"{_('Storage Free: ')}{results['Storage Free']}")
+        print(f"{_('CPU Load: ')}{results['CPU Load']}")
+
+        if results['mem_free_percentage'] < 20:
             print(_("Warning: Less than 20% memory free."))
 
-        if swap_free < system_data['swap_total']:
+        if results['system_swapping']:
             print(_("Warning: The system is swapping."))
 
-        if storage_free < 10 * 1024 * 1024 * 1024:
+        if results['storage_less_than_10GB']:
             print(_("Warning: Less than 10GB storage free."))
 
-        if max(cpuload) > 10:
+        if results['cpu_load_greater_than_10']:
             print(_("Warning: CPU load is greater than 10."))
 
-        if app_updates:
+        if results['app_updates']:
             print(
                 _("Warning: There are app updates available for the following apps:"))
-            for app, version in app_updates.items():
+            for app, version in results['app_updates'].items():
                 print(f"  - {app}: {version}")

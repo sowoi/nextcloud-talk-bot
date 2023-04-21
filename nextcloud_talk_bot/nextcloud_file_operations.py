@@ -6,6 +6,7 @@ send files to a Nextcloud Talk room, delete files, etc.
 import requests
 import os
 import mimetypes
+import logging
 import xml.etree.ElementTree as ET
 from requests.auth import HTTPBasicAuth
 from .nextcloud_data import NextcloudData
@@ -47,6 +48,7 @@ class NextcloudFileOperations:
         self.nc_remote_folder = nc_remote_folder
         self.local_folder = local_folder
         self.remote_file = remote_file
+        self.logger = logging.getLogger(__name__)
 
     def list_files_in_nextcloud_folder(self):
         """
@@ -67,11 +69,14 @@ class NextcloudFileOperations:
             headers=headers,
             auth=HTTPBasicAuth(
                 self.username,
-                self.password))
+                self.password,
+            ),
+            timeout=15)
 
         # Check if the request was successful
         if response.status_code != 207:
             print(f"Error: {response.status_code}")
+            self.logger.error(f"Error: {response.status_code}")
             return None
 
         # Parse the XML response
@@ -86,6 +91,7 @@ class NextcloudFileOperations:
                 file_name = href_element.text.split("/")[-1]
                 if file_name:
                     file_names.append(file_name)
+        self.logger.debug(f"Debug: {file_names}")
 
         return file_names
 
@@ -105,9 +111,8 @@ class NextcloudFileOperations:
                 # Send file to Nextcloud Talk Room
                 with open(file_path, "rb") as file:
                     content_type = mimetypes.guess_type(file_path)[0]
-                    headers = headers.copy()
+                    headers = {"Depth": "1"}
                     headers["Content-Type"] = content_type
-
                     url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{filename}"
 
                     try:
@@ -117,9 +122,12 @@ class NextcloudFileOperations:
                         response.raise_for_status()
                         # If success delete the local file
                         if response.status_code == 201:
+                            self.logger.debug(
+                                f"Debug: Send successfull: {response.status_code}")
                             print("Send successfull")
                             os.remove(file_path)
                     except requests.exceptions.HTTPError as e:
+                        self.logger.error(f"Error: {response.status_code}")
                         print(f"Error sending the file {filename}: {e}")
 
     def delete_remote_file_in_nextcloud(self):
@@ -131,4 +139,6 @@ class NextcloudFileOperations:
         """
         delete_url = f"{self.base_url}/remote.php/dav/files/{self.username}/{self.nc_remote_folder}/{self.remote_file}"
         requests.delete(delete_url, auth=(self.username, self.password))
+        self.logger.debug(
+            f"{_('deleted: ')}{self.remote_file} in {self.nc_remote_folder}")
         print(f"{_('deleted: ')}{self.remote_file} in {self.nc_remote_folder}")

@@ -1,5 +1,6 @@
 from cryptography.fernet import Fernet
 import os
+import logging
 from .i18n import _
 
 
@@ -21,10 +22,20 @@ class NextcloudData:
         password_file_path = os.path.join(home_dir, ".password")
         decode_file_path = os.path.join(home_dir, ".decode")
 
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+
         # Check if the .nextclouddata file exists
         if not os.path.exists(nextclouddata_file_path):
             print(
                 _("The .nextclouddata file does not exist. Please run the first_run_setup script first."))
+            logger.error(
+                "The .nextclouddata file does not exist. Please run the first_run_setup script first.")
             return None
 
         # Read the .nextclouddata file and extract the data
@@ -51,7 +62,7 @@ class NextcloudData:
                 encrypted_password = password_file.readline()
                 decrypted_password = f.decrypt(encrypted_password).decode()
                 data['PASSWORD'] = decrypted_password
-
+        logger.info("Successfully read and decrypted Nextcloud data")
         return data
 
 

@@ -1,4 +1,5 @@
 import caldav
+import logging
 from caldav.elements import dav, cdav
 from icalendar import Event, Calendar
 import vobject
@@ -17,11 +18,25 @@ class NextcloudCalendar:
     """
 
     def __init__(self, base_url, username, password):
+        self.base_url = base_url
         self.password = password
+        self.username = username
+        self.caldav_url = f"{self.base_url}/remote.php/dav/"
         self.client = caldav.DAVClient(
-            base_url, username, self.password)
-        self.principal = self.client.principal()
+            self.caldav_url,
+            username=self.username,
+            password=self.password)
+        self.principal = caldav.Principal(self.client)
         self.calendars = self.principal.calendars()
+
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.INFO)
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
 
     def get_calendars(self, calendar_name=None):
         """
@@ -31,12 +46,14 @@ class NextcloudCalendar:
         :return: If a calendar_name is specified, returns the matching calendar; otherwise, returns a list of all available calendars.
         """
         for calendar in self.calendars:
-            print(calendar)
             if calendar_name is not None and calendar_name == calendar.name:
                 return calendar
         calendar_names = []
         for key in self.calendars.items():
             calendar_names.append(key)
+            self.logger.debug(f"Calendar found: {calendar}")
+        self.logger.info(
+            f"Getting calendar(s) with name '{calendar_name if calendar_name else 'all'}'")
         return "Found:", calendar_names
 
     def list_events(self, calendar_name, days=1):
@@ -92,6 +109,8 @@ class NextcloudCalendar:
                         pass
 
                     events_found[event.uid.value] = summary, formatted_start_time, formatted_end_time, location
+        self.logger.info(
+            f"Listed events from calendar '{calendar_name}' within {days} days")
         return (events_found)
 
     def add_event(self, calendar_name, summary, start, end, location=None):
@@ -116,7 +135,9 @@ class NextcloudCalendar:
         event.add("dtend", end_time)
         calendar_event = Calendar()
         calendar_event.add_component(event)
-        new_event = calendar.add_event(calendar_event.to_ical())
+        calendar.add_event(calendar_event.to_ical())
+        self.logger.info(
+            f"Added event '{summary}' to calendar '{calendar_name}'")
         return f"Added event {summary}"
 
     def search_event(self, calendar_name, summary):
@@ -134,22 +155,9 @@ class NextcloudCalendar:
 
         for uid, event_data in events_found.items():
             search_summary = event_data[0]
-            if summary == search_summary:
+            if summary in search_summary:
                 matching_uids.append(uid)
                 matching_events[uid] = event_data
-        if matching_events:
-            event_list = list(matching_events.items())
-            for index, (uid, event_data) in enumerate(event_list, start=1):
-                print(f"{index}: {event_data}")
-
-            while True:
-                try:
-                    choice = int(input(_("Please choose event by number: ")))
-                    if 1 <= choice <= len(event_list):
-                        selected_uid = event_list[choice - 1][0]
-                        return selected_uid
-                        break
-                    else:
-                        print(_("Invalid entry."))
-                except ValueError:
-                    print(_("Please enter a number."))
+        self.logger.info(
+            f"Searched for event '{summary}' in calendar '{calendar_name}'")
+        return matching_events

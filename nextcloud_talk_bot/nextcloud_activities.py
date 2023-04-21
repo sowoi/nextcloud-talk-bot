@@ -1,6 +1,7 @@
 """
 handle activities
 """
+import logging
 
 from .nextcloud_data import NextcloudData
 from .translations import TRANSLATIONS
@@ -21,6 +22,14 @@ class NextcloudActivities:
         self.nextcloud_requests = NextcloudRequests(
             self.base_url, self.password)
 
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
+
     def get_last_activities(self):
         """
         Get the last activities from Nextcloud.
@@ -29,12 +38,12 @@ class NextcloudActivities:
         """
         endpoint = "/ocs/v2.php/cloud/activity"
         response = self.nextcloud_requests.send_request(endpoint)
-
+        self.logger.info("Getting the last activities from Nextcloud")
         return response['ocs']['data']
 
     def search_last_activities(self, activity):
         """
-        Search for events, to-dos or file-operatiosn in the given activities.
+        Search for events, to-dos or file-operations in the given activities.
 
         :param activities: he activity to search for, i.e. to-do, event, shared, deleted, created, changed
         :return: A list of filtered activities.
@@ -46,7 +55,7 @@ class NextcloudActivities:
             date = item['date']
             if activity in subject:
                 filtered_data.append({'subject': subject, 'date': date})
-
+        self.logger.info(f"Searching for '{activity}' in the last activities")
         return filtered_data
 
 

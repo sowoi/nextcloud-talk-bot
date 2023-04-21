@@ -1,7 +1,7 @@
 """
 provides functionality to fetch the user's data and test user login.
 """
-
+import logging
 from .nextcloud_requests import NextcloudRequests
 from .i18n import _
 
@@ -28,6 +28,13 @@ class NextcloudUser:
         self.password = password
         self.nextcloud_requests = NextcloudRequests(
             self.base_url, self.password)
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
 
     def test_user_login(self):
         """
@@ -38,6 +45,7 @@ class NextcloudUser:
                  an error message otherwise.
         :rtype: dict
         """
+        self.logger.info("Testing user login")
         endpoint = "/ocs/v2.php/cloud/user"
         return self.nextcloud_requests.send_request(endpoint)
 
@@ -49,6 +57,7 @@ class NextcloudUser:
                  raises an exception otherwise.
         :rtype: str
         """
+        self.logger.info("Fetching preferred language")
         endpoint = f"/ocs/v2.php/cloud/users/{self.username}"
         user_data = self.nextcloud_requests.send_request(endpoint)[
             "ocs"]["data"]
@@ -62,6 +71,7 @@ class NextcloudUser:
                  raises an exception otherwise.
         :rtype: dict
         """
+        self.logger.info("Fetching user quota")
         endpoint = f"/ocs/v2.php/cloud/users/{self.username}"
         user_data = self.nextcloud_requests.send_request(endpoint)[
             "ocs"]["data"]

@@ -56,20 +56,23 @@ class NextcloudRequests:
         try:
             response.raise_for_status()
         except requests.exceptions.Timeout:
-            print("The request timed out.")
+            logger.warning(_("The request timed out."))
         except requests.exceptions.ConnectionError:
-            print("There was a problem connecting to the API.")
+            logger.warning(_("There was a problem connecting to the API."))
         except requests.exceptions.HTTPError as error:
             if response.status_code == 401:
-                print("Authentication failed. Please check your credentials.")
+                logger.warning(
+                    _("Authentication failed. Please check your credentials."))
             elif response.status_code == 403:
-                print("You don't have permission to access the requested resource.")
+                logger.warning(
+                    _("You don't have permission to access the requested resource."))
             elif response.status_code == 404:
-                print("The requested resource was not found.")
+                logger.warning(_("The requested resource was not found."))
             elif response.status_code >= 500:
-                print("There was a server-side error. Please try again later.")
+                logger.warning(
+                    _("There was a server-side error. Please try again later."))
             else:
-                print(f"An HTTP error occurred: {error}")
+                logger.warning(_(f"An HTTP error occurred: {error}"))
 
         return response.json()
 
@@ -83,25 +86,28 @@ class NextcloudRequests:
             headers=headers,
             timeout=10)
         if response.status_code == 429:
-            raise ThrottlingException(
-                "Your request has been throttled. Please try again later.")
+            raise ThrottlingException(_(
+                "Your request has been throttled. Please try again later."))
         try:
             response.raise_for_status()
         except requests.exceptions.Timeout:
-            print("The request timed out.")
+            logger.warning(_("The request timed out."))
         except requests.exceptions.ConnectionError:
-            print("There was a problem connecting to the API.")
+            logger.warning(_("There was a problem connecting to the API."))
         except requests.exceptions.HTTPError as error:
             if response.status_code == 401:
-                print("Authentication failed. Please check your credentials.")
+                logger.warning(
+                    _("Authentication failed. Please check your credentials."))
             elif response.status_code == 403:
-                print("You don't have permission to access the requested resource.")
+                logger.warning(
+                    _("You don't have permission to access the requested resource."))
             elif response.status_code == 404:
-                print("The requested resource was not found.")
+                logger.warning(_("The requested resource was not found."))
             elif response.status_code >= 500:
-                print("There was a server-side error. Please try again later.")
+                logger.warning(
+                    _("There was a server-side error. Please try again later."))
             else:
-                print(f"An HTTP error occurred: {error}")
+                logger.warning(_(f"An HTTP error occurred: {error}"))
 
         return response.json()
 
@@ -123,20 +129,23 @@ class NextcloudRequests:
             try:
                 response.raise_for_status()
             except requests.exceptions.Timeout:
-                print("The request timed out.")
+                logger.warning(_("The request timed out."))
             except requests.exceptions.ConnectionError:
-                print("There was a problem connecting to the API.")
+                logger.warning(_("There was a problem connecting to the API."))
             except requests.exceptions.HTTPError as error:
                 if response.status_code == 401:
-                    print("Authentication failed. Please check your credentials.")
+                    logger.warning(
+                        _("Authentication failed. Please check your credentials."))
                 elif response.status_code == 403:
-                    print("You don't have permission to access the requested resource.")
+                    logger.warning(
+                        _("You don't have permission to access the requested resource."))
                 elif response.status_code == 404:
-                    print("The requested resource was not found.")
+                    logger.warning(_("The requested resource was not found."))
                 elif response.status_code >= 500:
-                    print("There was a server-side error. Please try again later.")
+                    logger.warning(
+                        _("There was a server-side error. Please try again later."))
                 else:
-                    print(f"An HTTP error occurred: {error}")
+                    logger.warning(_(f"An HTTP error occurred: {error}"))
 
             return response.json()
 
@@ -156,20 +165,23 @@ class NextcloudRequests:
             try:
                 response.raise_for_status()
             except requests.exceptions.Timeout:
-                print("The request timed out.")
+                logger.warning(_("The request timed out."))
             except requests.exceptions.ConnectionError:
-                print("There was a problem connecting to the API.")
+                logger.warning(_("There was a problem connecting to the API."))
             except requests.exceptions.HTTPError as error:
                 if response.status_code == 401:
-                    print("Authentication failed. Please check your credentials.")
+                    logger.warning(
+                        _("Authentication failed. Please check your credentials."))
                 elif response.status_code == 403:
-                    print("You don't have permission to access the requested resource.")
+                    logger.warning(
+                        _("You don't have permission to access the requested resource."))
                 elif response.status_code == 404:
-                    print("The requested resource was not found.")
+                    logger.warning(_("The requested resource was not found."))
                 elif response.status_code >= 500:
-                    print("There was a server-side error. Please try again later.")
+                    logger.warning(
+                        _("There was a server-side error. Please try again later."))
                 else:
-                    print(f"An HTTP error occurred: {error}")
+                    logger.warning(_(f"An HTTP error occurred: {error}"))
 
 
 class ThrottlingException(Exception):

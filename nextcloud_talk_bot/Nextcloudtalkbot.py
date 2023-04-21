@@ -1,4 +1,6 @@
 import os
+import logging
+
 from .check_local_user_enviroment import SudoPrivileges
 from .first_run_setup import FirstRunSetup
 from .nextcloud_activities import NextcloudActivities
@@ -16,6 +18,11 @@ from .headers import NextcloudHeaders
 from .translations import TRANSLATIONS
 from .permissions_map import permissions_map
 from .conversations_map import conversations_map
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
 class NextcloudTalkBot:
@@ -92,6 +99,8 @@ class NextcloudTalkBot:
 
         self.activities = NextcloudActivities(
             **self.config["nextcloud_base_data"])
+        self.calendar = NextcloudCalendar(
+            **self.config["nextcloud_base_data"])
         self.file = NextcloudFileOperations(
             **self.config["nextcloud_base_data"])
         self.extractor = NextcloudTalkExtractor(
@@ -114,5 +123,7 @@ class NextcloudTalkBot:
         if self._data and name in self._data:
             return self._data[name]
         else:
+            logger.error(
+                f"'{self.__class__.__name__}' object has no attribute '{name}'")
             raise AttributeError(
                 f"'{self.__class__.__name__}' object has no attribute '{name}'")

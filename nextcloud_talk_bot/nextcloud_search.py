@@ -1,3 +1,4 @@
+import logging
 from .nextcloud_requests import NextcloudRequests
 from .i18n import _
 
@@ -16,6 +17,13 @@ class NextcloudSearch:
         self.password = password
         self.nextcloud_requests = NextcloudRequests(
             self.base_url, self.password)
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.INFO)
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
 
     def get_providers(self):
         """
@@ -27,6 +35,8 @@ class NextcloudSearch:
         endpoint = "/ocs/v2.php/search/providers"
         response = self.nextcloud_requests.send_request(endpoint)
         providers = response['ocs']['data']
+
+        self.logger.info(f"Retrieved search providers: {providers}")
 
         return providers
 
@@ -61,5 +71,8 @@ class NextcloudSearch:
                 result['resourceUrl'] = entry.get('resourceUrl', '')
                 results.append(result)
         searchProviderResults[provider['id']] = results
+
+        self.logger.info(
+            f"Search results for query '{query}' using provider {provider_id}: {results}")
 
         return searchProviderResults
