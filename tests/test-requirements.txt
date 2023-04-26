@@ -96,7 +96,7 @@ spacytextblob==4.0.0
 srsly==2.4.6
 thinc==8.1.9
 tomli==2.0.1
-tox==4.5.0
+tox==4.5.1
 tqdm==4.65.0
 twine==4.0.2
 typer==0.7.0
