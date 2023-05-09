@@ -13,7 +13,7 @@ def get_headers(API_PASSWORD):
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'OCS-APIRequest': 'true',
-        'Authorization': f"Bearer {password}",
+        'Authorization': f"Bearer {API_PASSWORD}",
         'Accept-Language': 'en'
     }
 
