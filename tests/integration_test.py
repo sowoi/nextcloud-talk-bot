@@ -2,11 +2,11 @@ import os
 import requests
 
 # enviroment variables
-API_BASE_URL = os.environ["NTB_URL"]
-API_USERNAME = os.environ["NTB_USER"]
-API_PASSWORD = os.environ["NTB_PASSWORD"]
-MONITORING_TOKEN = os.environ["MONITORING_TOKEN"]
-def get_headers(password):
+API_BASE_URL = os.getenv["NTB_URL"]
+API_USERNAME = os.getenv["NTB_USER"]
+API_PASSWORD = os.getenv["NTB_PASSWORD"]
+MONITORING_TOKEN = os.getenv["MONITORING_TOKEN"]
+def get_headers(API_PASSWORD):
     return {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
