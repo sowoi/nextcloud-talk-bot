@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  lint:
+  integrationtest:
     runs-on: ubuntu-latest
     steps:
     - name: Check out repository
@@ -29,7 +29,7 @@ jobs:
 
     - name: Check Version 1
       env:
-        NTB: ${{ secrets.V1_NTB }}
+        NTB_URL: ${{ secrets.V1_NTB }}
         NTB_USER: ${{ secrets.V1_NTB_USER }}
         NTB_PASSWORD: ${{ secrets.V1_NTB_PASSWORD }}
         MONITORING_TOKEN: ${{ secrets.MONITORING_TOKEN }}
@@ -37,7 +37,7 @@ jobs:
 
     - name: Check Version 2
       env:
-        NTB: ${{ secrets.V2_NTB }}
+        NTB_URL: ${{ secrets.V2_NTB }}
         NTB_USER: ${{ secrets.V2_NTB_USER }}
         NTB_PASSWORD: ${{ secrets.V2_NTB_PASSWORD }}
         MONITORING_TOKEN: ${{ secrets.MONITORING_TOKEN }}

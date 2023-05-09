@@ -28,6 +28,5 @@ class TestFirstRunSetup(unittest.TestCase):
         self.assertEqual(password, "app_password")
 
 
-
 if __name__ == "__main__":
     unittest.main()
