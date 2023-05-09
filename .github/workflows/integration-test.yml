@@ -1,0 +1,44 @@
+name: integration-test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.x
+
+    - name: Install requests
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+
+    - name: Check Version 1
+      env:
+        NTB: ${{ secrets.V1_NTB }}
+        NTB_USER: ${{ secrets.V1_NTB_USER }}
+        NTB_PASSWORD: ${{ secrets.V1_NTB_PASSWORD }}
+        MONITORING_TOKEN: ${{ secrets.MONITORING_TOKEN }}
+      run: python tests/integration_test.py
+
+    - name: Check Version 2
+      env:
+        NTB: ${{ secrets.V2_NTB }}
+        NTB_USER: ${{ secrets.V2_NTB_USER }}
+        NTB_PASSWORD: ${{ secrets.V2_NTB_PASSWORD }}
+        MONITORING_TOKEN: ${{ secrets.MONITORING_TOKEN }}
+      run: python tests/integration_test.py
