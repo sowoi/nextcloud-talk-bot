@@ -27,9 +27,6 @@ class TestFirstRunSetup(unittest.TestCase):
         password = FirstRunSetup.get_password()
         self.assertEqual(password, "app_password")
 
-    # You can add more tests for other methods like `check_nextcloud_credentials` and `select_nextcloud_talk_room`.
-    # However, these tests might require more complex mocking due to their
-    # interactions with external services or user input.
 
 
 if __name__ == "__main__":
