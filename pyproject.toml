@@ -21,7 +21,7 @@ exclude = [
 
 [project]
 name = "nextcloudtalkbot"
-version = "0.0.45"
+version = "0.0.46"
 home-page = "https://okxo.de"
 authors = [
   { name="Massoud Ahmed", email="okko@okxo.de", home-page="https://okxo.de"},
