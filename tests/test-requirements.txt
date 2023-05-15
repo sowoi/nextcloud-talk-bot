@@ -59,7 +59,7 @@ packaging==23.1
 pathy==0.10.1
 pkginfo==1.9.6
 plantuml-markdown==3.9.1
-platformdirs==3.5.0
+platformdirs==3.5.1
 pluggy==1.0.0
 preshed==3.0.8
 pycodestyle==2.10.0
