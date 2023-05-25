@@ -29,7 +29,7 @@ python-dateutil==2.8.2
 PyYAML==6.0
 pyyaml-env-tag==0.1
 readme-renderer==37.3
-requests==2.30.0
+requests==2.31.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.3.5
