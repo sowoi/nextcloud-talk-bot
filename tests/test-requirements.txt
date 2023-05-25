@@ -67,7 +67,7 @@ pycparser==2.21
 pydantic==1.10.7
 pyflakes==3.0.1
 Pygments==2.15.0
-pymdown-extensions==10.0
+pymdown-extensions==10.0.1
 pyparsing==3.0.9
 pyproject_api==1.5.1
 pyproject_hooks==1.0.0
