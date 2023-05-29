@@ -64,7 +64,7 @@ pluggy==1.0.0
 preshed==3.0.8
 pycodestyle==2.10.0
 pycparser==2.21
-pydantic==1.10.7
+pydantic==1.10.8
 pyflakes==3.0.1
 Pygments==2.15.0
 pymdown-extensions==10.0.1
