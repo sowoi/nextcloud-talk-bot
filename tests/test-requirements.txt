@@ -100,7 +100,7 @@ tox==4.5.2
 tqdm==4.65.0
 twine==4.0.2
 typer==0.7.0
-typing_extensions==4.6.2
+typing_extensions==4.7.1
 tzdata==2023.3
 tzlocal==5.0.1
 url-normalize==1.4.3
