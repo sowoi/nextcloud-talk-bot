@@ -83,7 +83,7 @@ requests==2.31.0
 requests-cache==1.0.1
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
-rich==13.3.5
+rich==13.5.1
 SecretStorage==3.3.3
 six==1.16.0
 smart-open==6.3.0
