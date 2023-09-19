@@ -8,50 +8,52 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-18 20:54+0200\n"
-"PO-Revision-Date: 2023-04-19 09:09+0200\n"
-"Last-Translator: okko <okko@okkolaptop.local>\n"
-"Language-Team: Spanish <es@tp.org.es>\n"
+"PO-Revision-Date: 2023-09-20 16:01+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/nextcloudtalkbot/"
+"user-intraction/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: nextcloud_talk_bot/check_local_user_enviroment.py:33
 msgid " is a member of the "
-msgstr ""
+msgstr " es miembro de la "
 
 #: nextcloud_talk_bot/nextcloud_meeting.py:80
 msgid "Aborted."
-msgstr ""
+msgstr "Abortado."
 
 #: nextcloud_talk_bot/first_run_setup.py:208
 msgid "Are you sure you want to continue? (yes/no): "
-msgstr ""
+msgstr "¿Estás seguro de que deseas continuar? (sí/no): "
 
 #: nextcloud_talk_bot/ncbot.py:186
 msgid "Arguments to pass to the function."
-msgstr ""
+msgstr "Argumentos para pasar a la función."
 
 #: nextcloud_talk_bot/translations.py:15
 msgid "Aufgabe"
-msgstr ""
+msgstr "Tarea"
 
 #: nextcloud_talk_bot/ncbot.py:160
 msgid "Available options:"
-msgstr ""
+msgstr "Opciones disponibles:"
 
 #: nextcloud_talk_bot/ncbot.py:168
 msgid "Call Nextcloud Commands via NextcloudTalkBot Framework"
-msgstr ""
+msgstr "Usar los comandos de Nextcloud a través de NextcloudTalkBot Framework"
 
 #: nextcloud_talk_bot/first_run_setup.py:213
 msgid "Continuing with FirstRunSetup..."
-msgstr ""
+msgstr "Continuando con FirstRunSetup..."
 
 #: nextcloud_talk_bot/check_local_user_enviroment.py:28
 msgid "Error: This script should not be run as root or with sudo."
-msgstr ""
+msgstr "Error: Este script no debe ejecutarse como root o con sudo."
 
 #: nextcloud_talk_bot/ncbot.py:205
 msgid "First Run setup"
