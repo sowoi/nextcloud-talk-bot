@@ -35,7 +35,7 @@ jaraco.classes==3.2.3
 jeepney==0.8.0
 Jinja2==3.1.2
 joblib==1.2.0
-jsbeautifier==1.14.7
+jsbeautifier==1.14.9
 keyring==23.13.1
 langcodes==3.3.0
 lxml==4.9.2
