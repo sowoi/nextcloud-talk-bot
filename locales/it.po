@@ -1,2 +1,56 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2023-10-18 04:03+0000\n"
+"Last-Translator: Frankie McEyes <mceyes@protonmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/nextcloudtalkbot/"
+"user-intraction/it/>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.1\n"
+
+#: nextcloud_talk_bot/ncbot.py:168
+msgid "Call Nextcloud Commands via NextcloudTalkBot Framework"
+msgstr "Chiamare i comandi di Nextcloud tramite il framework NextcloudTalkBot"
+
+#: nextcloud_talk_bot/first_run_setup.py:213
+msgid "Continuing with FirstRunSetup..."
+msgstr "Continuare con FirstRunSetup..."
+
+#: nextcloud_talk_bot/nextcloud_meeting.py:80
+msgid "Aborted."
+msgstr "Cancellato."
+
+#: nextcloud_talk_bot/translations.py:15
+msgid "Aufgabe"
+msgstr "Compito"
+
+#: nextcloud_talk_bot/ncbot.py:205
+msgid "First Run setup"
+msgstr "Setup di prima esecuzione"
+
+#: nextcloud_talk_bot/ncbot.py:186
+msgid "Arguments to pass to the function."
+msgstr "Argomenti da passare alla funzione."
+
+#: nextcloud_talk_bot/first_run_setup.py:210
+msgid "FirstRunSetup aborted."
+msgstr "Setup di prima esecuzione annullato."
+
+#: nextcloud_talk_bot/ncbot.py:160
+msgid "Available options:"
+msgstr "Opzioni disponibili:"
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:33
+msgid " is a member of the "
+msgstr " è un membro di "
+
+#: nextcloud_talk_bot/first_run_setup.py:208
+msgid "Are you sure you want to continue? (yes/no): "
+msgstr "Sei sicuro di voler continuare? (sì/no): "
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:28
+msgid "Error: This script should not be run as root or with sudo."
+msgstr "Errore: Questo script non deve essere eseguito come root o con sudo."
