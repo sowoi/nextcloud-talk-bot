@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-10-18 04:03+0000\n"
+"PO-Revision-Date: 2023-11-12 11:03+0000\n"
 "Last-Translator: Frankie McEyes <mceyes@protonmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/nextcloudtalkbot/"
 "user-intraction/it/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: nextcloud_talk_bot/ncbot.py:168
 msgid "Call Nextcloud Commands via NextcloudTalkBot Framework"
@@ -54,3 +54,44 @@ msgstr "Sei sicuro di voler continuare? (sì/no): "
 #: nextcloud_talk_bot/check_local_user_enviroment.py:28
 msgid "Error: This script should not be run as root or with sudo."
 msgstr "Errore: Questo script non deve essere eseguito come root o con sudo."
+
+#: nextcloud_talk_bot/ncbot.py:180
+msgid ""
+"Function to call. Type option --list to get all parameters or option --help "
+"for help"
+msgstr ""
+"Funzione da chiamare. Digitare l'opzione --list per ottenere tutti i "
+"parametri o l'opzione --help per la guida"
+
+#: nextcloud_talk_bot/first_run_setup.py:153
+msgid "Invalid input. Please enter a number between 1 and"
+msgstr "Dati non validi. Per favore inserire un numero tra 1 e"
+
+#: nextcloud_talk_bot/first_run_setup.py:172
+msgid "Incorrect login data. Please try again."
+msgstr "Dati di accesso errati. Riprovare."
+
+#: nextcloud_talk_bot/ncbot.py:198
+msgid "List available options or functions."
+msgstr "Elenca le opzioni o le funzioni disponibili."
+
+#: nextcloud_talk_bot/nextcloud_messages.py:104
+msgid "Invalid selection."
+msgstr "Dati non validi."
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:157
+msgid "Invalid entry."
+msgstr "Dati non validi."
+
+#: nextcloud_talk_bot/confirmation.py:42
+#: nextcloud_talk_bot/first_run_setup.py:216
+msgid "Invalid input. Please enter 'yes' or 'no'."
+msgstr "Dati non validi. Inserire \"sì\" o \"no\"."
+
+#: nextcloud_talk_bot/first_run_setup.py:120
+msgid ""
+"Found the following chats about the entered user. Select the chat by "
+"entering the number in front of it."
+msgstr ""
+"Sono state trovate le seguenti chat sull'utente inserito. Selezionare la "
+"chat inserendo il numero davanti ad essa."
