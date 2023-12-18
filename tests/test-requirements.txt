@@ -94,7 +94,7 @@ spacy-legacy==3.0.12
 spacy-loggers==1.0.4
 spacytextblob==4.0.0
 srsly==2.4.6
-thinc==8.1.10
+thinc==8.2.2
 tomli==2.0.1
 tox==4.11.3
 tqdm==4.65.0
