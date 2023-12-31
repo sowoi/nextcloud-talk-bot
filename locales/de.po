@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-18 20:54+0200\n"
-"PO-Revision-Date: 2023-08-21 01:47+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2024-01-01 15:10+0000\n"
+"Last-Translator: Maximilian Borm <bormolino@hotmail.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/nextcloudtalkbot/"
 "user-intraction/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: nextcloud_talk_bot/check_local_user_enviroment.py:33
 msgid " is a member of the "
@@ -54,6 +54,7 @@ msgstr ""
 #: nextcloud_talk_bot/check_local_user_enviroment.py:28
 msgid "Error: This script should not be run as root or with sudo."
 msgstr ""
+"Fehler: dieses Skript sollte nicht als root oder mit sudo gestartet werden."
 
 #: nextcloud_talk_bot/ncbot.py:205
 msgid "First Run setup"
@@ -77,16 +78,16 @@ msgstr ""
 
 #: nextcloud_talk_bot/first_run_setup.py:172
 msgid "Incorrect login data. Please try again."
-msgstr ""
+msgstr "Falsche Logindaten. Bitte erneut versuchen."
 
 #: nextcloud_talk_bot/nextcloud_calendar.py:157
 msgid "Invalid entry."
-msgstr ""
+msgstr "Ungültiger Eintrag."
 
 #: nextcloud_talk_bot/confirmation.py:42
 #: nextcloud_talk_bot/first_run_setup.py:216
 msgid "Invalid input. Please enter 'yes' or 'no'."
-msgstr ""
+msgstr "Ungültige Eingabe. Bitte 'yes' oder 'no' eingeben."
 
 #: nextcloud_talk_bot/first_run_setup.py:153
 msgid "Invalid input. Please enter a number between 1 and"
@@ -94,19 +95,19 @@ msgstr ""
 
 #: nextcloud_talk_bot/nextcloud_messages.py:104
 msgid "Invalid selection."
-msgstr ""
+msgstr "Ungültige Auswahl."
 
 #: nextcloud_talk_bot/ncbot.py:198
 msgid "List available options or functions."
-msgstr ""
+msgstr "Verfügbare Optionen oder Funktionen auflisten."
 
 #: nextcloud_talk_bot/first_run_setup.py:117
 msgid "Login data are OK"
-msgstr ""
+msgstr "Logindaten sind OK"
 
 #: nextcloud_talk_bot/nextcloud_messages.py:123
 msgid "Message deleted"
-msgstr ""
+msgstr "Nachricht gelöscht"
 
 #: nextcloud_talk_bot/ncbot.py:172
 msgid "Option name. Type --list to get all options."
@@ -118,7 +119,7 @@ msgstr ""
 
 #: nextcloud_talk_bot/nextcloud_calendar.py:159
 msgid "Please enter a number."
-msgstr ""
+msgstr "Bitte eine Zahl eingeben."
 
 #: nextcloud_talk_bot/first_run_setup.py:96
 msgid "Please enter the bot user's app password:"
@@ -146,11 +147,11 @@ msgstr ""
 
 #: nextcloud_talk_bot/nextcloud_file_operations.py:105
 msgid "Sending file to Nextcloud Talk"
-msgstr ""
+msgstr "Sende Datei zu Nextcloud Talk"
 
 #: nextcloud_talk_bot/translations.py:10
 msgid "Shared"
-msgstr ""
+msgstr "Geteilt"
 
 #: nextcloud_talk_bot/translations.py:14
 msgid "Termin"
