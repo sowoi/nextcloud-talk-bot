@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-18 20:54+0200\n"
-"PO-Revision-Date: 2023-09-20 16:01+0000\n"
+"PO-Revision-Date: 2023-12-10 19:05+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/nextcloudtalkbot/"
 "user-intraction/es/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 #: nextcloud_talk_bot/check_local_user_enviroment.py:33
 msgid " is a member of the "
@@ -57,120 +57,131 @@ msgstr "Error: Este script no debe ejecutarse como root o con sudo."
 
 #: nextcloud_talk_bot/ncbot.py:205
 msgid "First Run setup"
-msgstr ""
+msgstr "Configuración de la primera ejecución"
 
 #: nextcloud_talk_bot/first_run_setup.py:210
 msgid "FirstRunSetup aborted."
-msgstr ""
+msgstr "Primera ejecución de la instalación abortada."
 
 #: nextcloud_talk_bot/first_run_setup.py:120
 msgid ""
 "Found the following chats about the entered user. Select the chat by "
 "entering the number in front of it."
 msgstr ""
+"Encuentra los siguientes chats sobre el usuario introducido. Seleccione el "
+"chat introduciendo el número que aparece delante de él."
 
 #: nextcloud_talk_bot/ncbot.py:180
 msgid ""
 "Function to call. Type option --list to get all parameters or option --help "
 "for help"
 msgstr ""
+"Función a llamar. Escriba la opción --list para obtener todos los parámetros "
+"o la opción --help para obtener ayuda"
 
 #: nextcloud_talk_bot/first_run_setup.py:172
 msgid "Incorrect login data. Please try again."
-msgstr ""
+msgstr "Datos de acceso incorrectos. Por favor, inténtelo de nuevo."
 
 #: nextcloud_talk_bot/nextcloud_calendar.py:157
 msgid "Invalid entry."
-msgstr ""
+msgstr "Entrada no válida."
 
 #: nextcloud_talk_bot/confirmation.py:42
 #: nextcloud_talk_bot/first_run_setup.py:216
 msgid "Invalid input. Please enter 'yes' or 'no'."
-msgstr ""
+msgstr "Entrada no válida. Por favor, introduzca \"sí\" o \"no\"."
 
 #: nextcloud_talk_bot/first_run_setup.py:153
 msgid "Invalid input. Please enter a number between 1 and"
-msgstr ""
+msgstr "Entrada no válida. Por favor, introduzca un número entre 1 y"
 
 #: nextcloud_talk_bot/nextcloud_messages.py:104
 msgid "Invalid selection."
-msgstr ""
+msgstr "Selección incorrecta."
 
 #: nextcloud_talk_bot/ncbot.py:198
 msgid "List available options or functions."
-msgstr ""
+msgstr "Lista de opciones o funciones disponibles."
 
 #: nextcloud_talk_bot/first_run_setup.py:117
 msgid "Login data are OK"
-msgstr ""
+msgstr "Los datos de acceso son correctos"
 
 #: nextcloud_talk_bot/nextcloud_messages.py:123
 msgid "Message deleted"
-msgstr ""
+msgstr "Mensaje eliminado"
 
 #: nextcloud_talk_bot/ncbot.py:172
 msgid "Option name. Type --list to get all options."
-msgstr ""
+msgstr "Nombre de la opción. Escriba --list para obtener todas las opciones."
 
 #: nextcloud_talk_bot/nextcloud_calendar.py:151
 msgid "Please choose event by number: "
-msgstr ""
+msgstr "Por favor, elija el evento por número: "
 
 #: nextcloud_talk_bot/nextcloud_calendar.py:159
 msgid "Please enter a number."
-msgstr ""
+msgstr "Por favor, introduzca un número."
 
 #: nextcloud_talk_bot/first_run_setup.py:96
 msgid "Please enter the bot user's app password:"
-msgstr ""
+msgstr "Por favor, introduce la contraseña de la aplicación del usuario bot:"
 
 #: nextcloud_talk_bot/first_run_setup.py:147
 msgid "Please enter the number of the list item you want to select: "
 msgstr ""
+"Por favor, introduzca el número del elemento de la lista que desea "
+"seleccionar: "
 
 #: nextcloud_talk_bot/first_run_setup.py:76
 msgid "Please enter your complete Nextcloud address including https://: "
 msgstr ""
+"Por favor, introduce tu dirección completa de Nextcloud incluyendo https://: "
 
 #: nextcloud_talk_bot/first_run_setup.py:86
 msgid "Please specify the username of the bot user:"
-msgstr ""
+msgstr "Por favor, especifica el nombre de usuario del bot:"
 
 #: nextcloud_talk_bot/nextcloud_poll.py:125
 msgid "Poll closing aborted."
-msgstr ""
+msgstr "Cierre de la encuesta abortado."
 
 #: nextcloud_talk_bot/nextcloud_poll.py:115
 msgid "PollId not found"
-msgstr ""
+msgstr "PollId no encontrado"
 
 #: nextcloud_talk_bot/nextcloud_file_operations.py:105
 msgid "Sending file to Nextcloud Talk"
-msgstr ""
+msgstr "Envío de archivos a Nextcloud Talk"
 
 #: nextcloud_talk_bot/translations.py:10
 msgid "Shared"
-msgstr ""
+msgstr "Compartido"
 
 #: nextcloud_talk_bot/translations.py:14
 msgid "Termin"
-msgstr ""
+msgstr "Fecha límite"
 
 #: nextcloud_talk_bot/first_run_setup.py:205
 msgid ""
 "The .nextclouddata file already exists. If you continue, this file will be "
 "overwritten."
 msgstr ""
+"El archivo .nextclouddata ya existe. Si continúa, este archivo se "
+"sobrescribirá."
 
 #: nextcloud_talk_bot/nextcloud_data.py:32
 msgid ""
 "The .nextclouddata file does not exist. Please run the first_run_setup "
 "script first."
 msgstr ""
+"El archivo .nextclouddata no existe. Ejecute primero el script "
+"first_run_setup."
 
 #: nextcloud_talk_bot/check_local_user_enviroment.py:33
 msgid "The user "
-msgstr ""
+msgstr "El usuario "
 
 #: nextcloud_talk_bot/first_run_setup.py:227
 msgid ""
@@ -179,55 +190,62 @@ msgid ""
 "Enable 2FA for this bot user and create an app password in Nextcloud.\n"
 "        "
 msgstr ""
+"Este asistente le guiará a través de la configuración del framework.\n"
+"Asegúrate de haber creado un usuario bot que solo tenga derechos limitados.\n"
+"Habilita 2FA para este usuario bot y crea una contraseña de aplicación en "
+"Nextcloud.\n"
+"        "
 
 #: nextcloud_talk_bot/nextcloud_monitoring.py:87
 msgid "Warning: CPU load is greater than 10."
-msgstr ""
+msgstr "Advertencia: La carga de la CPU es superior a 10."
 
 #: nextcloud_talk_bot/nextcloud_monitoring.py:84
 msgid "Warning: Less than 10GB storage free."
-msgstr ""
+msgstr "Advertencia: Menos de 10 GB de almacenamiento libre."
 
 #: nextcloud_talk_bot/nextcloud_monitoring.py:78
 msgid "Warning: Less than 20% memory free."
-msgstr ""
+msgstr "Advertencia: Menos del 20% de memoria libre."
 
 #: nextcloud_talk_bot/nextcloud_monitoring.py:81
 msgid "Warning: The system is swapping."
-msgstr ""
+msgstr "Advertencia: El sistema está cambiando."
 
 #: nextcloud_talk_bot/nextcloud_monitoring.py:90
 msgid "Warning: There are app updates available for the following apps:"
 msgstr ""
+"Advertencia: Hay actualizaciones disponibles para las siguientes "
+"aplicaciones:"
 
 #: nextcloud_talk_bot/translations.py:11
 msgid "changed"
-msgstr ""
+msgstr "modificado"
 
 #: nextcloud_talk_bot/translations.py:11
 msgid "created"
-msgstr ""
+msgstr "creado"
 
 #: nextcloud_talk_bot/translations.py:11
 msgid "deleted"
-msgstr ""
+msgstr "borrado"
 
 #: nextcloud_talk_bot/translations.py:8
 msgid "event"
-msgstr ""
+msgstr "evento"
 
 #: nextcloud_talk_bot/confirmation.py:37
 msgid "no"
-msgstr ""
+msgstr "no"
 
 #: nextcloud_talk_bot/translations.py:9
 msgid "to-do"
-msgstr ""
+msgstr "tareas pendientes"
 
 #: nextcloud_talk_bot/ncbot.py:163
 msgid "type options --list to get available functions"
-msgstr ""
+msgstr "escriba las opciones --list para obtener las funciones disponibles"
 
 #: nextcloud_talk_bot/confirmation.py:39
 msgid "yes"
-msgstr ""
+msgstr "sí"

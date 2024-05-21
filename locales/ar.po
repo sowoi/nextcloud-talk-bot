@@ -1,0 +1,240 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2024-03-30 04:03+0000\n"
+"Last-Translator: Ali <alimahwer@yahoo.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/nextcloudtalkbot/"
+"user-intraction/ar/>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 5.5-dev\n"
+
+#: nextcloud_talk_bot/confirmation.py:42
+#: nextcloud_talk_bot/first_run_setup.py:216
+msgid "Invalid input. Please enter 'yes' or 'no'."
+msgstr "إدخالية غير صحيحة. من فضلك، أدخِل 'نعم yes'أو 'لا no'."
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:33
+msgid " is a member of the "
+msgstr " عضوٌ في الـ "
+
+#: nextcloud_talk_bot/nextcloud_meeting.py:80
+msgid "Aborted."
+msgstr "تم إجهاض العملية."
+
+#: nextcloud_talk_bot/first_run_setup.py:208
+msgid "Are you sure you want to continue? (yes/no): "
+msgstr "هل أنت متأكد أنك ترغب في الاستمرار؟ (نعم/لا): "
+
+#: nextcloud_talk_bot/ncbot.py:186
+msgid "Arguments to pass to the function."
+msgstr "البارامترات المُمرّرة إلى الدالة."
+
+#: nextcloud_talk_bot/ncbot.py:160
+msgid "Available options:"
+msgstr "الخيارات المتاحة:"
+
+#: nextcloud_talk_bot/ncbot.py:168
+msgid "Call Nextcloud Commands via NextcloudTalkBot Framework"
+msgstr "قُم باستدعاء أوامر نكست كلاود من خلال إطار العمل NextcloudTalkBot"
+
+#: nextcloud_talk_bot/first_run_setup.py:213
+msgid "Continuing with FirstRunSetup..."
+msgstr "الاستمرار في الإعداد للتشغيل لأول مرة FirstRunSetup ..."
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:28
+msgid "Error: This script should not be run as root or with sudo."
+msgstr "خطأ: لا ينبغي تشغيل هذا السكريبت كجذر أو باستخدام sudo."
+
+#: nextcloud_talk_bot/ncbot.py:205
+msgid "First Run setup"
+msgstr "الإعداد للتشغيل لأول مرة"
+
+#: nextcloud_talk_bot/first_run_setup.py:210
+msgid "FirstRunSetup aborted."
+msgstr "تمّ إجهاض عملية التشغيل لأول مرة."
+
+#: nextcloud_talk_bot/first_run_setup.py:120
+msgid ""
+"Found the following chats about the entered user. Select the chat by "
+"entering the number in front of it."
+msgstr ""
+"تم العثور على الدردشات التالية حول المستخدم الذي تم إدخاله. قم باختيار "
+"الدردشة عن طريق إدخال الرقم الموجود أمامها."
+
+#: nextcloud_talk_bot/ncbot.py:180
+msgid ""
+"Function to call. Type option --list to get all parameters or option --help "
+"for help"
+msgstr ""
+"وظيفة للاتصال. اكتب option --list للحصول على كافة البارامترات أو option --"
+"help للحصول على المساعدة"
+
+#: nextcloud_talk_bot/first_run_setup.py:172
+msgid "Incorrect login data. Please try again."
+msgstr "بيانات الدخول غير صحيحة. حاول مرة أخرى من فضلك."
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:157
+msgid "Invalid entry."
+msgstr "إدخالية غير صحيحة."
+
+#: nextcloud_talk_bot/first_run_setup.py:153
+msgid "Invalid input. Please enter a number between 1 and"
+msgstr "إدخالية غير صحيحة. من فضلك، أدخِل رقماً بين 1 و"
+
+#: nextcloud_talk_bot/nextcloud_messages.py:104
+msgid "Invalid selection."
+msgstr "إختيار غير صحيح."
+
+#: nextcloud_talk_bot/first_run_setup.py:117
+msgid "Login data are OK"
+msgstr "بيانات تسجيل الدخول مقبولة"
+
+#: nextcloud_talk_bot/nextcloud_messages.py:123
+msgid "Message deleted"
+msgstr "تمّ حذف الرسالة"
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:151
+msgid "Please choose event by number: "
+msgstr "من فضلك، حدِّد حدثاً من خلال رقمه: "
+
+#: nextcloud_talk_bot/nextcloud_calendar.py:159
+msgid "Please enter a number."
+msgstr "من فضلك، أدخِل رقماً."
+
+#: nextcloud_talk_bot/first_run_setup.py:96
+msgid "Please enter the bot user's app password:"
+msgstr "الرجاء إدخال كلمة مرور مستخدم تطبيق الـ bot:"
+
+#: nextcloud_talk_bot/first_run_setup.py:147
+msgid "Please enter the number of the list item you want to select: "
+msgstr "الرجاء إدخال رقم عنصر القائمة الذي تريد اختياره: "
+
+#: nextcloud_talk_bot/first_run_setup.py:86
+msgid "Please specify the username of the bot user:"
+msgstr "يرجى تحديد اسم مستخدم الـ bot:"
+
+#: nextcloud_talk_bot/nextcloud_poll.py:125
+msgid "Poll closing aborted."
+msgstr "تمّ إجهاض عملية غلق التصويت."
+
+#: nextcloud_talk_bot/nextcloud_poll.py:115
+msgid "PollId not found"
+msgstr "لم يُعثر على التصويتات"
+
+#: nextcloud_talk_bot/nextcloud_file_operations.py:105
+msgid "Sending file to Nextcloud Talk"
+msgstr "إرسال ملف إلى تطبيق نكست كلاود للمحادثة Talk"
+
+#: nextcloud_talk_bot/translations.py:10
+msgid "Shared"
+msgstr "مُشتَرَك"
+
+#: nextcloud_talk_bot/translations.py:14
+msgid "Termin"
+msgstr "الموعد"
+
+#: nextcloud_talk_bot/check_local_user_enviroment.py:33
+msgid "The user "
+msgstr "المستخدِم "
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:84
+msgid "Warning: Less than 10GB storage free."
+msgstr "تحذير: المساحة المتاحة للتخزين أقل من 10 غيغا بايت."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:78
+msgid "Warning: Less than 20% memory free."
+msgstr "تحذير: المساحة المتاحة من الذاكرة أقل من 20%."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:81
+msgid "Warning: The system is swapping."
+msgstr ""
+"تحذير: النظام يقوم الآن بعملية swapping لنقل البيانات ما بين الذاكرة "
+"الرئيسية و وحدات التخزين الثانوية."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:90
+msgid "Warning: There are app updates available for the following apps:"
+msgstr "تحذير: تتوفر حاليّاً تحديثات للتطبيقات التالية:"
+
+#: nextcloud_talk_bot/translations.py:11
+msgid "changed"
+msgstr "تمّ التغيير"
+
+#: nextcloud_talk_bot/translations.py:11
+msgid "created"
+msgstr "تمّ الإنشاء"
+
+#: nextcloud_talk_bot/translations.py:11
+msgid "deleted"
+msgstr "محذوفة"
+
+#: nextcloud_talk_bot/translations.py:8
+msgid "event"
+msgstr "حدث"
+
+#: nextcloud_talk_bot/confirmation.py:37
+msgid "no"
+msgstr "لا"
+
+#: nextcloud_talk_bot/translations.py:9
+msgid "to-do"
+msgstr "قائمة المهام"
+
+#: nextcloud_talk_bot/confirmation.py:39
+msgid "yes"
+msgstr "نعم"
+
+#: nextcloud_talk_bot/first_run_setup.py:227
+msgid ""
+"This wizard guides you through the configuration of the framework.\n"
+"Make sure you have created a bot user that has only limited rights.\n"
+"Enable 2FA for this bot user and create an app password in Nextcloud.\n"
+"        "
+msgstr ""
+"يرشدك هذا المُساعِد wizard خلال عملية تكوين إطار العمل. \n"
+"تأكد من أنك قمت بإنشاء مستخدم لـbot يتمتع بحقوق محدودة فقط. \n"
+"قم بتمكين المصادقة الثنائية له، وقم بإنشاء كلمة مرور التطبيق في نكست كلاود.\n"
+"        "
+
+#: nextcloud_talk_bot/nextcloud_data.py:32
+msgid ""
+"The .nextclouddata file does not exist. Please run the first_run_setup "
+"script first."
+msgstr ""
+"الملف ‎.nextclouddata غير موجود. الرجاء تشغيل البرنامج النصي first_run_setup "
+"أولاً."
+
+#: nextcloud_talk_bot/nextcloud_monitoring.py:87
+msgid "Warning: CPU load is greater than 10."
+msgstr "تحذير: حَمْل وحدة المُعالجة المركزية CPU أكثر من 10."
+
+#: nextcloud_talk_bot/ncbot.py:163
+msgid "type options --list to get available functions"
+msgstr "أكتُب خيارات -- للحصول على الوظائف المتاحة"
+
+#: nextcloud_talk_bot/translations.py:15
+msgid "Aufgabe"
+msgstr "مهمة"
+
+#: nextcloud_talk_bot/ncbot.py:198
+msgid "List available options or functions."
+msgstr "قائمة بالخيارات أو الوظائف المتاحة."
+
+#: nextcloud_talk_bot/ncbot.py:172
+msgid "Option name. Type --list to get all options."
+msgstr "اسم الخيار. إكتُب -- لعرض قائمة بكل الخيارات المتوفرة."
+
+#: nextcloud_talk_bot/first_run_setup.py:76
+msgid "Please enter your complete Nextcloud address including https://: "
+msgstr "الرجاء إدخال عنوان نكست كلاود الكامل الخاص بك بما في ذلك https://: "
+
+#: nextcloud_talk_bot/first_run_setup.py:205
+msgid ""
+"The .nextclouddata file already exists. If you continue, this file will be "
+"overwritten."
+msgstr ""
+"الملف ‎.nextclouddata موجود بالفعل. إذا قمت بالمتابعة، سيتم الكتابة فوق هذا "
+"الملف."
